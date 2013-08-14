@@ -31,8 +31,10 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	
 	//---------------
 	//GENRES 
-	var total_genres_unlock = 1;
-	var myRandomNumbers = MyRandoms(7,total_genres_unlock); //array containing 2 distinct random numbers
+	//var total_genres_unlock = 1;
+	//var myRandomNumbers = MyRandoms(7,total_genres_unlock); //array containing 2 distinct random numbers
+	var myRandomNumbers = new Array();
+
 		
 	$scope.genres = BTBW.Data.Genres;
 	$scope.selectGenre = function(genreId) {
@@ -48,8 +50,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			}
 		}
 		
-		//var e = document.getElementById("debug");
-		//e.innerHTML = "genreId:" + genreId + " / " + myRandomNumbers[0] + " / " +  resultFound; 
+
 		
 		if(resultFound)
 		{
@@ -129,7 +130,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
         $location.path(BTBW.CONST.PATH_INTRO);
 	}
 	
-	function DisplayUserPoints(myRandomNumbers) {
+	function DisplayUserPoints() {
 		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getScore&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
@@ -143,12 +144,6 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			e = document.getElementById("displayRank");
 			e.innerHTML = rank; 
 			BTBW.Data.Profile.rank = rank;
-			
-			
-			SetRandomGenre(myRandomNumbers);
-			
-			
-
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });
@@ -183,7 +178,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	
 
 
-	function SetRandomGenre(myRandomNumbers)
+	function SetRandomGenre()
 	{
 		var e;
 		var resultFound = false;
@@ -204,6 +199,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		}		
 	}
 	
+	/*
 	function MyRandoms(range,tot){
 		
 		if(tot > range){
@@ -230,13 +226,32 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		}
 		return myRandomNumbers;
 	}
+	*/
+	
+	
+	
+	function GetRandomRumbers()
+	{
+		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getRandomNumbers&range=7&tot=2";
+		$.ajax({ url:url })
+		.done(function(evt) {
+			var e = document.getElementById("debug");
+			e.innerHTML = evt; 
+			var temp = [];
+			myRandomNumbers = evt.split(",");
+			SetRandomGenre();
+		})
+		.fail(function() { sharedUtilities.reportError(evt); })
+		.always(function() { console.log("complete"); });
+		return 0;
+	}
 
-
+	GetRandomRumbers();
 	
 	
 	
 	
-	DisplayUserPoints(myRandomNumbers);
+	DisplayUserPoints();
 	
 	
 	
