@@ -8,7 +8,8 @@ BTBW.CONST = BTBW.CONST || {
     TESTING : 1, 
 	
 	
-	"BASE_URL": "/btbw", // LOCAL
+	 "BASE_URL": "/btbw", // LOCAL
+	//"BASE_URL": "/GitHub/Beat-the-Buzzword",
 	//"BASE_URL": "/dev/btbw", // ONLINE
 	
 	"CSSCLASS_SCROLLABLE_TABLE": "wrap-table",
@@ -29,6 +30,7 @@ BTBW.CONST = BTBW.CONST || {
     "PATH_ACHIEVEMENTS": "/achievements",
     "PATH_SELECT_OPP": "/selectopp",
     "PATH_SELECT_GENRE": "/selectgenre",
+    "PATH_LEADERBOARD": "/leaderboard",
 
     "TEMPLATE_URL_LOGIN": "static/partials/login.html",
     "TEMPLATE_URL_INTRO": "static/partials/intro.html",
@@ -39,6 +41,7 @@ BTBW.CONST = BTBW.CONST || {
     'TEMPLATE_URL_ACHIEVEMENTS': "static/partials/achievements.html",
     'TEMPLATE_URL_SELECT_OPP': "static/partials/selectopp.html",
     'TEMPLATE_URL_SELECT_GENRE': "static/partials/selectgenre.html",
+    'TEMPLATE_URL_LEADERBOARD': "static/partials/show-leaderboard.html",
 
     'MESSAGE_TIMER_GO': 'GO!',   
     'MESSAGE_SELECT_GENRE': 'Please select a genre in order to continue!',

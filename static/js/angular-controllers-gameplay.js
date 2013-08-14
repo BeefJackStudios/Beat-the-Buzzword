@@ -67,9 +67,10 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
     });
 	
 	$scope.$on("TIMER_TICKED", function(evt, arg1) {
-       //console.log("TIMER_TICKED "+arg1);
-	    $scope.time = arg1;
-    });
+		console.log("TIMER_TICKED "+evt+" "+arg1);
+		$scope.time = arg1;
+		$scope.updateTimerView();
+	});
 	
     $scope.submitAnswer = function(answer, $event) {
         //set lock to prevent multiple clicks

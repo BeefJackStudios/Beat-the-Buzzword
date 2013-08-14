@@ -107,7 +107,7 @@ function VictoryController($scope, $dialog, $location, $timeout, sharedData, ser
 	//----------------
 	$scope.gotoLeaderboardPage = function() {
 		sharedData.currentChallengeUserId = null;
-        $location.path(BTBW.CONST.PATH_SHOW_CHALLENGES);
+        $location.path(BTBW.CONST.PATH_LEADERBOARD);
 	}
 	
 	$scope.gotoAchievementPage = function() {
