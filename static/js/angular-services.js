@@ -8,7 +8,7 @@
 BTBWModule.factory('sharedData', function ($q, $http, $location, $dialog) {
     return {
         currentGenreId: null, //stores the genre selected by the user
-        currentChallengeName: BTBW.CONST.GAME_PRACTICE,
+        //currentChallengeName: BTBW.CONST.GAME_PRACTICE,
         currentChallengeId: null,
         currentChallengeUserId: null
    };
@@ -27,7 +27,7 @@ BTBWModule.factory('sharedUtilities', function ($q, $http, $location, $dialog, s
         //load default data (eg: called when leaving the victory screen)
         loadDefaultData: function() {
             sharedData.currentGenreId = sharedData.currentChallengeId = sharedData.currentChallengeUserId = null;
-            currentChallengeName = BTBW.CONST.GAME_PRACTICE;
+            //currentChallengeName = BTBW.CONST.GAME_PRACTICE;
         },
         /**
          * Replaces %some_text% occurence with data from an object

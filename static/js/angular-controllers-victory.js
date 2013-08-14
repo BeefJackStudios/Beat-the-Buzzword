@@ -56,11 +56,11 @@ function VictoryController($scope, $dialog, $location, $timeout, sharedData, ser
         } 
 
         //otherwise it's the correct answers message
-        if (sharedData.currentChallengeName === BTBW.CONST.GAME_SET_CHALLENGE ||  sharedData.currentChallengeName === BTBW.CONST.GAME_PRACTICE) {
-            return BTBW.CONST.EVALUATED_SCORE_MSG_FORMAT_1.format(completedChallenge.correctAnswers, plural);
-        } else if ( sharedData.currentChallengeName === BTBW.CONST.GAME_TAKE_CHALLENGE ) {
+        //if (sharedData.currentChallengeName === BTBW.CONST.GAME_SET_CHALLENGE ||  sharedData.currentChallengeName === BTBW.CONST.GAME_PRACTICE) {
+        //    return BTBW.CONST.EVALUATED_SCORE_MSG_FORMAT_1.format(completedChallenge.correctAnswers, plural);
+        //} else if ( sharedData.currentChallengeName === BTBW.CONST.GAME_TAKE_CHALLENGE ) {
             return BTBW.CONST.EVALUATED_SCORE_MSG_FORMAT_2.format(2);
-        }
+        //}
     }
 
     $scope.gotoDashboard = function() {

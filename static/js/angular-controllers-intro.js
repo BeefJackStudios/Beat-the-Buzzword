@@ -80,7 +80,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 
     $scope.startBuzzword = function() {
         sharedData.isMyGame = false;
-		sharedData.currentChallengeName = BTBW.CONST.GAME_PRACTICE;
+		sharedData.currentChallengeName = BTBW.CONST.GAME_BUZZWORD;
 		//$location.path(BTBW.CONST.PATH_SELECT_GENRE);
 		$scope.showGenres = true;
 	}
@@ -127,13 +127,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
         $location.path(BTBW.CONST.PATH_INTRO);
 	}
 	
-<<<<<<< HEAD
-	
-
 	function DisplayUserPoints(myRandomNumbers) {
-=======
-	function DisplayUserPoints() {
->>>>>>> 79c84a15c1104b81ec3f8e06223ceeec5fc29939
 		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getScore&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
@@ -147,11 +141,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			e = document.getElementById("displayRank");
 			e.innerHTML = rank; 
 			BTBW.Data.Profile.rank = rank;
-<<<<<<< HEAD
 			
 			SetRandomGenre(myRandomNumbers);
-=======
->>>>>>> 79c84a15c1104b81ec3f8e06223ceeec5fc29939
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });
@@ -334,19 +325,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		return 0;
 	}
 
-<<<<<<< HEAD
-
 	DisplayUserPoints(myRandomNumbers);
-	;
-=======
 	GetRandomRumbers();
-	
-	
-	
-	
-	DisplayUserPoints();
-	
->>>>>>> 79c84a15c1104b81ec3f8e06223ceeec5fc29939
-	
 	
 }
