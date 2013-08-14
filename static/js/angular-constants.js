@@ -8,7 +8,7 @@ BTBW.CONST = BTBW.CONST || {
     TESTING : 1, 
 	
 	
-	 "BASE_URL": "/btbw", // LOCAL
+	"BASE_URL": "/btbw", // LOCAL
 	//"BASE_URL": "/GitHub/Beat-the-Buzzword",
 	//"BASE_URL": "/dev/btbw", // ONLINE
 	
@@ -17,6 +17,8 @@ BTBW.CONST = BTBW.CONST || {
     "GAME_PRACTICE": "practice",
     "GAME_BUZZWORD": "Buzzword",
     "GAME_HEAD2HEAD": "Head 2 Head",
+    "GAME_CEO": "CEO",
+    "GAME_ENTREPRENEUR": "Entrepreneur",
     
 	"GAME_SET_CHALLENGE": "set-challenge",
     "GAME_TAKE_CHALLENGE": "take-challenge",
@@ -88,5 +90,17 @@ BTBW.CONST = BTBW.CONST || {
     "CLASS_ANSWER_CORRECT": "correct",
     "CLASS_ANSWER_WRONG": "wrong",
 
-    "LIMIT_RANDOM_CHALLENGES_BY_GENRE": 3
+    "LIMIT_RANDOM_CHALLENGES_BY_GENRE": 3,
+	
+	"LEADER_TITLE_ARR" : [
+		{title:"All leaderboards (overall)", 	category:"All"},
+		{title:"Top in Buzzwords", 				category:"practice"},
+		{title:"Top in Head to Head", 			category:"Head 2 Head"},
+		{title:"Top in CEO", 					category:"CEO"},
+		{title:"Top in Entrepreneur", 			category:"Entrepreneur"},	
+	],
+	
+	
+	
+	
 };

@@ -226,6 +226,14 @@ if ( $mode == "createGame") {
 		$score = $score + $row["score"];
 	}
 	print $score;
+	
+} else if ( $mode == "getRandomNumbers") {
+	$totalCat = 1;
+	$arr = array();
+	while ( count($arr) < $totalCat ) {
+		$x = mt_rand(1,7);
+		if ( !in_array($x,$arr) ) { $arr[] = $x; echo "$x,"; }
+	}
 }
 
 
