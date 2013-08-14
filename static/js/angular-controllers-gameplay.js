@@ -69,7 +69,7 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 	$scope.$on("TIMER_TICKED", function(evt, arg1) {
 		console.log("TIMER_TICKED "+evt+" "+arg1);
 		$scope.time = arg1;
-		$scope.updateTimerView();
+		try { $scope.updateTimerView() } catch(e){};
 	});
 	
     $scope.submitAnswer = function(answer, $event) {
