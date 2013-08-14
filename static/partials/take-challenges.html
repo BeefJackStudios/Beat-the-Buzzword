@@ -1,0 +1,41 @@
+<section id="wrap-take-challenges" data-ng-switch on="screen">
+    <h1>Take Challenges...</h1>
+    
+    <nav>
+        <a href="javascript:void(0);" data-ng-click="screen='ceo'; data = ceo" data-ng-class="{'selected': screen == 'ceo'}" >CEO's</a><a href="javascript:void(0);" data-ng-click="screen='connection'; data = connection" data-ng-class="{'selected': screen == 'connection'}">Your connections</a><a href="javascript:void(0);" data-ng-click="screen='random'; data = random" data-ng-class="{'selected': screen == 'random'}">Random</a>
+    </nav>
+
+    <div data-ng-switch-default>
+        <table>
+            <thead>
+                <tr>
+                    <th>Genre</th>
+                    <th>Correct answers</th>
+                    <th>Timeset</th>
+                    <th>Times played</th>
+                </tr>
+            </thead>
+        </table>
+        <div data-scrollable-content class="selectable">
+            <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+            <div class="viewport">
+                <div class="overview">
+                    <table>
+                        <tbody>
+                            <tr data-ng-repeat="challenge in data" tabindex="1" data-ng-click="challengeSelected(challenge)">
+                                <td>{[{challenge.genre.name}]}</td>
+                                <td>{[{challenge.correctAnswers}]}</td>
+                                <td>{[{challenge.timeset}]}</td>
+                                <td>{[{challenge.timesPlayed}]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-ng-switch-when="ceo">
+        ceo
+    </div>
+    <div data-popup-box />
+</section>

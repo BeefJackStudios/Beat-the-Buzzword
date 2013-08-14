@@ -1,0 +1,134 @@
+[
+    {
+    	"pk":1,
+    	"model":"buzzword.Challenge",
+    	"fields": {
+    	    "user": 2,
+    	    "genre": 1,
+    	    "created": "2013-04-04 12:00:00",
+	    "ceo": false,
+	    "connection_id": "r7gOIhUU_d"
+    	}
+    },
+    {
+	"pk":1,
+	"model":"buzzword.Play",
+	"fields": {
+	    "user": 2,
+	    "challenge": 1,
+	    "started_at": "2013-04-04 12:21:00",
+	    "finished_at": "2013-04-04 12:22:00",
+	    "correct": 4,
+	    "incorrect": 0,
+	    "time": 48,
+	    "valid": true,
+	    "data": "{}"
+	}
+    },
+    {
+        "pk": 1,
+        "model": "buzzword.ChallengeBuzzword",
+        "fields": {
+            "challenge": 1,
+            "buzzword": 1,
+            "incorrect1": 2,
+            "incorrect2": 3,
+            "incorrect3": 4
+        }
+    },
+    {
+    	"pk":2,
+    	"model":"buzzword.Challenge",
+    	"fields": {
+    	    "user": 2,
+    	    "genre": 1,
+    	    "created": "2013-04-04 12:20:00",
+	    "ceo": false,
+	    "connection_id": "r7gOIhUU_d"
+    	}
+    },
+    {
+	"pk":2,
+	"model":"buzzword.Play",
+	"fields": {
+	    "user": 2,
+	    "challenge": 2,
+	    "started_at": "2013-04-04 12:21:00",
+	    "finished_at": "2013-04-04 12:22:00",
+	    "correct": 4,
+	    "incorrect": 0,
+	    "time": 48,
+	    "valid": true,
+	    "data": "{}"
+	}
+    },
+    {
+        "pk": 2,
+        "model": "buzzword.ChallengeBuzzword",
+        "fields": {
+            "challenge": 2,
+            "buzzword": 1,
+            "incorrect1": 2,
+            "incorrect2": 3,
+            "incorrect3": 4
+        }
+    },
+    {
+        "pk": 3,
+        "model": "buzzword.ChallengeBuzzword",
+        "fields": {
+            "challenge": 2,
+            "buzzword": 2,
+            "incorrect1": 3,
+            "incorrect2": 4,
+            "incorrect3": 5
+        }
+    },
+    {
+        "pk": 4,
+        "model": "buzzword.ChallengeBuzzword",
+        "fields": {
+            "challenge": 2,
+            "buzzword": 3,
+            "incorrect1": 4,
+            "incorrect2": 5,
+            "incorrect3": 6
+        }
+    },
+    {
+        "pk": 5,
+        "model": "buzzword.ChallengeBuzzword",
+        "fields": {
+            "challenge": 2,
+            "buzzword": 4,
+            "incorrect1": 5,
+            "incorrect2": 6,
+            "incorrect3": 7
+        }
+    },
+    {
+    	"pk":3,
+    	"model":"buzzword.Challenge",
+    	"fields": {
+    	    "user": 2,
+    	    "genre": 1,
+    	    "created": "2013-04-04 12:40:00",
+            "ceo": false
+    	}
+    },
+    {
+	"pk":3,
+	"model":"buzzword.Play",
+	"fields": {
+	    "user": 2,
+	    "challenge": 3,
+	    "started_at": "2013-04-04 12:24:00",
+	    "finished_at": "2013-04-04 12:27:00",
+	    "correct": 4,
+	    "incorrect": 0,
+	    "time": 48,
+	    "valid": true,
+	    "data": "{}"
+	}
+    }
+]

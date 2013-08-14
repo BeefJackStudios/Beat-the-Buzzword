@@ -1,0 +1,213 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" ng-app="BTBW">
+	
+	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+	<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+	<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=1000">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		
+		<link rel="stylesheet" href="static/css/fonts.css">
+        <link rel="stylesheet" href="static/css/normalize.css">
+		<link rel="stylesheet" href="static/css/main.css">
+		<!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"> -->
+		<link href="static/css/bootstrap-combined.min.css" rel="stylesheet">
+			
+
+		<!-- poll within angularjs until loaded  -->
+		<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+			api_key:wxxised2wjhf
+			onLoad:onLinkedInAPILoaded
+			authorize: true
+		</script>
+		<script type="text/javascript">
+            window.BTBW = window.BTBW || {};  
+			
+			function onLinkedInAPILoaded(){
+				//console.log("LINKEDIN ROOT : "+IN.API.Profile("me") )
+				//console.log("LINKEDIN ROOT : "+IN.API.Profile("me").result() )
+			}
+			
+		</script>
+		
+		<script>
+			IN.Event.on(IN, "logout", function() {onLinkedInLogout();});
+
+			function onLinkedInLogout(){
+			// User is logged out
+			window.location.href='#'
+			}
+		</script>
+        
+    </head>
+	
+
+	
+    <body data-ng-controller="BTBWController">
+        <!--[if lte IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="wrap-main">
+			
+			<!--
+				<input type="text" id="ddd" value="" ng-model="profile.firstName" XXplaceholder="sdf">
+			-->
+				
+            <div id="wrap-centering-container">
+                <header>
+
+					
+                    <div id="wrap-linkedin">
+                        <!--<img class="logo-profile" data-ng-src={[{profile.picture}]} alt="{[{profile.firstName}]} {[{profile.lastName}]} profile image" />-->
+                        <div>
+                            <!--<p data-ng-bind="'Happy ' + (today | date:'EEEE') + ', ' + profile.firstName"></p>-->
+                            <p class="logout">All buzzed out? <a href="#" onclick="IN.User.logout()">Log out<span></span></a></p>
+                        </div>
+                    </div>
+					
+					<!--
+                    <div id="logo"><img src="static/img/logo.png" alt="Beat the Buzzword - Brought to you by Oracle &amp; Intel" /></div>
+                   -->
+					   
+					<div id="wrap-usermenu">
+                        <ul>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Legal</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="javascript:void(0);" data-ng-click="gotoDashboard()">Game Selection</a></li>
+                            <li><a href="javascript:void(0);" data-ng-click="gotoLeaderboardPage()">My Scores</a></li>
+                        </ul>
+                    </div>
+                </header>
+				
+				<div style="margin-top:-80px;"></div>
+				
+	
+				<div id="wrap-overlay">
+					<div ng-view></div>
+				</div>
+						
+				
+				<footer>
+					<div>
+						<a id="tidy" href="javascript:void(0);">Tidy the page</a>
+						<p>Beat the buzzword. Copyright &copy; 2013. All rights reserved.</p>
+					</div>
+					<!--
+					<ul>
+						<li><p>Brought to you by</p></li>
+						<li><img src="static/img/logo-intel.png" alt="Intel logo" /></li>
+						<li><img src="static/img/logo-oracle.png" alt="Oracle logo" /></li>
+					</ul>
+					-->
+				</footer>
+
+            </div>
+			
+            <div id="asset-mug"> </div>
+            <div id="asset-coffee-ring"> </div>
+            <div id="asset-splat"> </div>
+            <div id="asset-side-splat"> </div>
+            <div id="asset-todo"> </div>
+            <div id="asset-glasses"> </div>
+        </div>
+
+        <!-- load data -->
+        
+        <script type="text/javascript">
+            BTBW.Data = BTBW.Data || {};
+           
+			//DONE
+			
+			BTBW.Data.Profile = {}; // {"lastName": "Denby", "linkedin_id": "v1z1gFpEpJ", "firstName": "Lewis", "picture": "http://m.c.lnkd.licdn.com/mpr/mprx/0_OVJognbFFqhDuo12YUOzgzcL5NLG2712yRDvgqnvsBA-1IXutpd61NGUwp5j7e-h0JRqtPHCMiq_"};
+			BTBW.Data.Challenges = {connections: []}; // //{connections: [{"count": 6, "lastName": "Jones", "linkedin_id": "VAMOmu5WXL", "firstName": "Chris", "picture": "http://m3.licdn.com/mpr/mprx/0_-KgZflFAdJC-jmBXttmFf1i3IpnOADBXKBWFf-83qJCaaW8kYnSNTtqfLt93tonH1PxQhvYJQ_oV"}, {"count": 7, "lastName": "Merrick", "linkedin_id": "01mQhp3Gqo", "firstName": "Richard", "picture": "http://m.c.lnkd.licdn.com/mpr/mprx/0_OEI5Xzd66INfIdxsy7H9XnR6XdCGIE7syS0VXBsRR2n-qaZVtuRWEcazobGjeSmn0WdUIrkvDtUS"}] };
+			BTBW.Data.Games = [
+								{"name": "Game1", url:"static/img/BuzzwordButtonUnlocked.png"}, 
+								{"name": "Game2", url:"static/img/HeadtoheadButtonUnlocked.png"}, 
+								{"name": "Game3", url:"static/img/CEOButtonLocked.png"}, 
+								{"name": "Game4", url:"static/img/EntrepreneurButtonLocked.png"}
+							];
+			//BTBW.Data.Routes = {"url": "http://beefjack.org/btbw/php/functions.php", "method": "POST"};
+			BTBW.Data.Routes = {"url": "http://localhost/btbw/php/functions.php", "method": "POST"};
+			
+			BTBW.Data.Genres = [
+								{"slug": "hr", "id": 1, "name": "HR", url:"static/img/HRButton.png"}, 
+								{"slug": "sales-and-marketing", "id": 2, "name": "Sales & Marketing", url:"static/img/SaleButton.png"}, 
+								{"slug": "general", "id": 5, "name": "General", url:"static/img/GeneralButton.png"}, 
+								{"slug": "innovation", "id": 4, "name": "Innovation", url:"static/img/InnovationButton.png"}, 
+								{"slug": "technology", "id": 6, "name": "Technology", url:"static/img/TechnologyButton.png"}, 
+								{"slug": "financial", "id": 7, "name": "Financial", url:"static/img/FinancialButton.png"},
+								{"slug": "cx", "id": 3, "name": "CX", url:"static/img/CXButton.png"}
+							];
+			
+			BTBW.Data.PracticeChallenge = {};
+			//BTBW.Data.PracticeChallenge = {"timeset": "0", "id": "1", "questions": [{"answer": "", "question": "Where once there was bureaucracy, here lies the solution to endless red tape.", "solution": "a9d2637612fdc4053d7e769836a82de8", "options": ["Adhocracy", "Yottabyte", "Barn raising", "Digital denial"]}, {"answer": "", "question": "Belligerent denial that the Internet has changed the world and refusal to adapt or accept change.", "solution": "d01b2eb5aaed7334b4ef32157a35ef08", "options": ["Digital denial", "Barn raising", "Yottabyte", "Adhocracy"]}, {"answer": "", "question": "Solving a difficult problem by pulling staff and resources out of the woodwork to develop a solution.", "solution": "00aba48f65ad9536f7c830fa92896d30", "options": ["Adhocracy", "Yottabyte", "Barn raising", "Digital denial"]}, {"answer": "", "question": "Techie speak for a WHOLE lorry load of data.", "solution": "08f2057f4e5c98ee3d213a9083e70186", "options": ["Yottabyte", "Adhocracy", "Microblogging", "Digital denial"]}, {"answer": "", "question": "The art of teensy blog posts with a character limit - think Twitter.", "solution": "4bdd2f140e820e722c9afaed17966b7f", "options": ["Microblogging", "Digital denial", "Yottabyte", "Barn raising"]}]};
+			BTBW.Data.Challenges.ceo = [{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"}];
+			
+			//BTBW.Data.Routes = {"challenges_set_by_connection": {"url": "/api/v1/challenges/setbyconnection/%liuser_id%", "method": "GET"}, "challenges_by_genre": {"url": "api/v1/challenges/genre/%genre_id%/limit/%limit%/", "method": "GET"}, "challenges_set_by_user": {"url": "/api/v1/challenges/setbyuser/%liuser_id%/", "method": "GET"}, "challenge_by_id": {"url": "/api/v1/challenges/id/%challenge_id%/", "method": "GET"}, "challenge_linkdein_connections": {"url": "/api/v1/linkedin/connections/notify/", "method": "POST"}, "create_challenge": {"url": "/api/v1/challenges/create/", "method": "POST"}, "linkdein_connections": {"url": "/api/v1/linkedin/connections/", "method": "GET"}, "challenges_played_by_user": {"url": "/api/v1/challenges/playedbyuser/", "method": "GET"}, "endgamedata": {"url": "/api/v1/challenges/endgamedata/", "method": "GET"}, "take_turn": {"url": "/api/v1/turn/", "method": "POST"}};
+			// BTBW.Data.Challenges.connections =  BTBW.Data.Challenges.connections.concat([{"count": 3, "lastName":"Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"},{"count": 3, "lastName": "Person", "linkedin_id": "r7gOIhUU_d", "firstName": "Some", "picture": "static/img/placeholder.jpg"}]);  
+		</script>
+        
+		
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->  
+        <!-- <script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.9.1.min.js"><\/script>')</script> -->  
+
+		 
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script> -->  
+		<script src="static/js/libs/angular.min.js"></script>
+		
+		<script src="static/js/loader/loader.js"></script>
+		<script src="static/js/loader/assets.js"></script>
+		
+		<script src="static/js/ui-bootstrap-tpls-0.3.0.min.js"></script>
+		<script src="static/js/libs/modernizr.js"></script>
+		<script src="static/js/libs/jquery.min.js"></script>
+		<script src="static/js/plugins.js"></script> <!-- -->  
+        <script src="static/js/main.js"></script> <!--  -->  
+       
+		<script src="static/js/angular-constants.js"></script> <!--  --> 
+		<script src="static/js/angular-module.js"></script> <!--  --> 
+		<script src="static/js/angular-services.js"></script> <!--  --> 
+		<script src="static/js/angular-directives.js"></script> <!--  --> 
+		
+		<script src="static/js/angular-controllers.js"></script> <!--  -->
+		<script src="static/js/angular-controllers-achievements.js"></script>
+		<script src="static/js/angular-controllers-alert.js"></script>
+		<script src="static/js/angular-controllers-gameplay.js"></script>
+		<script src="static/js/angular-controllers-intro.js"></script>
+		<script src="static/js/angular-controllers-login.js"></script>
+		<script src="static/js/angular-controllers-selectgenre.js"></script>
+		<script src="static/js/angular-controllers-selectopp.js"></script>
+		<script src="static/js/angular-controllers-showchallenge.js"></script>
+		<script src="static/js/angular-controllers-victory.js"></script>
+		
+		
+		
+        <!-- load fonts
+        <script type="text/javascript" src="//htuse.typekit.net/okw1xjn.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        
+        <script type="text/javascript" src="static/js/libs/okw1xjn.js"></script>
+		-->
+		
+		
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. 
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='http://www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+		-->
+    </body>
+</html>

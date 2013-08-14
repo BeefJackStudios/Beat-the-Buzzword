@@ -1,0 +1,19 @@
+#wrap-gameplay{position:relative;height:100%;}
+#wrap-gameplay p,#wrap-gameplay h2,#wrap-gameplay h3,#wrap-gameplay strong{width:530px;margin:0 auto;font-weight:bold;}
+#wrap-gameplay h2{background:#2b2e36;width:auto;display:inline-block;min-width:auto;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px;margin-top:35px;padding:5px 25px;line-height:1;min-height:auto;font-size:3em;color:yellow;font-style:italic;}
+#wrap-gameplay h2:hover{background:#2b2e36;}
+#wrap-gameplay .question{text-align:center;position:relative;height:212px;}
+#wrap-gameplay .question h3{padding:0 170px;color:#fff;font-size:1.875em;line-height:1.3;font-weight:normal;display:table-cell;vertical-align:middle;text-align:center;height:210px;}
+#wrap-gameplay p{color:yellow;margin-top:20px;}
+#wrap-gameplay ul{list-style-type:none;padding:0;margin:0 auto;padding-left:10px;display:inline-block;}
+#wrap-gameplay ul li{margin-right:10px;margin-bottom:10px;display:inline-block;}
+#wrap-gameplay ul.wrap-progress{position:absolute;bottom:30px;left:0;text-align:center;width:100%;padding:0;}
+#wrap-gameplay ul.wrap-progress li{background:url('../img/sprites/bullets.png?1369133569') no-repeat -60px 0;width:19px;height:19px;}
+#wrap-gameplay ul.wrap-progress li.correct{background-position:0 0;}
+#wrap-gameplay ul.wrap-progress li.wrong{background-position:-20px 0;}
+#wrap-gameplay .loadingSpinner{position:absolute;top:0;left:0;width:100%;height:100%;color:#fff;background:url('../img/overlay.png?1370517626') no-repeat 50% 0;}
+#wrap-gameplay .loadingSpinner p{padding-top:175px;}
+#wrap-gameplay li a{width:300px;height:70px;text-align:center;line-height:1.2;}
+#wrap-gameplay.waitingForGo li a,#wrap-gameplay.waitingForGo li a:hover{cursor:default;color:gray;}
+#wrap-gameplay.locked li a.correct:hover{cursor:default;}
+#wrap-gameplay.locked li a.wrong:hover{cursor:default;}
