@@ -22,14 +22,14 @@
 	</div> 
 	 
 	<div class="player-stats">
-		<!--<h3>{[{profile.points}]}pts</h3>-->
-		<h3><span id="displayScore">{[{profile.points}]}</span>pts</h3>
-		<h4><span id="displayRank">{[{profile.rank}]}</span></h4>
+		<h3>{[{profile.points}]}pts</h3>
+		<h4>{[{profile.rank}]}</h4>
 	</div> 
 	
 	<div class="player-icon-leaderboard"><a href="javascript:void(0);"  data-ng-click="gotoLeaderboardPage()"><img src="static/img/LeaderBoardIcon.png"/></a></div>
 	<div class="player-icon-achievement"><a href="javascript:void(0);"  data-ng-click="gotoAchievementPage()"><img src="static/img/AchivementsIcon.png"/></a></div> 
-	<div class="player-icon-home"><a href="javascript:void(0);"  data-ng-click="gotoHome()"><img src="static/img/HomeIcon.png"/></a></div> 
+	<div class="player-icon-home"><a href="javascript:void(0);"  data-ng-click="gotoAchievementPage()"><img src="static/img/HomeIcon.png"/></a></div> 
+	<div class="player-icon-settings"><a href="javascript:void(0);"  data-ng-click="gotoAchievementPage()"><img src="static/img/SettingsIcon.png"/></a></div> 
 	
 	<div id="divider"></div>
 	
@@ -51,16 +51,14 @@
 	
 	<div id="divider"></div>
 		
-   
+    <h2>Scores set by your connections</h2>
 	
-	<div class="connections" style="text-align:left; margin-left:18px;">
+	<div class="connections">
 		
-		<h2  style="text-align:left; margin-left:12px;">Topping the Leaderboards</h2>
-		 
-		<li data-ng-repeat="user in challenges | limitTo: 8">
+		<li data-ng-repeat="user in connections | limitTo: 8">
 			<div class="connection-profile-holder">
 				<div class="connection-profile">
-					<a href="javascript:void(0);"  data-ng-click="getScores(user.linkedin_id)" >
+					<a href="javascript:void(0);"  data-ng-click="showUserChallenges(user.linkedin_id)" >
 						<img data-ng-src="{[{user.picture}]}" alt="{[{user.firstName}]}" />
 					</a>
 				</div>
@@ -73,67 +71,6 @@
 		-->
     </div>
 	
-	
-	
-	<!-- GENRES -->
-	<div class="connections">
-		
-		<div class="popup" data-ng-show="showGenres">
-			<div style="margin-top:60px;"></div>
-			<h1> </h1>
-			
-			<div class="popupClose">
-				<a href="javascript:void(0);"  data-ng-click="genreClose()"><img class="popupbg" src="static/img/CloseButton.png" /></a>
-			</div> 
-		
-			<div class="wrap-genres" alt="{[{random1}]}" title="{[{random2}]}">
-				<li data-ng-repeat="genre in genres" >
-					<a id="genre_{[{genre.id}]}" class="{[{genre.name}]}" style="height:36px;width:189px;background:url({[{genre.url}]});display:block" href="javascript:void(0);" data-ng-click="selectGenre(genre.id)"></a>
-				</li>
-		
-			</div>
-		</div> 
-	</div>
-	
-	
-	
-	
-	<!-- OPP -->
-	<div id="connections">
-		
-		<div class="popup"  data-ng-show="showOpps">
-			<div style="margin-top:90px;"></div>
-			<h1b>Who will you go &nbsp; <br/><h1c>Head to Head</h1c> with...</h1b>
-			
-			<div class="popupClose">
-				<a href="javascript:void(0);"  data-ng-click="oppClose()"><img class="popupbg" src="static/img/CloseButton.png" /></a>
-			</div> 
-			
-			<div style="margin-top:40px;"><div>
-			
-			<div data-scrollable-content="true">
-				<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-				<div class="viewport">
-					<div class="overview" style="height:1500px">
-						<li data-ng-repeat="user in connections | limitTo: 100">
-							<div class="connection-profile-holder">
-								<div class="connection-profile">
-									<a href="javascript:void(0);"  data-ng-click="selectOpp(user.linkedin_id)" >
-										<img data-ng-src="{[{user.picture}]}" alt="{[{user.firstName}]}" />
-									</a>
-								</div>
-								<div style="margin-top:5px;"><div>
-								<span>{[{user.firstName}]} {[{user.lastName}]}</span>
-							</div>
-						</li>
-					</div>
-				</div>
-			</div> 
-		</div> 
-	
-	</div> 
-	
-		
 	
 	<!--
     <p class="tabs ng-class:gameType" data-ng-init="gameType='take-challenge'"> <a class="takeBtn" href="javascript:void(0);" data-ng-click="gameType='take-challenge'">Play a challenge</a> <a class="setBtn" href="javascript:void(0);" data-ng-click="gameType='set-challenge'">Set a challenge</a> </p>

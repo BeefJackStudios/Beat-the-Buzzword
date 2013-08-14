@@ -45,10 +45,6 @@ BTBWModule.config(['$routeProvider', function($routeProvider) {
             templateUrl: BTBW.CONST.TEMPLATE_URL_SHOW_CHALLENGES,
             controller: ShowChallengesController
         }).
-		when(BTBW.CONST.PATH_LEADERBOARD, { 
-            templateUrl: BTBW.CONST.TEMPLATE_URL_LEADERBOARD, 
-            controller: ShowChallengesController
-        }).
         when(BTBW.CONST.PATH_GAMEPLAY, { 
             templateUrl: BTBW.CONST.TEMPLATE_URL_GAMEPLAY, 
             controller: GameplayController

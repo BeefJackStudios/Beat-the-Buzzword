@@ -67,10 +67,9 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
     });
 	
 	$scope.$on("TIMER_TICKED", function(evt, arg1) {
-		console.log("TIMER_TICKED "+evt+" "+arg1);
-		$scope.time = arg1;
-		try { $scope.updateTimerView() } catch(e){};
-	});
+       //console.log("TIMER_TICKED "+arg1);
+	    $scope.time = arg1;
+    });
 	
     $scope.submitAnswer = function(answer, $event) {
         //set lock to prevent multiple clicks
@@ -183,6 +182,7 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 				} else if (sharedData.currentChallengeName == BTBW.CONST.GAME_HEAD2HEAD){
 						
 					if (sharedData.isMyGame){
+						console.log(">> 1")
 						serverLayer.createChallenge({
 									mode:"createGame",
 									idPlayer1:BTBW.Data.Profile.linkedin_id,
@@ -198,6 +198,7 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 					
 						
 					} else {
+						console.log(">> 2")
 						serverLayer.submitAnswers({
 									mode:"submitAnswers",
 									playerId:BTBW.Data.Profile.linkedin_id,

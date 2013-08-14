@@ -8,7 +8,7 @@
 BTBWModule.factory('sharedData', function ($q, $http, $location, $dialog) {
     return {
         currentGenreId: null, //stores the genre selected by the user
-        //currentChallengeName: BTBW.CONST.GAME_PRACTICE,
+        currentChallengeName: BTBW.CONST.GAME_PRACTICE,
         currentChallengeId: null,
         currentChallengeUserId: null
    };
@@ -27,7 +27,7 @@ BTBWModule.factory('sharedUtilities', function ($q, $http, $location, $dialog, s
         //load default data (eg: called when leaving the victory screen)
         loadDefaultData: function() {
             sharedData.currentGenreId = sharedData.currentChallengeId = sharedData.currentChallengeUserId = null;
-            //currentChallengeName = BTBW.CONST.GAME_PRACTICE;
+            currentChallengeName = BTBW.CONST.GAME_PRACTICE;
         },
         /**
          * Replaces %some_text% occurence with data from an object
@@ -236,7 +236,6 @@ BTBWModule.service('serverLayer', function ($q, $http, sharedUtilities) {
 			return deferred.promise;
         },
 		
-		
 		getUserChallenges: function(userId) {
             var deferred = $q.defer();
 			var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode="+obj.mode+"&playerId="+obj.playerId;
@@ -255,7 +254,6 @@ BTBWModule.service('serverLayer', function ($q, $http, sharedUtilities) {
             return deferred.promise;
         }, 
 
-		
 		getScores: function(userId) {
             var deferred = $q.defer();
 			var url =  BTBW.CONST.BASE_URL+"/php/functions.php?mode=getScores&playerId="+userId;
@@ -300,29 +298,6 @@ BTBWModule.service('serverLayer', function ($q, $http, sharedUtilities) {
             return deferred.promise;
         },   
 		
-		
-		getUsersWithScores: function(obj) {
-            var deferred = $q.defer();
-			
-			$http({
-               	method: BTBW.Data.Routes.method, 
-                url: obj.url,
-                cache: false,
-                data: $.param(obj),
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            }).
-            success(function(data, status) {
-				//alert("getUsersWithScores OK "+data)
-                deferred.resolve(data);
-            }).
-            error(function(data, status) {
-				//alert("getUsersWithScores FAIL " )
-                deferred.reject({code: 4, msg: data.msg});
-            });    
-
-            return deferred.promise;
-        },   
-	
 		
 		
 		/*

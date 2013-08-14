@@ -1,5 +1,7 @@
 <?php
 
+
+
 include_once("connect.php");
 
 $mode = $_REQUEST['mode'];
@@ -8,6 +10,7 @@ $mode = $_REQUEST['mode'];
 // CREATE
 //-----------------------------------------------------------
 if ( $mode == "createGame") {
+	
 	$idPlayer1 = $_REQUEST['idPlayer1'];
 	$idPlayer2 = $_REQUEST['idPlayer2'];
 	$genre = $_REQUEST['genre'];
@@ -63,27 +66,25 @@ if ( $mode == "createGame") {
 //-----------------------------------------------------------
 } else if ( $mode == "getUsersWithScores") {
 	
+	//echo $playerIdsString;
 	//$playerIdsString = "'N9IqeIebx0', '9uO5CsXr5p'";
 	$playerIdsString = $_REQUEST['playerIdsString'];
-	$category = $_REQUEST['category'];
 	
-	if ($category == "All" || $category == "undefined") {
-		$query = "SELECT * FROM $tablename WHERE user='0' AND playerId IN (".$playerIdsString.") GROUP BY playerId";
-	} else {
-		$query = "SELECT * FROM $tablename WHERE user='0' AND category='$category' AND playerId IN (".$playerIdsString.") GROUP BY playerId";
-		//$query = "SELECT * FROM $tablename WHERE user='0' AND playerId IN (".$playerIdsString.") GROUP BY playerId";
-	}
 	
-	//print $query;
-	/* $arr = array($playerIdsString);
+	/*
+	
+	$arr = array($playerIdsString);
 	$str = "";
 	foreach ($arr as &$value) {
 		$str = $str."'".$value."'";
-	} */
+	}
 	
+	*/
+	
+	$query = "SELECT * FROM $tablename WHERE user='0' AND playerId IN (".$playerIdsString.") GROUP BY playerId";
 	$result = mysql_query($query) or die(mysql_error());
 	while ($row = mysql_fetch_assoc($result)) {
-		print ltrim($row["playerId"]).":".ltrim($row["category"]).",";
+		print ltrim($row["playerId"]).",";
 	}
 	
 //-----------------------------------------------------------
@@ -155,31 +156,16 @@ if ( $mode == "createGame") {
 } else if ( $mode == "getScores") {
 
 	$playerId = $_REQUEST['playerId'];
-	$category = $_REQUEST['category'];
-	
-	
-	if ($category == "All" || $category == "undefined") {
-		$query = "SELECT playerId, genre, category, correct, MAX(score) AS pooscore FROM $tablename GROUP BY score ORDER BY pooscore DESC"; // playerId='$playerId'		
-	} else {
-		$query = "SELECT playerId, genre, category, correct, MAX(score) AS pooscore FROM $tablename WHERE category='$category' GROUP BY score ORDER BY pooscore DESC"; // playerId='$playerId' AND 
-	}
-	
+	$query = "SELECT genre, correct, MAX(score) AS pooscore FROM $tablename WHERE playerId='$playerId' GROUP BY genre ORDER BY pooscore DESC";
 	$result = mysql_query($query) or die(mysql_error());
-	
 	while ($row = mysql_fetch_assoc($result)) {
-		
-		/*
+	
 		$genre = ltrim($row["genre"]);
 		$query2 = "SELECT * FROM $tablename WHERE playerId='$playerId' AND genre='$genre'"; 
 		$result2 = mysql_query($query2) or die(mysql_error());
 		$num_rows = mysql_num_rows($result2);
-		*/
 		
-		print ltrim($row["playerId"]).":".ltrim($row["category"]).":".ltrim($row["pooscore"])."#"; // .":".$num_rows."#";
-		
-		//print ltrim(ltrim($row["playerId"]).":".$row["genre"]).":".ltrim($row["pooscore"]).":".ltrim($row["pooscore"])).":".$num_rows."#";
-		
-		//print ltrim(ltrim($row["genre"]).":".ltrim($row["correct"]).":".ltrim($row["pooscore"])).":".$num_rows."#";
+		print ltrim(ltrim($row["genre"]).":".ltrim($row["correct"]).":".ltrim($row["pooscore"])).":".$num_rows."#";
 	}
 	
 	
@@ -218,6 +204,7 @@ if ( $mode == "createGame") {
 	
 } else if ( $mode == "getScore") {
 
+
 	$playerId = $_REQUEST['playerId'];
 	$query = "SELECT * FROM $tablename WHERE playerId='$playerId'";
 	$result = mysql_query($query) or die(mysql_error());
@@ -228,12 +215,58 @@ if ( $mode == "createGame") {
 	print $score;
 	
 } else if ( $mode == "getRandomNumbers") {
-	$totalCat = 1;
-	$arr = array();
-	while ( count($arr) < $totalCat ) {
-		$x = mt_rand(1,7);
-		if ( !in_array($x,$arr) ) { $arr[] = $x; echo "$x,"; }
+	
+	$playerId = $_REQUEST['playerId'];
+	$isNewUser = false;
+	
+	$query = mysql_query("SELECT count(playerId) as total FROM `beatthebuzzword_timeout` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+	$query = mysql_fetch_array($query);
+
+	$lastTime = time();
+	$randomNumbers = "1,";
+	
+	if ($query['total'] > 0)
+		$isNewUser = false;
+	else
+		$isNewUser = true;
+	
+	
+	if ($isNewUser)
+	{
+		$query = mysql_query("INSERT INTO `beatthebuzzword_timeout` (`playerId`, `lastTime`, `randomNumbers`) VALUES ('".$playerId."', '".time()."', '".$randomNumbers."')") or die($myQuery."<br/>".mysql_error());
 	}
+	else
+	{
+		$query = mysql_query("SELECT * FROM `beatthebuzzword_timeout` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+		$query = mysql_fetch_array($query);
+		$lastTime = $query['lastTime'];
+		$randomNumbers = $query['randomNumbers'];
+		$query = mysql_query("UPDATE `beatthebuzzword_timeout` SET lastTime='".time()."' WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+	}
+	
+	
+	$diff =  time() - $lastTime;
+
+	//print time() . " - " . $lastTime . " = " . $diff . " :: ";
+	
+	if ($diff > 60 && !$isNewUser)
+	{
+		$randomNumbers = "";
+		$totalCat = 1;
+		$arr = array();
+		while ( count($arr) < $totalCat ) {
+			$x = mt_rand(1,7);
+			if ( !in_array($x,$arr) ) 
+			{ 
+				$arr[] = $x; 
+				$randomNumbers .= "$x,";
+			}
+		}
+		
+		$query = mysql_query("UPDATE `beatthebuzzword_timeout` SET randomNumbers='".$randomNumbers."' WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+	}
+
+	print $randomNumbers;
 }
 
 

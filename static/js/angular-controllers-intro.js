@@ -12,6 +12,9 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	sharedData.score = 0;
 	
 	
+	
+	
+	
 	//---------------
 	//OPPS
 	$scope.selectOpp = function(userId) {
@@ -80,7 +83,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 
     $scope.startBuzzword = function() {
         sharedData.isMyGame = false;
-		sharedData.currentChallengeName = BTBW.CONST.GAME_BUZZWORD;
+		sharedData.currentChallengeName = BTBW.CONST.GAME_PRACTICE;
 		//$location.path(BTBW.CONST.PATH_SELECT_GENRE);
 		$scope.showGenres = true;
 	}
@@ -116,7 +119,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	
 	$scope.gotoLeaderboardPage = function() {
 		sharedData.currentChallengeUserId = null;
-        $location.path(BTBW.CONST.PATH_LEADERBOARD);
+        $location.path(BTBW.CONST.PATH_SHOW_CHALLENGES);
 	}
 	
 	$scope.gotoAchievementPage = function() {
@@ -127,7 +130,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
         $location.path(BTBW.CONST.PATH_INTRO);
 	}
 	
-	function DisplayUserPoints(myRandomNumbers) {
+	function DisplayUserPoints() {
 		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getScore&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
@@ -141,94 +144,12 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			e = document.getElementById("displayRank");
 			e.innerHTML = rank; 
 			BTBW.Data.Profile.rank = rank;
-			
-			SetRandomGenre(myRandomNumbers);
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });
 		
 		return 0;
 	}
-	
-	
-	$scope.leadertitle = "Topping the Leaderboards";
-	$scope.leaderTitleIndex = -1;
-	$scope.secs = 0;
-	
-	/*
-	$scope.startDelay = function(){
-		$scope.delay = $timeout(function(){
-			if (BTBW.Data.connectionScores){
-				$scope.updateChallenges( $.unique(BTBW.Data.connectionScores) );
-			}
-			//console.log($routeProvider.current)
-			$scope.secs++;
-			if ($scope.secs>5){
-				$scope.secs = 0;
-				$scope.getConnectionsWithScores();
-			}
-			
-			$scope.startDelay();
-		}, 1000);
-	};
-	*/
-	
-	
-	$scope.getConnectionsWithScores = function() {
-		
-		//set Title
-		$scope.leaderTitleIndex++;
-		if ($scope.leaderTitleIndex>4) $scope.leaderTitleIndex = 0;
-		$scope.leadertitle = BTBW.CONST.LEADER_TITLE_ARR[$scope.leaderTitleIndex].title;
-		
-		var category = BTBW.CONST.LEADER_TITLE_ARR[$scope.leaderTitleIndex].category;
-		
-		$scope.challenges = [];
-		
-		var arr = "";
-		for (var i in BTBW.Data.connections){
-			arr += "'"+BTBW.Data.connections[i].linkedin_id+"',";
-		}
-		arr = arr.substr(0, arr.length-1);
-		var url =  BTBW.CONST.BASE_URL+"/php/functions.php?mode=getUsersWithScores&category="+category+"&playerIdsString="+arr;
-		//console.log(url)		
-		serverLayer.getUsersWithScores({mode:"getUsersWithScores", category:category, playerIdsString:arr,url:url})
-			.then(function(data) {
-				//success
-				BTBW.Data.connectionScores = [];
-				var spl = data.split(",");
-				for (var i in spl){
-					var spl2 = spl[i].split(":");
-					var id = spl2[0];
-					var category = spl2[1];
-					if (id !=  "undefined"){
-						for (var c in BTBW.Data.connections){
-							if (id == BTBW.Data.connections[c].linkedin_id){
-								BTBW.Data.connectionScores.push(BTBW.Data.connections[c])
-							}
-						}
-					}
-				}
-				$scope.updateChallenges(BTBW.Data.connectionScores);
-				
-				$scope.delay = $timeout(function(){ $scope.getConnectionsWithScores() }, 4000);
-				
-			
-			}, function(reason){
-				//if it fails
-				sharedUtilities.reportError(reason);
-			});  
-	}
-	
-	$scope.updateChallenges = function(arr) {
-		//console.log("updateConns"+arr);
-		$scope.challenges = arr;
-	}
-	/**/
-	
-	$scope.getConnectionsWithScores();
-	//$scope.startDelay();
-	
 	
 	function GetUserRank(points)
 	{
@@ -311,11 +232,11 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	
 	function GetRandomRumbers()
 	{
-		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getRandomNumbers&range=7&tot=2";
+		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getRandomNumbers&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
-			var e = document.getElementById("debug");
-			e.innerHTML = evt; 
+			//var e = document.getElementById("debug");
+			//e.innerHTML = evt; 
 			var temp = [];
 			myRandomNumbers = evt.split(",");
 			SetRandomGenre();
@@ -325,7 +246,13 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		return 0;
 	}
 
-	DisplayUserPoints(myRandomNumbers);
 	GetRandomRumbers();
+	
+	
+	
+	
+	DisplayUserPoints();
+	
+	
 	
 }

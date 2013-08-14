@@ -115,12 +115,11 @@ function BTBWController($scope, $rootScope, $location, $route, $dialog, sharedDa
 		$scope.connections = BTBW.Data.connections;
 		
 		//$scope.getOpenChallenges();
-		//$scope.getConnectionsWithScores();
-		$scope.loadBuzzwords();
+		$scope.getConnectionsWithScores();
 	}
 
 	
-	/*
+	
 	$scope.getConnectionsWithScores = function() {
 		
 		//$playerIdsString = "'N9IqeIebx0', 'xxxxx'";
@@ -132,35 +131,37 @@ function BTBWController($scope, $rootScope, $location, $route, $dialog, sharedDa
 			arr += "'"+BTBW.Data.connections[i].linkedin_id+"',";
 		}
 		arr = arr.substr(0, arr.length-1);
+		//if ()
+		//alert( arr.charAt(arr.length-1) )
 		
 		var url =  BTBW.CONST.BASE_URL+"/php/functions.php?mode=getUsersWithScores&playerIdsString="+arr; // ["N9IqeIebx0","xxxxx"];
+		//alert(url)
+		console.log(url)
+		console.log("LEN : "+url.length)
 		
        $.ajax({ url: url })
 		.done(function(evt) { 
-			BTBW.Data.connectionScores = {};
+			var temp = [];
 			var spl = evt.split(",");
+			console.log(":: getConnectionsWithScores :: LOADED OK  :: spl "+spl);
+			
 			for (var i in spl){
-				var spl2 = spl[i].split(":");
-				var id = spl2[0];
-				var category = spl2[1];
-				if (!BTBW.Data.connectionScores[category]) BTBW.Data.connectionScores[category] = [];
-				console.log(":: getOpenChallenges :: id "+id);
+				var id = spl[i];
+				//console.log(":: getOpenChallenges :: id "+id);
 				if (id !=  "undefined"){
 					for (var c in BTBW.Data.connections){
 						if (id == BTBW.Data.connections[c].linkedin_id){
-							BTBW.Data.connectionScores[category].push(BTBW.Data.connections[c])
+							temp.push(BTBW.Data.connections[c])
 						}
 					}
 				}
 			}
-			//$scope.updateChallenges( $.unique(temp) );
-			$scope.updateChallenges( $.unique(BTBW.Data.connectionScores["practice"]) );
+			$scope.updateChallenges( $.unique(temp) );
 			$scope.loadBuzzwords();
 		})
 		.fail(function(evt) { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });
 	}
-	*/
 	
 	//------------------
 	/*

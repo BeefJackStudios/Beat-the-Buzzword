@@ -9,7 +9,6 @@ BTBW.CONST = BTBW.CONST || {
 	
 	
 	"BASE_URL": "/btbw", // LOCAL
-	//"BASE_URL": "/GitHub/Beat-the-Buzzword",
 	//"BASE_URL": "/dev/btbw", // ONLINE
 	
 	"CSSCLASS_SCROLLABLE_TABLE": "wrap-table",
@@ -17,8 +16,6 @@ BTBW.CONST = BTBW.CONST || {
     "GAME_PRACTICE": "practice",
     "GAME_BUZZWORD": "Buzzword",
     "GAME_HEAD2HEAD": "Head 2 Head",
-    "GAME_CEO": "CEO",
-    "GAME_ENTREPRENEUR": "Entrepreneur",
     
 	"GAME_SET_CHALLENGE": "set-challenge",
     "GAME_TAKE_CHALLENGE": "take-challenge",
@@ -32,7 +29,6 @@ BTBW.CONST = BTBW.CONST || {
     "PATH_ACHIEVEMENTS": "/achievements",
     "PATH_SELECT_OPP": "/selectopp",
     "PATH_SELECT_GENRE": "/selectgenre",
-    "PATH_LEADERBOARD": "/leaderboard",
 
     "TEMPLATE_URL_LOGIN": "static/partials/login.html",
     "TEMPLATE_URL_INTRO": "static/partials/intro.html",
@@ -43,7 +39,6 @@ BTBW.CONST = BTBW.CONST || {
     'TEMPLATE_URL_ACHIEVEMENTS': "static/partials/achievements.html",
     'TEMPLATE_URL_SELECT_OPP': "static/partials/selectopp.html",
     'TEMPLATE_URL_SELECT_GENRE': "static/partials/selectgenre.html",
-    'TEMPLATE_URL_LEADERBOARD': "static/partials/show-leaderboard.html",
 
     'MESSAGE_TIMER_GO': 'GO!',   
     'MESSAGE_SELECT_GENRE': 'Please select a genre in order to continue!',
@@ -90,17 +85,5 @@ BTBW.CONST = BTBW.CONST || {
     "CLASS_ANSWER_CORRECT": "correct",
     "CLASS_ANSWER_WRONG": "wrong",
 
-    "LIMIT_RANDOM_CHALLENGES_BY_GENRE": 3,
-	
-	"LEADER_TITLE_ARR" : [
-		{title:"All leaderboards (overall)", 	category:"All"},
-		{title:"Top in Buzzwords", 				category:"practice"},
-		{title:"Top in Head to Head", 			category:"Head 2 Head"},
-		{title:"Top in CEO", 					category:"CEO"},
-		{title:"Top in Entrepreneur", 			category:"Entrepreneur"},	
-	],
-	
-	
-	
-	
+    "LIMIT_RANDOM_CHALLENGES_BY_GENRE": 3
 };

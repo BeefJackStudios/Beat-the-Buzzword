@@ -114,7 +114,7 @@ function AchievementsController($scope, $timeout, $location, sharedData, serverL
 	
 	$scope.gotoLeaderboardPage = function() {
         sharedData.currentChallengeUserId = null;
-		$location.path(BTBW.CONST.PATH_LEADERBOARD);
+		$location.path(BTBW.CONST.PATH_SHOW_CHALLENGES);
 	}
 	
 	$scope.gotoAchievementPage = function() {
