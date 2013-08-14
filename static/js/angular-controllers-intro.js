@@ -12,6 +12,9 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	sharedData.score = 0;
 	
 	
+	
+	
+	
 	//---------------
 	//OPPS
 	$scope.selectOpp = function(userId) {
@@ -28,10 +31,27 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	
 	//---------------
 	//GENRES 
+	var total_genres_unlock = 1;
+	var myRandomNumbers = MyRandoms(7,total_genres_unlock); //array containing 2 distinct random numbers
+		
 	$scope.genres = BTBW.Data.Genres;
 	$scope.selectGenre = function(genreId) {
 		sharedData.currentGenreId = genreId;
-		$location.path(BTBW.CONST.PATH_GAMEPLAY);
+		
+		var resultFound = false;
+		for (var j = 0; j < myRandomNumbers.length; j++)
+		{
+			if (genreId == myRandomNumbers[j])
+			{
+				resultFound = true;
+				break;
+			}
+		}
+		
+		if(resultFound)
+		{
+			$location.path(BTBW.CONST.PATH_GAMEPLAY);
+		}
 	}
 	
 	$scope.genreClose = function() {
@@ -106,7 +126,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
         $location.path(BTBW.CONST.PATH_INTRO);
 	}
 	
-	function DisplayUserPoints() {
+	function DisplayUserPoints(myRandomNumbers) {
 		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getScore&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
@@ -120,6 +140,11 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			e = document.getElementById("displayRank");
 			e.innerHTML = rank; 
 			BTBW.Data.Profile.rank = rank;
+			
+			
+			SetRandomGenre(myRandomNumbers);
+			
+			
 
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
@@ -153,7 +178,63 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		return rank;
 	}
 	
-	DisplayUserPoints();
+
+
+	function SetRandomGenre(myRandomNumbers)
+	{
+		var e;
+		var resultFound = false;
+		for (var i = 1; i < 8; i++)
+		{
+			resultFound = false;
+			for (var j = 0; j < myRandomNumbers.length; j++)
+			{
+				if (i == myRandomNumbers[j])
+					resultFound = true;
+			}
+			
+			if (!resultFound)
+			{
+				e = document.getElementById("genre_"+i);
+				e.style.background = "url(static/img/GeneralButton_Block.png)";
+			}
+		}		
+	}
+	
+	function MyRandoms(range,tot){
+		
+		if(tot > range){
+			alert('infinite loop?');
+			return [];
+		}
+		var myRandomNumbers = new Array();
+		var randN = 0;
+		
+		for(var i = 0; i<tot; i++){
+			randN = Math.floor(Math.random()*range);
+			
+			for (var j = 0; j < myRandomNumbers.length; j++)
+			{
+				if (myRandomNumbers[j] != randN)
+				{
+					randN = Math.floor(Math.random()*range);
+					break;
+				}
+			}
+	
+			
+			myRandomNumbers.push(randN + 1);
+		}
+		return myRandomNumbers;
+	}
+
+
+	
+	
+	
+	
+	DisplayUserPoints(myRandomNumbers);
+	
 	
 	
 }
