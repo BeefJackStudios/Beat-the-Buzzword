@@ -1,0 +1,129 @@
+
+/* line 804, sass/_global.scss */
+#wrap-gameplay {
+  position: relative;
+  height: 100%;
+}
+/* line 808, sass/_global.scss */
+#wrap-gameplay p, #wrap-gameplay h2, #wrap-gameplay h3, #wrap-gameplay strong {
+  width: 530px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+/* line 814, sass/_global.scss */
+#wrap-gameplay h2 {
+  background: #2b2e36;
+  width: auto;
+  display: inline-block;
+  min-width: auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin-top: 35px;
+  padding: 5px 25px;
+  line-height: 1;
+  min-height: auto;
+  font-size: 3em;
+  color: yellow;
+  font-style: italic;
+}
+/* line 829, sass/_global.scss */
+#wrap-gameplay h2:hover {
+  background: #2b2e36;
+}
+/* line 832, sass/_global.scss */
+#wrap-gameplay .question {
+  text-align: center;
+  position: relative;
+  height: 212px;
+}
+/* line 836, sass/_global.scss */
+#wrap-gameplay .question h3 {
+  padding: 0 170px;
+  color: #fff;
+  font-size: 1.875em;
+  line-height: 1.3;
+  font-weight: normal;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  height: 210px;
+}
+/* line 849, sass/_global.scss */
+#wrap-gameplay p {
+  color: yellow;
+  margin-top: 20px;
+}
+/* line 854, sass/_global.scss */
+#wrap-gameplay ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  padding-left: 10px;
+  display: inline-block;
+}
+/* line 861, sass/_global.scss */
+#wrap-gameplay ul li {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+/* line 868, sass/_global.scss */
+#wrap-gameplay ul.wrap-progress {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  padding: 0;
+}
+/* line 876, sass/_global.scss */
+#wrap-gameplay ul.wrap-progress li {
+  background: url('../img/sprites/bullets.png?1369133569') no-repeat -60px 0;
+  width: 19px;
+  height: 19px;
+}
+/* line 881, sass/_global.scss */
+#wrap-gameplay ul.wrap-progress li.correct {
+  background-position: 0 0;
+}
+/* line 882, sass/_global.scss */
+#wrap-gameplay ul.wrap-progress li.wrong {
+  background-position: -20px 0;
+}
+/* line 885, sass/_global.scss */
+#wrap-gameplay .loadingSpinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background: url('../img/overlay.png?1370517626') no-repeat 50% 0;
+}
+/* line 894, sass/_global.scss */
+#wrap-gameplay .loadingSpinner p {
+  padding-top: 175px;
+}
+/* line 899, sass/_global.scss */
+#wrap-gameplay li a {
+  width: 300px;
+  height: 70px;
+  text-align: center;
+  line-height: 1.2;
+}
+/* line 914, sass/_global.scss */
+#wrap-gameplay.waitingForGo li a, #wrap-gameplay.waitingForGo li a:hover {
+  cursor: default;
+  color: gray;
+}
+/* line 921, sass/_global.scss */
+#wrap-gameplay.locked li a.correct:hover {
+  cursor: default;
+}
+/* line 925, sass/_global.scss */
+#wrap-gameplay.locked li a.wrong:hover {
+  cursor: default;
+}

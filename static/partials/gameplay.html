@@ -1,0 +1,30 @@
+<section id="wrap-gameplay" data-ng-class="{'waitingForGo': waitingForGo, 'locked': locked}">
+    <div id="timesetbg"></div>
+	<h2 class="timeset" data-display-timer="timeset"></h2>
+	
+	<div>
+		Challenge  <span id="challengeName">{[{ challengeName }]}</span> |  
+		PTS  <span id="displayScore">{[{profile.points}]}</span> | 
+		Added PTS  <span id="displayAddedScore">0</span>
+	</div>
+	
+	<br />
+    <div class="question">
+        <h3>
+            {[{ data.questions[currentQuestion].question }]}
+        </h3>
+    </div>
+
+    <ul>		
+        <li><a class="TopLeft" href="javascript:void(0);" data-ng-click="submitAnswer(data.questions[currentQuestion].options[0], $event)"><div class="TopLeftText">{[{ data.questions[currentQuestion].options[0] }]}</div></a></li>
+        <li><a class="TopRight" href="javascript:void(0);" data-ng-click="submitAnswer(data.questions[currentQuestion].options[1], $event)"><div class="TopRightText">{[{ data.questions[currentQuestion].options[1] }]}</div></a></li>		
+        <li><a class="BottomLeft" href="javascript:void(0);" data-ng-click="submitAnswer(data.questions[currentQuestion].options[2], $event)"><div class="BottomLeftText">{[{ data.questions[currentQuestion].options[2] }]}</div></a></li>
+        <li><a class="BottomRight" href="javascript:void(0);" data-ng-click="submitAnswer(data.questions[currentQuestion].options[3], $event)"><div class="BottomRightText">{[{ data.questions[currentQuestion].options[3] }]}</div></a></li>
+    </ul>
+
+    <ul class="wrap-progress">
+        <li data-ng-repeat="question in data.questions" class="{[{evalAnswerToClassname(question)}]}"></li>
+    </ul>
+	
+    <div data-ng-show="isLoading" class="loadingSpinner"><h1>Please wait...</h1><p><img src="static/img/loader.gif" alt="Loading..."/></p></div>
+</section>

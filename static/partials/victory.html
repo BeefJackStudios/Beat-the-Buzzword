@@ -1,0 +1,55 @@
+<section id="wrap-victory">
+    <h1>Challenge completed</h1>
+	
+	<!--
+    <div class="profile">
+        <div>
+            <h2>Great work</h2>
+            <h3>Your score:</h3>
+            <p>{[{data.score}]} / {[{data.scoretobeat}]}</p>
+        </div>
+        <div>
+            <p> Return to the </p>
+            <a href="javascript:void(0);" class="dashboard" data-ng-click="gotoDashboard()">Dashboard</a>
+            <a href="javascript:void(0);" data-ng-show="emailButtonDisplayed" data-ng-click="challengeConnections()">Challenge you connections</a><br/>
+        </div>
+    </div>
+	-->
+	
+	
+	<div class="player-holder">
+		<img class="logo-profile" data-ng-src={[{profile.picture}]} alt="{[{profile.firstName}]} {[{profile.lastName}]} profile image" />
+	</div> 
+	 
+	<div class="player-stats">
+		<h3>{[{profile.points}]}pts</h3>
+		<h4>{[{profile.rank}]}</h4>
+	</div> 
+	
+	<div class="player-icon-leaderboard"><a href="javascript:void(0);"  data-ng-click="gotoLeaderboardPage()"><img src="static/img/LeaderBoardIcon.png"/></a></div>
+	<div class="player-icon-achievement"><a href="javascript:void(0);"  data-ng-click="gotoAchievementPage()"><img src="static/img/AchivementsIcon.png"/></a></div> 
+	<div class="player-icon-home"><a href="javascript:void(0);"  data-ng-click="gotoHome()"><img src="static/img/HomeIcon.png"/></a></div> 
+	
+	
+	<div id="divider"></div>
+	
+	
+	
+	
+    <div data-scrollable-content="true">
+        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+        <div class="viewport">
+            <div class="overview">
+                <table>
+                    <tbody>
+                        <tr data-ng-class-odd="'odd'" data-ng-repeat="buzzword in data.buzzwords">
+							<td class="ng-class:{'correct': buzzword.correct, 'wrong': !buzzword.correct}"></td>
+                            <td>{[{buzzword.word}]}</td>
+                            <td>{[{buzzword.definition}]}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

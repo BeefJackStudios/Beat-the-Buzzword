@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'GillSansBoldItalic';
+    src: url('gillsans_bolditalic.eot');
+    src: url('gillsans_bolditalic.eot') format('embedded-opentype'),
+         url('gillsans_bolditalic.woff') format('woff'),
+         url('gillsans_bolditalic.ttf') format('truetype'),
+         url('gillsans_bolditalic.svg#GillSansBoldItalic') format('svg');
+}

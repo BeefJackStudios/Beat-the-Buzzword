@@ -1,0 +1,170 @@
+
+/* line 638, sass/_global.scss */
+#wrap-set-challenge h1 {
+  margin-bottom: 100px;
+}
+/* line 641, sass/_global.scss */
+#wrap-set-challenge p, #wrap-set-challenge select {
+  display: inline-block;
+  margin: 5px 110px;
+}
+/* line 645, sass/_global.scss */
+#wrap-set-challenge a {
+  background: #f16c00;
+  margin: 0 auto;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f16c00), color-stop(100%, #ce5c00));
+  background-image: -webkit-linear-gradient(#f16c00 0%, #ce5c00 100%);
+  background-image: -moz-linear-gradient(#f16c00 0%, #ce5c00 100%);
+  background-image: -o-linear-gradient(#f16c00 0%, #ce5c00 100%);
+  background-image: linear-gradient(#f16c00 0%, #ce5c00 100%);
+  width: 300px;
+  height: 70px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1.2;
+}
+/* line 657, sass/_global.scss */
+#wrap-set-challenge a.correct {
+  background: #39bb00;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #39bb00), color-stop(100%, #2d771d));
+  background-image: -webkit-linear-gradient(#39bb00 0%, #2d771d 100%);
+  background-image: -moz-linear-gradient(#39bb00 0%, #2d771d 100%);
+  background-image: -o-linear-gradient(#39bb00 0%, #2d771d 100%);
+  background-image: linear-gradient(#39bb00 0%, #2d771d 100%);
+}
+/* line 661, sass/_global.scss */
+#wrap-set-challenge a.wrong {
+  background: #f90000;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f90000), color-stop(100%, #b70000));
+  background-image: -webkit-linear-gradient(#f90000 0%, #b70000 100%);
+  background-image: -moz-linear-gradient(#f90000 0%, #b70000 100%);
+  background-image: -o-linear-gradient(#f90000 0%, #b70000 100%);
+  background-image: linear-gradient(#f90000 0%, #b70000 100%);
+}
+
+/* line 667, sass/_global.scss */
+#wrap-user-challenges, #wrap-take-challenges, #wrap-show-challenges {
+  position: relative;
+}
+/* line 670, sass/_global.scss */
+#wrap-user-challenges table, #wrap-take-challenges table, #wrap-show-challenges table {
+  width: 100%;
+  color: #fff;
+  font-style: italic;
+}
+/* line 675, sass/_global.scss */
+#wrap-user-challenges td, #wrap-user-challenges th, #wrap-take-challenges td, #wrap-take-challenges th, #wrap-show-challenges td, #wrap-show-challenges th {
+  text-align: center;
+  width: 25%;
+  padding: 2px 0 5px;
+  vertical-align: middle;
+  height: 67px;
+}
+/* line 676, sass/_global.scss */
+#wrap-user-challenges .rows-5 th, #wrap-user-challenges .rows-5 td, #wrap-take-challenges .rows-5 th, #wrap-take-challenges .rows-5 td, #wrap-show-challenges .rows-5 th, #wrap-show-challenges .rows-5 td {
+  width: 20%;
+}
+/* line 677, sass/_global.scss */
+#wrap-user-challenges th, #wrap-take-challenges th, #wrap-show-challenges th {
+  height: 55px;
+}
+/* line 678, sass/_global.scss */
+#wrap-user-challenges tr, #wrap-take-challenges tr, #wrap-show-challenges tr {
+  background: #181b20;
+  border-top: 1px solid #292d35;
+}
+/* line 679, sass/_global.scss */
+#wrap-user-challenges tr.odd, #wrap-take-challenges tr.odd, #wrap-show-challenges tr.odd {
+  background: #1f2228;
+}
+/* line 681, sass/_global.scss */
+#wrap-user-challenges thead tr, #wrap-take-challenges thead tr, #wrap-show-challenges thead tr {
+  background: #000;
+}
+/* line 682, sass/_global.scss */
+#wrap-user-challenges .wrap-table, #wrap-take-challenges .wrap-table, #wrap-show-challenges .wrap-table {
+  margin-top: 0;
+}
+/* line 683, sass/_global.scss */
+#wrap-user-challenges .viewport, #wrap-take-challenges .viewport, #wrap-show-challenges .viewport {
+  height: 450px;
+}
+/* line 685, sass/_global.scss */
+#wrap-user-challenges ul, #wrap-take-challenges ul, #wrap-show-challenges ul {
+  list-style-type: none;
+  margin: 3px 0 0;
+  padding: 0;
+}
+/* line 685, sass/_global.scss */
+#wrap-user-challenges ul li, #wrap-take-challenges ul li, #wrap-show-challenges ul li {
+  float: left;
+  margin-left: 10px;
+}
+/* line 686, sass/_global.scss */
+#wrap-user-challenges a, #wrap-take-challenges a, #wrap-show-challenges a {
+  position: relative;
+  display: inline-block;
+}
+/* line 689, sass/_global.scss */
+#wrap-user-challenges a:hover span, #wrap-take-challenges a:hover span, #wrap-show-challenges a:hover span {
+  display: block;
+}
+/* line 692, sass/_global.scss */
+#wrap-user-challenges a span, #wrap-take-challenges a span, #wrap-show-challenges a span {
+  display: none;
+  width: 200px;
+  position: absolute;
+  bottom: -10px;
+  left: 40px;
+  z-index: 2;
+  background: #01506a;
+  background: rgba(1, 80, 106, 0.7);
+  padding: 3px 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+}
+/* line 708, sass/_global.scss */
+#wrap-user-challenges img.logo-profile, #wrap-take-challenges img.logo-profile, #wrap-show-challenges img.logo-profile {
+  border-width: 3px;
+}
+/* line 710, sass/_global.scss */
+#wrap-user-challenges .loadingSpinner, #wrap-take-challenges .loadingSpinner, #wrap-show-challenges .loadingSpinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background: url('../img/overlay.png?1370517626') no-repeat 50% 0;
+}
+/* line 719, sass/_global.scss */
+#wrap-user-challenges .loadingSpinner p, #wrap-take-challenges .loadingSpinner p, #wrap-show-challenges .loadingSpinner p {
+  padding-top: 175px;
+}
+
+/* line 726, sass/_global.scss */
+#wrap-take-challenges nav a {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  width: 248px;
+  font-weight: normal;
+  min-height: 55px;
+  line-height: 55px;
+}
+/* line 734, sass/_global.scss */
+#wrap-take-challenges nav a.selected {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
