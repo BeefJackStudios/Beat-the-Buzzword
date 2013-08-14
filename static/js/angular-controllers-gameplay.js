@@ -183,7 +183,6 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 				} else if (sharedData.currentChallengeName == BTBW.CONST.GAME_HEAD2HEAD){
 						
 					if (sharedData.isMyGame){
-						console.log(">> 1")
 						serverLayer.createChallenge({
 									mode:"createGame",
 									idPlayer1:BTBW.Data.Profile.linkedin_id,
@@ -199,7 +198,6 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 					
 						
 					} else {
-						console.log(">> 2")
 						serverLayer.submitAnswers({
 									mode:"submitAnswers",
 									playerId:BTBW.Data.Profile.linkedin_id,

@@ -63,25 +63,27 @@ if ( $mode == "createGame") {
 //-----------------------------------------------------------
 } else if ( $mode == "getUsersWithScores") {
 	
-	//echo $playerIdsString;
 	//$playerIdsString = "'N9IqeIebx0', '9uO5CsXr5p'";
 	$playerIdsString = $_REQUEST['playerIdsString'];
+	$category = $_REQUEST['category'];
 	
+	if ($category == "All" || $category == "undefined") {
+		$query = "SELECT * FROM $tablename WHERE user='0' AND playerId IN (".$playerIdsString.") GROUP BY playerId";
+	} else {
+		$query = "SELECT * FROM $tablename WHERE user='0' AND category='$category' AND playerId IN (".$playerIdsString.") GROUP BY playerId";
+		//$query = "SELECT * FROM $tablename WHERE user='0' AND playerId IN (".$playerIdsString.") GROUP BY playerId";
+	}
 	
-	/*
-	
-	$arr = array($playerIdsString);
+	//print $query;
+	/* $arr = array($playerIdsString);
 	$str = "";
 	foreach ($arr as &$value) {
 		$str = $str."'".$value."'";
-	}
+	} */
 	
-	*/
-	
-	$query = "SELECT * FROM $tablename WHERE user='0' AND playerId IN (".$playerIdsString.") GROUP BY playerId";
 	$result = mysql_query($query) or die(mysql_error());
 	while ($row = mysql_fetch_assoc($result)) {
-		print ltrim($row["playerId"]).",";
+		print ltrim($row["playerId"]).":".ltrim($row["category"]).",";
 	}
 	
 //-----------------------------------------------------------

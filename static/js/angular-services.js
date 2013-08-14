@@ -236,6 +236,7 @@ BTBWModule.service('serverLayer', function ($q, $http, sharedUtilities) {
 			return deferred.promise;
         },
 		
+		
 		getUserChallenges: function(userId) {
             var deferred = $q.defer();
 			var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode="+obj.mode+"&playerId="+obj.playerId;
@@ -254,6 +255,7 @@ BTBWModule.service('serverLayer', function ($q, $http, sharedUtilities) {
             return deferred.promise;
         }, 
 
+		
 		getScores: function(userId) {
             var deferred = $q.defer();
 			var url =  BTBW.CONST.BASE_URL+"/php/functions.php?mode=getScores&playerId="+userId;
@@ -298,6 +300,29 @@ BTBWModule.service('serverLayer', function ($q, $http, sharedUtilities) {
             return deferred.promise;
         },   
 		
+		
+		getUsersWithScores: function(obj) {
+            var deferred = $q.defer();
+			
+			$http({
+               	method: BTBW.Data.Routes.method, 
+                url: obj.url,
+                cache: false,
+                data: $.param(obj),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).
+            success(function(data, status) {
+				//alert("getUsersWithScores OK "+data)
+                deferred.resolve(data);
+            }).
+            error(function(data, status) {
+				//alert("getUsersWithScores FAIL " )
+                deferred.reject({code: 4, msg: data.msg});
+            });    
+
+            return deferred.promise;
+        },   
+	
 		
 		
 		/*
