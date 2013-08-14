@@ -8,8 +8,8 @@ BTBW.CONST = BTBW.CONST || {
     TESTING : 1, 
 	
 	
-	//"BASE_URL": "/btbw", // LOCAL
-	"BASE_URL": "/GitHub/Beat-the-Buzzword",
+	 "BASE_URL": "/btbw", // LOCAL
+	//"BASE_URL": "/GitHub/Beat-the-Buzzword",
 	//"BASE_URL": "/dev/btbw", // ONLINE
 	
 	"CSSCLASS_SCROLLABLE_TABLE": "wrap-table",

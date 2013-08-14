@@ -3,7 +3,7 @@
 	
 	$tablename="beatthebuzzword_challenges";
 
-	$dbname = "bertha";
+	$dbname = "beatthebuzzword";
 	
 	//@mysql_connect("localhost", "berthauser", "berthapass") or die("Could not connect to MySQL server");
 	@mysql_connect("localhost", "root", "") or die("Could not connect to MySQL server");
