@@ -2682,6 +2682,9 @@ footer #tidy:after {
 	margin-top:20px;
 }
 
+.player-stats h4, .player-stats h3 {
+	width:400px;
+}
 
 
 

@@ -106,18 +106,54 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
         $location.path(BTBW.CONST.PATH_INTRO);
 	}
 	
-	function DisplayUpdatedScore() {
+	function DisplayUserPoints() {
 		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getScore&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
-			BTBW.Data.Profile.points = evt; 
+	
 			var e = document.getElementById("displayScore");
 			e.innerHTML = evt; 
+			BTBW.Data.Profile.points = evt;
+			
+			
+			var rank = GetUserRank(evt);
+			e = document.getElementById("displayRank");
+			e.innerHTML = rank; 
+			BTBW.Data.Profile.rank = rank;
+
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });
+		
+		return 0;
 	}
 	
-	DisplayUpdatedScore();
+	function GetUserRank(points)
+	{
+		var rank = "Intern";
+		if (points > 2000)
+			rank = "Junior";
+		if (points > 3500)
+			rank = "Team Leader";
+		if (points > 12000)
+			rank = "Supervisor";
+		if (points > 18000)
+			rank = "Senior Manager";
+		if (points > 27000)
+			rank = "Department Head";
+		if (points > 27000)
+			rank = "Director";
+		if (points > 31000)
+			rank = "Senior Director";
+		if (points > 36000)
+			rank = "Vice President";
+		if (points > 42000)
+			rank = "President";
+			
+		return rank;
+	}
+	
+	DisplayUserPoints();
+	
 	
 }
