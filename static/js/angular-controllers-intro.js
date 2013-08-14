@@ -48,6 +48,9 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			}
 		}
 		
+		//var e = document.getElementById("debug");
+		//e.innerHTML = "genreId:" + genreId + " / " + myRandomNumbers[0] + " / " +  resultFound; 
+		
 		if(resultFound)
 		{
 			$location.path(BTBW.CONST.PATH_GAMEPLAY);
@@ -196,7 +199,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			if (!resultFound)
 			{
 				e = document.getElementById("genre_"+i);
-				e.style.background = "url(static/img/GeneralButton_Block.png)";
+				e.style.background = "url(static/img/genre_"+i+".png)";
 			}
 		}		
 	}
