@@ -204,15 +204,11 @@ if ( $mode == "createGame") {
 	
 } else if ( $mode == "getScore") {
 
-
 	$playerId = $_REQUEST['playerId'];
-	$query = "SELECT * FROM $tablename WHERE playerId='$playerId'";
-	$result = mysql_query($query) or die(mysql_error());
-	$score = 0;
-	while ($row = mysql_fetch_assoc($result)) {
-		$score = $score + $row["score"];
-	}
-	print $score;
+	$score_from_questions = getScoreFromQuestions($playerId, $tablename);
+	$score_from_unlocks = getScoreFromUnlocks($playerId, $unlocks_table);
+	$total_score = $score_from_questions + $score_from_unlocks;
+	print $total_score;
 	
 } else if ( $mode == "getRandomNumbers") {
 	
@@ -262,19 +258,21 @@ if ( $mode == "createGame") {
 
 	print $randomNumbers;
 	
-} else if ( $mode == "getAchivements") {
+} else if ( $mode == "getAchievements") {
 	$playerId = $_REQUEST['playerId'];
 	$unlocks_table = "beatthebuzzword_unlocks";
-
+	
 	$query = mysql_query("SELECT * FROM `".$unlocks_table."` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
 	$query = mysql_fetch_array($query);
-	$achivements = $query['achivements'];
+	$achievements = $query['achievements'];
 
-	print $achivements;
+	print $achievements;
 	
-} else if ( $mode == "setAchivements") {
+} else if ( $mode == "setAchievement") {
 	$playerId = $_REQUEST['playerId'];
-	
+	$achievementID = $_REQUEST['achievementID'];
+	$achievements = "";
+	$achievements_score = 0;
 	/*
 	Description	Points
 	1. Complete one full game of beat the buzzwords	500
@@ -287,8 +285,51 @@ if ( $mode == "createGame") {
 	8. Beat an opponent from the same company	700
 	9. Two questions in a row	300
 	*/
+	
+	if (getIfNewUser($playerId, $unlocks_table))
+	{
+		$achievements = $achievementID . ",";
+		$query = mysql_query("INSERT INTO `".$unlocks_table."` (`playerId`, `achievements`, `badges`, `modes`, `score`) VALUES ('".$playerId."', '".$achievements."', '0,', '0', '0')") or die($myQuery."<br/>".mysql_error());
+		print "new user :: ";
+	}
+	else
+	{
+		$query = mysql_query("SELECT * FROM `".$unlocks_table."` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+		$query = mysql_fetch_array($query);
+		$achievements = $query['achievements'];
+		$achievements_score = $query['score'];
+		
+		$achievements_array = explode(",",$achievements);
+		
+		for ($i = 0; $i < count($achievements_array); $i++)
+		{
+			if ($i == $achievementID) // User already got the achievement
+			{
+				print "User already got the achievement";
+				return;
+			}
+		}
+		
+		$achievements .= $achievementID . ",";
+		$query = mysql_query("UPDATE `".$unlocks_table."` SET achievements='".$achievements."'  WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+	}
+	
 
-	print "done";
+	$score_increase_amount = 0;
+	if ($achievementID == 1 || $achievementID == 2 || $achievementID == 3 || $achievementID == 5)
+		$score_increase_amount = 500;
+	else if ($achievementID == 6)
+		$score_increase_amount = 2000;
+	else if ($achievementID == 7 || $achievementID == 8)	
+		$score_increase_amount = 700;
+	else if ($achievementID == 9)
+		$score_increase_amount = 300;	
+	
+	$new_score = $score_increase_amount + $achievements_score;
+	
+	setScoreFromUnlocks($playerId, $unlocks_table, $new_score);
+	
+	print "achievements: "." " .$achievements . " : new_score : " . $new_score . " :: achievements_score: " . $achievements_score;
 }
 
 
@@ -300,6 +341,31 @@ function getIfNewUser($playerId, $table)
 		return false;
 		
 	return true;
+}
+
+function getScoreFromQuestions($playerId, $table)
+{
+	$query = "SELECT * FROM `".$table."` WHERE playerId='".$playerId."'";
+	$result = mysql_query($query) or die(mysql_error());
+	$score = 0;
+	while ($row = mysql_fetch_assoc($result)) {
+		$score = $score + $row["score"];
+	}
+	
+	return $score;
+}
+
+
+function getScoreFromUnlocks($playerId, $table)
+{
+	$query = mysql_query("SELECT * FROM `".$table."` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+	$query = mysql_fetch_array($query);
+	return $query["score"];
+}
+
+function setScoreFromUnlocks($playerId, $table, $score)
+{
+	$query = mysql_query("UPDATE `".$table."` SET score='".$score."'  WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
 }
 
 ?>

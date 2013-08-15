@@ -130,9 +130,9 @@ function AchievementsController($scope, $timeout, $location, sharedData, serverL
 	
 
 	
-	function GetAchivements()
+	function GetAchievements()
 	{
-		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getAchivements&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
+		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getAchievements&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
 		
@@ -150,7 +150,7 @@ function AchievementsController($scope, $timeout, $location, sharedData, serverL
 		return 0;
 	}
 	
-	GetAchivements();
+	GetAchievements();
 	
 }
 

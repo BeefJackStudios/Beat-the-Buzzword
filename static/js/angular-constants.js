@@ -16,6 +16,9 @@ BTBW.CONST = BTBW.CONST || {
     "GAME_PRACTICE": "practice",
     "GAME_BUZZWORD": "Buzzword",
     "GAME_HEAD2HEAD": "Head 2 Head",
+	"GAME_CEO": "CEO",
+	"GAME_ENTRENPENUER": "Entrenpenuer",
+	
     
 	"GAME_SET_CHALLENGE": "set-challenge",
     "GAME_TAKE_CHALLENGE": "take-challenge",

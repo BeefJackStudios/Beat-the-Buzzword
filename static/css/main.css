@@ -2088,12 +2088,12 @@ header .settings span {
 <a class="TopLeft"
 */
 
-#wrap-gameplay li a.TopLeft.correct { background: url('../img/QBox_Correct_BottomLeft.png') no-repeat 0px 0; }
+#wrap-gameplay li a.TopLeft.correct { background: url('../img/QBox_Correct_TopLeft.png') no-repeat 0px 0; }
 #wrap-gameplay li a.TopRight.correct { background: url('../img/QBox_Correct_TopRight.png') no-repeat 0px 0; }
 #wrap-gameplay li a.BottomLeft.correct { background: url('../img/QBox_Correct_BottomLeft.png') no-repeat 0px 0; }
 #wrap-gameplay li a.BottomRight.correct { background: url('../img/QBox_Correct_BottomRight.png') no-repeat 0px 0; }
 
-#wrap-gameplay li a.TopLeft.wrong { background: url('../img/QBox_Wrong_BottomLeft.png') no-repeat 0px 0; }
+#wrap-gameplay li a.TopLeft.wrong { background: url('../img/QBox_Wrong_TopLeft.png') no-repeat 0px 0; }
 #wrap-gameplay li a.TopRight.wrong { background: url('../img/QBox_Wrong_TopRight.png') no-repeat 0px 0; }
 #wrap-gameplay li a.BottomLeft.wrong { background: url('../img/QBox_Wrong_BottomLeft.png') no-repeat 0px 0; }
 #wrap-gameplay li a.BottomRight.wrong { background: url('../img/QBox_Wrong_BottomRight.png') no-repeat 0px 0; }

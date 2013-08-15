@@ -140,7 +140,7 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 			*/
 			
 			var rightAnswerReward = 10;
-			if (sharedData.currentChallengeName == "CEO")
+			if (sharedData.currentChallengeName == BTBW.CONST.CEO)
 				rightAnswerReward = 20;
 			
 			if ($scope.time<5){

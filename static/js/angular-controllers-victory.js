@@ -118,6 +118,38 @@ function VictoryController($scope, $dialog, $location, $timeout, sharedData, ser
         $location.path(BTBW.CONST.PATH_INTRO);
 	}
 	
+	
+	$scope.challengeName = sharedData.currentChallengeName;
+	
+	
+	function setAchievement()
+	{
+		var challenge_name = sharedData.currentChallengeName;
+		var challenge_id = 0;
+		
+		if (challenge_name == BTBW.CONST.GAME_PRACTICE)
+			challenge_id = 1;
+		else if (challenge_name == BTBW.CONST.GAME_HEAD2HEAD)
+			challenge_id = 2;
+		else if (challenge_name == BTBW.CONST.CEO)
+			challenge_id = 3;
+		else if (challenge_name == BTBW.CONST.GAME_ENTRENPENUER)
+			challenge_id = 4;	
+			
+		
+		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=setAchievement&playerId="+BTBW.Data.Profile.linkedin_id+"&achievementID="+challenge_id; // BTBW.Data.Profile.linkedin_id;
+		$.ajax({ url:url })
+		.done(function(evt) {
+			//var e = document.getElementById("debug");
+			//e.innerHTML = evt; 
+		})
+		.fail(function() { sharedUtilities.reportError(evt); })
+		.always(function() { console.log("complete"); });
+		return 0;
+	}
+	
+	setAchievement();
+	
 
 }
 
@@ -195,6 +227,11 @@ function VictoryDialogController($scope, dialog, sharedData, serverLayer){
             $scope.feedbackMessage = BTBW.CONST.MESSAGE_EMAIL_NOT_SENT;
         });
     }
+	
+	
+	
+
+
 	
 	
 	
