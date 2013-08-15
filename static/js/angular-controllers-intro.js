@@ -94,9 +94,10 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		$scope.showOpps = true;
 		$timeout(BTBW.Utilities.initScrollbars, 0); 
 	}
-	$scope.getScores = function(userId) {
+	$scope.getUserScores = function(userId) {
 		sharedData.hiscorePlayerId = userId;
-		$location.path(BTBW.CONST.PATH_SHOW_CHALLENGES);
+		$location.path(BTBW.CONST.PATH_LEADERBOARD);
+		//$location.path(BTBW.CONST.PATH_SHOW_CHALLENGES);
 	}
     $scope.showUserChallenges = function(userId) {
 		sharedData.currentChallengeUserId = userId;
@@ -119,7 +120,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	
 	$scope.gotoLeaderboardPage = function() {
 		sharedData.currentChallengeUserId = null;
-        $location.path(BTBW.CONST.PATH_SHOW_CHALLENGES);
+       $location.path(BTBW.CONST.PATH_LEADERBOARD);
 	}
 	
 	$scope.gotoAchievementPage = function() {
@@ -129,6 +130,82 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	$scope.gotoHome = function() {
         $location.path(BTBW.CONST.PATH_INTRO);
 	}
+	
+	
+	
+	$scope.leadertitle = "Topping the Leaderboards";
+	$scope.leaderTitleIndex = -1;
+	$scope.secs = 0;
+	
+	
+	
+	$scope.getConnectionsWithScores = function() {
+		
+		//set Title
+		$scope.leaderTitleIndex++;
+		if ($scope.leaderTitleIndex>4) $scope.leaderTitleIndex = 0;
+		$scope.leadertitle = BTBW.CONST.LEADER_TITLE_ARR[$scope.leaderTitleIndex].title;
+		
+		var category = BTBW.CONST.LEADER_TITLE_ARR[$scope.leaderTitleIndex].category;
+		
+		$scope.challenges = [];
+		
+		var arr = "";
+		for (var i in BTBW.Data.connections){
+			arr += "'"+BTBW.Data.connections[i].linkedin_id+"',";
+		}
+		
+		arr = arr.substr(0, arr.length-1);
+		var nocache = Math.floor(Math.random()*999999);
+		var url =  BTBW.CONST.BASE_URL+"/php/functions.php?mode=getUsersWithScores&category="+category+"&nocache="+nocache+"&playerIdsString="+arr;
+	
+		serverLayer.genericCall({url:url})
+			.then(function(data) {
+				//success
+				BTBW.Data.connectionScores = [];
+				var spl = data.split("#");
+				for (var i in spl){
+					var spl2 = spl[i].split("¬");
+					
+					var id = spl2[0];
+					var name = spl2[1];
+					var picture = spl2[2];
+					var category = spl2[3];
+
+					// LOAD USERS CONNECTIONS
+					if (id !=  "undefined"){
+						for (var c in BTBW.Data.connections){
+							if (id == BTBW.Data.connections[c].linkedin_id){
+								BTBW.Data.connectionScores.push(BTBW.Data.connections[c])
+							}
+						}
+					}
+					
+					// LOAD ALL
+					//if (id && name){
+					//	BTBW.Data.connectionScores.push({linkedin_id:id, firstName:name.split(" ")[0], lastName:name.split(" ")[1], picture:picture, category:category});
+					//}
+					
+				}
+				$scope.updateChallenges(BTBW.Data.connectionScores);
+				
+				$scope.delay = $timeout(function(){ $scope.getConnectionsWithScores() }, 4000);
+				
+			
+			}, function(reason){
+				//if it fails
+				sharedUtilities.reportError(reason);
+			});  
+	}
+	
+	$scope.updateChallenges = function(arr) {
+		//console.log("updateConns"+arr);
+		$scope.challenges = arr;
+	}
+	
+	$scope.getConnectionsWithScores();
+	
+	
 	
 	function DisplayUserPoints() {
 		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getScore&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
