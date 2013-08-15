@@ -235,8 +235,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getRandomNumbers&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
-			//var e = document.getElementById("debug");
-			//e.innerHTML = evt; 
+			var e = document.getElementById("debug");
+			e.innerHTML = evt; 
 			var temp = [];
 			myRandomNumbers = evt.split(",");
 			SetRandomGenre();

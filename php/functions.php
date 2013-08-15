@@ -228,13 +228,20 @@ if ( $mode == "createGame") {
 		$query = mysql_query("SELECT * FROM `".$timeout_table."` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
 		$query = mysql_fetch_array($query);
 		$lastTime = $query['lastTime'];
-		$randomNumbers = $query['randomNumbers'];
+		if ($query['randomNumbers'] != "" || $query['randomNumbers'] != null)
+		{
+			$randomNumbers = $query['randomNumbers'];
+		}
+		
 		$totalNumbers = $query['totalNumbers'];
 		$query = mysql_query("UPDATE `".$timeout_table."` SET lastTime='".time()."' WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
 	}
 	
 	
+	
+
 	$diff =  time() - $lastTime;
+	
 
 	//print time() . " - " . $lastTime . " = " . $diff . " :: ";
 	
@@ -242,7 +249,8 @@ if ( $mode == "createGame") {
 	{
 		$randomNumbers = "";
 		//$totalNumbers == number of badges
-			
+		
+		$totalNumbers = 1;	
 		$arr = array();
 		while ( count($arr) < $totalNumbers ) {
 			$x = mt_rand(1,7);
@@ -253,8 +261,10 @@ if ( $mode == "createGame") {
 			}
 		}
 		
+
 		$query = mysql_query("UPDATE `".$timeout_table."` SET randomNumbers='".$randomNumbers."'  WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
 	}
+	
 
 	print $randomNumbers;
 	
