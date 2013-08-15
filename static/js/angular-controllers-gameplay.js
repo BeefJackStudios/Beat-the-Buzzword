@@ -295,6 +295,9 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 	
 	$scope.challengeName = sharedData.currentChallengeName;
 	
+		//var e = document.getElementById("wrap-overlay");
+	//e.style.background = "url('static/img/PlayAreaQuestion.png') no-repeat 50% 0"; 
+	$scope.wrap_background = "url('static/img/PlayAreaQuestion.png') no-repeat 50% 0";
 	// ----------------------------------
 		
 }

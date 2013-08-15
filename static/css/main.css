@@ -2104,11 +2104,18 @@ header .settings span {
 #wrap-gameplay li a.BottomRight { background: url('../img/QBox_BottomRight.png') no-repeat 0px 0; }
 
 
-
+/*
 .TopLeftText { transform:rotate(2deg); margin-top:15px; pointer-events:none;}
 .TopRightText { transform:rotate(-2deg); margin-top:0px; pointer-events:none;}
 .BottomLeftText { transform:rotate(-2deg); margin-top:7px; pointer-events:none;}
 .BottomRightText { transform:rotate(4deg); margin-top:17px; pointer-events:none;}
+*/
+
+
+.TopLeftText { font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
+.TopRightText { font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
+.BottomLeftText { font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
+.BottomRightText { font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
 
 
 #wrap-gameplay.waitingForGo li a, #wrap-gameplay.waitingForGo li a:hover {
@@ -2688,6 +2695,15 @@ footer #tidy:after {
 
 #achivements tr td {
 	color:#999;
+}
+
+.gamePlay {
+	background: url(../img/GamePlay.png);
+	position:fixed;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
 }
 
 
