@@ -290,7 +290,7 @@ if ( $mode == "createGame") {
 	{
 		$achievements = $achievementID . ",";
 		$query = mysql_query("INSERT INTO `".$unlocks_table."` (`playerId`, `achievements`, `badges`, `modes`, `score`) VALUES ('".$playerId."', '".$achievements."', '0,', '0', '0')") or die($myQuery."<br/>".mysql_error());
-		print "new user :: ";
+		//print "new user :: ";
 	}
 	else
 	{
@@ -305,7 +305,7 @@ if ( $mode == "createGame") {
 		{
 			if ($i == $achievementID) // User already got the achievement
 			{
-				print "User already got the achievement";
+				print "-1";
 				return;
 			}
 		}
@@ -329,7 +329,8 @@ if ( $mode == "createGame") {
 	
 	setScoreFromUnlocks($playerId, $unlocks_table, $new_score);
 	
-	print "achievements: "." " .$achievements . " : new_score : " . $new_score . " :: achievements_score: " . $achievements_score;
+	//print "achievements: "." " .$achievements . " : new_score : " . $new_score . " :: achievements_score: " . $achievements_score;
+	print $achievementID;
 }
 
 

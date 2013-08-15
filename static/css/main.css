@@ -2695,6 +2695,8 @@ footer #tidy:after {
 
 #achivements tr td {
 	color:#999;
+	text-align:left;
+	padding: 0 0 0 20px;
 }
 
 .gamePlay {

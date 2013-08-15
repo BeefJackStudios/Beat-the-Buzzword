@@ -36,8 +36,8 @@
 						<tbody>
 							<tr data-ng-repeat="challenge in data"  data-ng-class-odd="'odd'">
 								<td data-ng-show="displayingRadomGenres">{[{challenge.profile.firstName}]} {[{challenge.profile.lastName}]}</td>
-								<td id="achivements_name_{[{challenge.id}]}">{[{challenge.name}]}</td>
-								<td id="achivements_score_{[{challenge.id}]}">{[{challenge.score}]}</td>
+								<td style="width:200px" id="achivements_name_{[{challenge.id}]}">{[{challenge.id}]}. {[{challenge.name}]}</td>
+								<td style="width:50px" id="achivements_score_{[{challenge.id}]}">{[{challenge.score}]}</td>
 							</tr>
 						</tbody>
 					</table>

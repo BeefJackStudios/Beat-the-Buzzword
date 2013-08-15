@@ -124,6 +124,10 @@ function VictoryController($scope, $dialog, $location, $timeout, sharedData, ser
 	
 	function setAchievement()
 	{
+		//1. Complete one full game of beat the buzzwords 	500
+		//2. Complete one full game of head to head 	500
+		//3. Complete one full game of CEO 	500
+		//4. Complete one full game of Entrepenuer 	500
 		var challenge_name = sharedData.currentChallengeName;
 		var challenge_id = 0;
 		

@@ -143,9 +143,11 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 			if (sharedData.currentChallengeName == BTBW.CONST.CEO)
 				rightAnswerReward = 20;
 			
-			if ($scope.time<5){
+			var passed_time = $scope.time;
+			
+			if (passed_time<5){
 				var mult = 3;
-			} else if ($scope.time<10){
+			} else if (passed_time<10){
 				var mult = 2;
 			} else {
 				var mult = 1;
@@ -154,11 +156,45 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 			if (!sharedData.score) sharedData.score = 0;
 			sharedData.score += ((rightAnswerReward + $scope.time)*mult);
 			
+			
+			
+
+			
 		}
 	
-		
-		
-		
+			/*
+			function setAchievement()
+			{
+				if (!sharedData.achievement5) sharedData.achievement5 = "0";
+				
+				if (sharedData.achievement5 != "0")
+				{
+					var e = document.getElementById("debug");
+					e.innerHTML = "User already got the achievement";
+					return;
+				}
+					
+				//5. Answer a question in under 3 seconds 	500
+				var challenge_id = 5;
+				
+				var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=setAchievement&playerId="+BTBW.Data.Profile.linkedin_id+"&achievementID="+challenge_id; // BTBW.Data.Profile.linkedin_id;
+				$.ajax({ url:url })
+				.done(function(evt) {
+					sharedData.achievement5 = evt;
+					var e = document.getElementById("debug");
+					e.innerHTML = evt;
+				})
+				.fail(function() { sharedUtilities.reportError(evt); })
+				.always(function() { console.log("complete"); });
+				return 0;
+			}
+			
+			//5. Answer a question in under 3 seconds 500
+			//var passed_time = $scope.time;
+			//if (passed_time < 3)
+			setAchievement();
+			
+			*/
 		
 		sharedData.scoretobeat = 100;
 		// end internal STUFF
