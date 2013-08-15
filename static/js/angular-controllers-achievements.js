@@ -90,13 +90,15 @@ function AchievementsController($scope, $timeout, $location, sharedData, serverL
 		$scope.isLoading = false;
 		$scope.title = BTBW.CONST.TITLE_SHOW_RANDOM_CHALLENGES;
 		$scope.data = [
-			{name:"Buzzwords", score:"99"},
-			{name:"Buzzwords", score:"99"},
-			{name:"Buzzwords", score:"99"},
-			{name:"Buzzwords", score:"99"},
-			{name:"Buzzwords", score:"99"},
-			{name:"Buzzwords", score:"99"},
-			{name:"Buzzwords", score:"99"},
+			{id:"1", name:"Complete one full game of beat the buzzwords", score:"500"},
+			{id:"2", name:"Complete one full game of head to head", score:"500"},
+			{id:"3", name:"Complete one full game of CEO", score:"500"},
+			{id:"4", name:"Complete one full game of Entrepenuer", score:"500"},
+			{id:"5", name:"Answer a question in under 3 seconds", score:"500"},
+			{id:"6", name:"All questions right in on session", score:"2000"},
+			{id:"7", name:"Create questions for Entrepenuer Mode", score:"700"},
+			{id:"8", name:"Beat an opponent from the same company", score:"700"},
+			{id:"9", name:"Two questions in a row", score:"300"}
 		];
 		//reinit the scroll panel as this since we are using a promise
 		$timeout(BTBW.Utilities.initScrollbars, 0); 
@@ -124,6 +126,31 @@ function AchievementsController($scope, $timeout, $location, sharedData, serverL
 	$scope.gotoHome = function() {
         $location.path(BTBW.CONST.PATH_INTRO);
 	}
+	
+	
+
+	
+	function GetAchivements()
+	{
+		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getAchivements&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
+		$.ajax({ url:url })
+		.done(function(evt) {
+		
+			var spl = evt.split(",");
+			var e;
+			for (var i in spl){
+				e = document.getElementById("achivements_name_"+spl[i]);
+				e.style.color = "black"; 
+				e = document.getElementById("achivements_score_"+spl[i]);
+				e.style.color = "black"; 
+			}
+		})
+		.fail(function() { sharedUtilities.reportError(evt); })
+		.always(function() { console.log("complete"); });
+		return 0;
+	}
+	
+	GetAchivements();
 	
 }
 

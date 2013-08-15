@@ -219,29 +219,22 @@ if ( $mode == "createGame") {
 	$playerId = $_REQUEST['playerId'];
 	$isNewUser = false;
 	
-	$query = mysql_query("SELECT count(playerId) as total FROM `beatthebuzzword_timeout` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
-	$query = mysql_fetch_array($query);
-
 	$lastTime = time();
 	$randomNumbers = "1,";
-	
-	if ($query['total'] > 0)
-		$isNewUser = false;
-	else
-		$isNewUser = true;
-	
-	
-	if ($isNewUser)
+	$totalNumbers = 1;
+
+	if (getIfNewUser($playerId, $timeout_table))
 	{
-		$query = mysql_query("INSERT INTO `beatthebuzzword_timeout` (`playerId`, `lastTime`, `randomNumbers`) VALUES ('".$playerId."', '".time()."', '".$randomNumbers."')") or die($myQuery."<br/>".mysql_error());
+		$query = mysql_query("INSERT INTO `".$timeout_table."` (`playerId`, `lastTime`, `randomNumbers`, `totalNumbers`) VALUES ('".$playerId."', '".time()."', '".$randomNumbers."', '".$totalNumbers."')") or die($myQuery."<br/>".mysql_error());
 	}
 	else
 	{
-		$query = mysql_query("SELECT * FROM `beatthebuzzword_timeout` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+		$query = mysql_query("SELECT * FROM `".$timeout_table."` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
 		$query = mysql_fetch_array($query);
 		$lastTime = $query['lastTime'];
 		$randomNumbers = $query['randomNumbers'];
-		$query = mysql_query("UPDATE `beatthebuzzword_timeout` SET lastTime='".time()."' WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+		$totalNumbers = $query['totalNumbers'];
+		$query = mysql_query("UPDATE `".$timeout_table."` SET lastTime='".time()."' WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
 	}
 	
 	
@@ -249,12 +242,13 @@ if ( $mode == "createGame") {
 
 	//print time() . " - " . $lastTime . " = " . $diff . " :: ";
 	
-	if ($diff > 60 && !$isNewUser)
+	if ($diff > 10 && !$isNewUser)
 	{
 		$randomNumbers = "";
-		$totalCat = 1;
+		//$totalNumbers == number of badges
+			
 		$arr = array();
-		while ( count($arr) < $totalCat ) {
+		while ( count($arr) < $totalNumbers ) {
 			$x = mt_rand(1,7);
 			if ( !in_array($x,$arr) ) 
 			{ 
@@ -263,12 +257,49 @@ if ( $mode == "createGame") {
 			}
 		}
 		
-		$query = mysql_query("UPDATE `beatthebuzzword_timeout` SET randomNumbers='".$randomNumbers."' WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+		$query = mysql_query("UPDATE `".$timeout_table."` SET randomNumbers='".$randomNumbers."'  WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
 	}
 
 	print $randomNumbers;
+	
+} else if ( $mode == "getAchivements") {
+	$playerId = $_REQUEST['playerId'];
+	$unlocks_table = "beatthebuzzword_unlocks";
+
+	$query = mysql_query("SELECT * FROM `".$unlocks_table."` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+	$query = mysql_fetch_array($query);
+	$achivements = $query['achivements'];
+
+	print $achivements;
+	
+} else if ( $mode == "setAchivements") {
+	$playerId = $_REQUEST['playerId'];
+	
+	/*
+	Description	Points
+	1. Complete one full game of beat the buzzwords	500
+	2. Complete one full game of head to head	500
+	3. Complete one full game of CEO	500
+	4. Complete one full game of Entrepenuer	500
+	5. Answer a question in under 3 seconds	500
+	6. All questions right in on session	2000
+	7. Create questions for Entrepenuer Mode	700
+	8. Beat an opponent from the same company	700
+	9. Two questions in a row	300
+	*/
+
+	print "done";
 }
 
 
+function getIfNewUser($playerId, $table)
+{
+	$query = mysql_query("SELECT count(playerId) as total FROM `".$table."` WHERE playerId='".$playerId."'") or die($myQuery."<br/>".mysql_error());
+	$query = mysql_fetch_array($query);
+	if ($query['total'] > 0)
+		return false;
+		
+	return true;
+}
 
 ?>

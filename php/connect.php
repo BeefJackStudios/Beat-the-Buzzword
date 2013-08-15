@@ -2,7 +2,10 @@
 	/* connect to database */
 	
 	$tablename="beatthebuzzword_challenges";
-
+	$unlocks_table = "beatthebuzzword_unlocks";
+	$timeout_table = "beatthebuzzword_timeout";
+	
+	
 	$dbname = "beatthebuzzword";
 	
 	//@mysql_connect("localhost", "berthauser", "berthapass") or die("Could not connect to MySQL server");

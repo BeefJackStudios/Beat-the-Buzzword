@@ -2,6 +2,8 @@
 	/* connect to database */
 	
 	$tablename="beatthebuzzword_challenges";
+	$unlocks_table = "beatthebuzzword_unlocks";
+	$timeout_table = "beatthebuzzword_timeout";
 
 	$dbname = "beefjack_btbw";
 	

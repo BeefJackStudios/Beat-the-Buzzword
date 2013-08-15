@@ -25,10 +25,10 @@
 	
 	<div class="table1">
 		<table>
-			<thead><tr><th>Top Scores</th></tr></thead>
+			<thead><tr><th>Achivements</th></tr></thead>
 		</table>
 
-		<div data-scrollable-content="true" data-ng-show="data.length > 0">
+		<div id="achivements" data-scrollable-content="true" data-ng-show="data.length > 0">
 			<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
 			<div class="viewport">
 				<div class="overview">
@@ -36,8 +36,8 @@
 						<tbody>
 							<tr data-ng-repeat="challenge in data"  data-ng-class-odd="'odd'">
 								<td data-ng-show="displayingRadomGenres">{[{challenge.profile.firstName}]} {[{challenge.profile.lastName}]}</td>
-								<td>{[{challenge.name}]}</td>
-								<td>{[{challenge.score}]}</td>
+								<td id="achivements_name_{[{challenge.id}]}">{[{challenge.name}]}</td>
+								<td id="achivements_score_{[{challenge.id}]}">{[{challenge.score}]}</td>
 							</tr>
 						</tbody>
 					</table>
