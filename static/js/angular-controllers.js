@@ -82,9 +82,10 @@ function BTBWController($scope, $rootScope, $location, $route, $dialog, sharedDa
 		
 		// LOAD CONNECTIONS
 		BTBW.Data.connections = [];
+		BTBW.Data.connections.push(BTBW.Data.Profile);
 		
 		// displays login - after this
-		IN.API.Connections("me").fields(["firstName", "lastName", "pictureUrl", "id"]).params({"start":1, "count":100}).result($scope.onConnectionsLoaded);
+		IN.API.Connections("me").fields(["firstName", "lastName", "pictureUrl", "id"]).params({"start":1, "count":9999}).result($scope.onConnectionsLoaded);
 		
 		//IN.API.Connections("me").params({"first-name":"Jonathan", "relation-to-viewer":"1"}).params({"start":1, "count":10}).result($scope.displayConnections);
 		// ----- keyword search of anon people ----- 
@@ -96,7 +97,7 @@ function BTBWController($scope, $rootScope, $location, $route, $dialog, sharedDa
 	}
 	
 	$scope.onConnectionsLoaded = function(result) {
-		//console.log("result "+result.values)
+		console.log("conflict resolve? result "+result.values.length)
 		for (var index in result.values) {
 			profile = result.values[index]
 			if (profile.pictureUrl) {
@@ -115,11 +116,12 @@ function BTBWController($scope, $rootScope, $location, $route, $dialog, sharedDa
 		$scope.connections = BTBW.Data.connections;
 		
 		//$scope.getOpenChallenges();
-		$scope.getConnectionsWithScores();
+		//$scope.getConnectionsWithScores();
+		$scope.loadBuzzwords();
 	}
 
 	
-	
+	/*
 	$scope.getConnectionsWithScores = function() {
 		
 		//$playerIdsString = "'N9IqeIebx0', 'xxxxx'";
@@ -131,37 +133,35 @@ function BTBWController($scope, $rootScope, $location, $route, $dialog, sharedDa
 			arr += "'"+BTBW.Data.connections[i].linkedin_id+"',";
 		}
 		arr = arr.substr(0, arr.length-1);
-		//if ()
-		//alert( arr.charAt(arr.length-1) )
 		
 		var url =  BTBW.CONST.BASE_URL+"/php/functions.php?mode=getUsersWithScores&playerIdsString="+arr; // ["N9IqeIebx0","xxxxx"];
-		//alert(url)
-		console.log(url)
-		console.log("LEN : "+url.length)
 		
        $.ajax({ url: url })
 		.done(function(evt) { 
-			var temp = [];
+			BTBW.Data.connectionScores = {};
 			var spl = evt.split(",");
-			console.log(":: getConnectionsWithScores :: LOADED OK  :: spl "+spl);
-			
 			for (var i in spl){
-				var id = spl[i];
-				//console.log(":: getOpenChallenges :: id "+id);
+				var spl2 = spl[i].split(":");
+				var id = spl2[0];
+				var category = spl2[1];
+				if (!BTBW.Data.connectionScores[category]) BTBW.Data.connectionScores[category] = [];
+				console.log(":: getOpenChallenges :: id "+id);
 				if (id !=  "undefined"){
 					for (var c in BTBW.Data.connections){
 						if (id == BTBW.Data.connections[c].linkedin_id){
-							temp.push(BTBW.Data.connections[c])
+							BTBW.Data.connectionScores[category].push(BTBW.Data.connections[c])
 						}
 					}
 				}
 			}
-			$scope.updateChallenges( $.unique(temp) );
+			//$scope.updateChallenges( $.unique(temp) );
+			$scope.updateChallenges( $.unique(BTBW.Data.connectionScores["practice"]) );
 			$scope.loadBuzzwords();
 		})
 		.fail(function(evt) { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });
 	}
+	*/
 	
 	//------------------
 	/*

@@ -209,20 +209,16 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 		}
 		
 						
-        $timeout(function(){
+       $timeout(function(){
             //if last question go to victory screen
            if($scope.currentQuestion >= $scope.data.questions.length - 1) {	
 				if (sharedData.currentChallengeName == BTBW.CONST.GAME_BUZZWORD){
-				
-				// create game on server if mygame && head2head
-				} else if (sharedData.currentChallengeName == BTBW.CONST.GAME_HEAD2HEAD){
-						
-					if (sharedData.isMyGame){
-						console.log(">> 1")
-						serverLayer.createChallenge({
-									mode:"createGame",
-									idPlayer1:BTBW.Data.Profile.linkedin_id,
-									idPlayer2:sharedData.currentChallengeUserId,
+					console.log(">> submit GAME_BUZZWORD "+sharedData.score)
+					serverLayer.saveScores({
+									mode:"saveScores",
+									playerId:BTBW.Data.Profile.linkedin_id,
+									playerName : BTBW.Data.Profile.firstName+" "+BTBW.Data.Profile.lastName,
+									playerPicture : BTBW.Data.Profile.picture,
 									genre:sharedUtilities.getGenreById(sharedData.currentGenreId).name,
 									category:sharedData.currentChallengeName,
 									answers:sharedData.currentChallengeAnswers,				
@@ -230,14 +226,35 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 									correct:getInAndCorrect().correct,
 									incorrect:getInAndCorrect().incorrect
 								});
+								
+				// create game on server if mygame && head2head
+				} else if (sharedData.currentChallengeName == BTBW.CONST.GAME_HEAD2HEAD){
+						
+					if (sharedData.isMyGame){
+						console.log(">> submit GAME_HEAD2HEAD player 1 "+sharedData.score)
+						serverLayer.createChallenge({
+									mode:"createGame",
+									idPlayer1 : BTBW.Data.Profile.linkedin_id,
+									idPlayer2 : sharedData.currentChallengeUserId,
+									playerName : BTBW.Data.Profile.firstName+" "+BTBW.Data.Profile.lastName,
+									playerPicture : BTBW.Data.Profile.picture,
+									genre : sharedUtilities.getGenreById(sharedData.currentGenreId).name,
+									category : sharedData.currentChallengeName,
+									answers : sharedData.currentChallengeAnswers,				
+									score : sharedData.score,
+									correct : getInAndCorrect().correct,
+									incorrect : getInAndCorrect().incorrect
+								});
 						$scope.sendLinkedInMessage( BTBW.Data.Profile.linkedin_id, BTBW.CONST.MESSAGE_EMAIL_BODY_CHALLENGE );
 					
 						
 					} else {
-						console.log(">> 2")
+						console.log(">> submit GAME_HEAD2HEAD player 2 "+sharedData.score)
 						serverLayer.submitAnswers({
 									mode:"submitAnswers",
 									playerId:BTBW.Data.Profile.linkedin_id,
+									playerName : BTBW.Data.Profile.firstName+" "+BTBW.Data.Profile.lastName,
+									playerPicture : BTBW.Data.Profile.picture,
 									gameId:sharedData.currentChallengeId,	
 									answers:sharedData.currentChallengeAnswers,				
 									score:sharedData.score,
@@ -246,24 +263,8 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 								});
 								
 						$scope.sendLinkedInMessage( BTBW.Data.Profile.linkedin_id, BTBW.CONST.MESSAGE_EMAIL_BODY_CHALLENGE );
-					}
-						
-						
-				} else {
-					console.log(">> 3 "+sharedData.score)
-					serverLayer.saveScores({
-									mode:"saveScores",
-									playerId:BTBW.Data.Profile.linkedin_id,
-									genre:sharedUtilities.getGenreById(sharedData.currentGenreId).name,
-									category:sharedData.currentChallengeName,
-									answers:sharedData.currentChallengeAnswers,				
-									score:sharedData.score,
-									correct:getInAndCorrect().correct,
-									incorrect:getInAndCorrect().incorrect
-								});
-					
-					
-				}
+					}	
+				} 
 				
 				$location.path(BTBW.CONST.PATH_VICTORY);
 				return;
@@ -277,6 +278,8 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
                 angular.element($event.target).removeClass(BTBW.CONST.CLASS_ANSWER_WRONG).removeClass(BTBW.CONST.CLASS_ANSWER_CORRECT);
             }
         }, 1000);
+		
+		
     }
 	
 	
