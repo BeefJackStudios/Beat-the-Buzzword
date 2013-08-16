@@ -79,17 +79,23 @@ BTBWModule.directive('displayTimer', function($timeout, $rootScope) {
           $scope.$on("RESET_TIMER", function() {
             resetTimer();
           });
+		  
+		$("#gameReady").css({ opacity: 0});
+		$("#gameReady").animate({"opacity":"0.95"}, 600);
 
           function updateReady() {
             timeoutReadyId = $timeout(function() {
 
                 var opacity = 0;
 				var e = document.getElementById("gameReady");
-				e.style.display = "block";
+				//e.style.display = "block";
+				//e.style.opacity = 0.95;
+				
 				if(timeReady === readyInterval - 1) {
                     //$element.text(BTBW.CONST.MESSAGE_TIMER_GO);
-					
-					e.style.display = "none";
+					$("#gameReady").css({ opacity: 1});
+					$("#gameReady").animate({"opacity":"0"}, 600);
+					//e.style.display = "none";
                 } else {
                     //$element.text((readyInterval - 1) - timeReady);
 					//$element.text("........................");
