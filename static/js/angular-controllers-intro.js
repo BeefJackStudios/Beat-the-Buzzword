@@ -16,10 +16,14 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 
 	//---------------
 	//OPPS
+	
+	var shouldShowGenres = false;
+	
 	$scope.selectOpp = function(userId) {
 		sharedData.currentChallengeUserId = userId;
 		$scope.showOpps = false;
-		$scope.showGenres = true;
+		if (shouldShowGenres)
+			$scope.showGenres = true;
 	}
 
 	$scope.oppClose = function() {
@@ -88,7 +92,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
         sharedData.isMyGame = false;
 		sharedData.currentChallengeName = BTBW.CONST.GAME_PRACTICE;
 		//$location.path(BTBW.CONST.PATH_SELECT_GENRE);
-		$scope.showGenres = true;
+		if (shouldShowGenres)
+			$scope.showGenres = true;
 	}
 	$scope.startHead2Head = function() {
 		sharedData.isMyGame = true;
@@ -302,9 +307,11 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			if (!resultFound)
 			{
 				e = document.getElementById("genre_"+i);
-				e.style.background = "url(static/img/genre_"+i+".png)";
+				//e.style.background = "url(static/img/genre_"+i+".png)";
+				e.style.display = "none";
 
 			}
+			shouldShowGenres = true;
 		}		
 	}
 

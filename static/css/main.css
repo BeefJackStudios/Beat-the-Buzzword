@@ -1,20 +1,25 @@
 
 
 div .popup{
-	background: url('../img/PopUpBox.png') repeat-y 100% 0;
+	background: url('../img/PopUpBox.png') no-repeat 100% 0;
 	background-repeat: no-repeat;
 	position:absolute;
-	width:594px;
-	height:461px;
+	width:623px;
+	height:599px;
 	left:140px;
-	top:110px;
+	top:20px;
 }
  
  div .popupClose{
   position:absolute;
-  left:530px;
-  top:-10px;
+  left:-10px;
+  top:30px;
  }
+ 
+div.popup .wrap-genres, div.popup .wrap-table {
+	width:500;
+	margin:60px auto;
+}
  
 /* line 5, sass/_mixins.scss */
 #wrap-intro, #wrap-take-challenges, #wrap-victory, #wrap-set-challenge , #wrap-take-challenges, #wrap-gameplay{
