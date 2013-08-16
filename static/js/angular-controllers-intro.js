@@ -79,6 +79,9 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		} else if (game.name == "Game2"){
 			if (BTBW.Data.Profile.points >= 700)
 				$scope.startHead2Head();
+		} else if (game.name == "Game3"){
+			if (BTBW.Data.Profile.points >= 7000)
+				$scope.startCEO();
 		}
 	}
 
@@ -100,6 +103,12 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		$location.path(BTBW.CONST.PATH_LEADERBOARD);
 		//$location.path(BTBW.CONST.PATH_SHOW_CHALLENGES);
 	}
+	$scope.startCEO = function() {
+		sharedData.isMyGame = true;
+		sharedData.currentChallengeName = BTBW.CONST.GAME_CEO;
+		$location.path(BTBW.CONST.PATH_GAMEPLAY);
+	}
+	
     $scope.showUserChallenges = function(userId) {
 		sharedData.currentChallengeUserId = userId;
 		$location.path(BTBW.CONST.PATH_SHOW_CHALLENGES);
@@ -242,6 +251,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	
 	function UnlockGameMode(points)
 	{
+		//points = 7000;
 		var e;
 		if (points >= 700)
 		{

@@ -95,15 +95,17 @@ BTBWModule.factory('sharedUtilities', function ($q, $http, $location, $dialog, s
 			}
 
 			function definePkIdByGenre(){
-				var temp = [];
-				//get correct genre
-				for (var i in BTBW.Data.Buzzwords){
-					if (Number(BTBW.Data.Buzzwords[i].genre) == Number(sharedData.currentGenreId)){
-						temp.push(BTBW.Data.Buzzwords[i].pk);
+					var temp = [];
+					//get correct genre
+					for (var i in BTBW.Data.Buzzwords){
+							if (sharedData.currentChallengeName == BTBW.CONST.GAME_CEO ||
+								Number(BTBW.Data.Buzzwords[i].genre) ==
+								Number(sharedData.currentGenreId)){
+								temp.push(BTBW.Data.Buzzwords[i].pk);
+							}
 					}
-				}
-				//shuffle and return
-				return shuffleArray(temp);
+					//shuffle and return
+					return shuffleArray(temp);
 			}
 			
 			function getBuzzWordsByPkId(id){
@@ -130,10 +132,21 @@ BTBWModule.factory('sharedUtilities', function ($q, $http, $location, $dialog, s
 			}
 			
 			
-			//console.log("pks "+pks)
-			//alert(sharedData.currentChallengeAnswers)
-			//currentChallengeAnswers
-			
+			var count = sharedData.currentChallengeName == BTBW.CONST.GAME_CEO ?
+			BTBW.CONST.LIMIT_RANDOM_CHALLENGES_CEO :
+			BTBW.CONST.LIMIT_RANDOM_CHALLENGES_BY_GENRE;
+
+			for (var i=0;i<count;i++){
+				var buzzword = getBuzzWordsByPkId( pks[i] );
+				//console.log(pks[i]+" buzzword "+buzzword)
+				var options = [getRandomWord(), getRandomWord(), getRandomWord(),getRandomWord()];
+				options[Math.floor(Math.random()*4)] = buzzword.word;
+				var obj = {"answer": "", "question": buzzword.definition, "solution":
+				CryptoJS.MD5(buzzword.word).toString(), "options": options};
+				questions.push(obj);
+			}
+
+			/*
 			for (var i=0;i<BTBW.CONST.LIMIT_RANDOM_CHALLENGES_BY_GENRE;i++){
 				var buzzword = getBuzzWordsByPkId( pks[i] );
 				//console.log(pks[i]+" buzzword "+buzzword)
@@ -142,6 +155,7 @@ BTBWModule.factory('sharedUtilities', function ($q, $http, $location, $dialog, s
 				var obj = {"answer": "", "question": buzzword.definition, "solution": CryptoJS.MD5(buzzword.word).toString(), "options": options};
 				questions.push(obj);
 			}
+			*/
 			
 			sharedData.currentChallengeAnswers = pks;
 			BTBW.Data.PracticeChallenge = {"timeset":"0", "id":"1", "questions":questions};
