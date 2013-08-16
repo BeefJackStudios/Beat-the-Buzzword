@@ -85,9 +85,9 @@ if ( $mode == "createGame") {
 	*/
 	
 	if ($category == "All" || $category == "undefined") {
-		$query = "SELECT playerId, playerName, playerPicture, genre, category, correct, MAX(score) AS pooscore FROM $tablename GROUP BY playerId ORDER BY pooscore DESC"; // playerId='$playerId'		
+		$query = "SELECT playerId, playerName, playerPicture, genre, category, correct, MAX(score) AS pooscore FROM $tablename WHERE user='0' GROUP BY playerId ORDER BY pooscore DESC"; // playerId='$playerId'		
 	} else {
-		$query = "SELECT playerId, playerName, playerPicture, genre, category, correct, MAX(score) AS pooscore FROM $tablename WHERE category='$category' GROUP BY playerId ORDER BY pooscore DESC"; // playerId='$playerId' AND 
+		$query = "SELECT playerId, playerName, playerPicture, genre, category, correct, MAX(score) AS pooscore FROM $tablename WHERE user='0' AND category='$category' GROUP BY playerId ORDER BY pooscore DESC"; // playerId='$playerId' AND 
 	}
 	
 	//print $query;
