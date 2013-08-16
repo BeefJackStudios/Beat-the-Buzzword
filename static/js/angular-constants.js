@@ -14,7 +14,7 @@ BTBW.CONST = BTBW.CONST || {
 	
 	"CSSCLASS_SCROLLABLE_TABLE": "wrap-table",
 
-    "GAME_PRACTICE": "practice",
+    "GAME_PRACTICE": "Buzzword",
     "GAME_BUZZWORD": "Buzzword",
     "GAME_HEAD2HEAD": "Head 2 Head",
 	"GAME_CEO": "CEO",

@@ -77,7 +77,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		if (game.name == "Game1"){
 			$scope.startBuzzword();
 		} else if (game.name == "Game2"){
-			$scope.startHead2Head();
+			if (BTBW.Data.Profile.points >= 700)
+				$scope.startHead2Head();
 		}
 	}
 
@@ -171,6 +172,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 					var name = spl2[1];
 					var picture = spl2[2];
 					var category = spl2[3];
+					
+					$scope.leader_rank = id;
 
 					// LOAD USERS CONNECTIONS
 					if (id !=  "undefined"){
@@ -217,10 +220,14 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			BTBW.Data.Profile.points = evt;
 			
 			
+			UnlockGameMode(evt);
+			
 			var rank = GetUserRank(evt);
 			e = document.getElementById("displayRank");
 			e.innerHTML = rank; 
 			BTBW.Data.Profile.rank = rank;
+			
+			
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });
@@ -228,26 +235,53 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		return 0;
 	}
 	
+	function UnlockGameMode(points)
+	{
+		var e;
+		if (points >= 700)
+		{
+			e = document.getElementById("Game2");
+			e.style.background = "url(static/img/HeadtoheadButtonUnlocked.png)";	
+			//e = document.getElementById("debug");
+			//e.innerHTML = points;
+		}	
+		if (points >= 7000)
+		{
+			e = document.getElementById("Game3");
+			e.style.background = "url(static/img/CEOButtonUnlocked.png)";	
+		}
+		if (points >= 20000)
+		{
+			e = document.getElementById("Game4");
+			e.style.background = "url(static/img/EntrepreneurUnlocked.png)";	
+			e.style.width = "200px";				
+		}
+		
+		
+				
+		
+	}
+	
 	function GetUserRank(points)
 	{
 		var rank = "Intern";
-		if (points > 2000)
+		if (points >= 2000)
 			rank = "Junior";
-		if (points > 3500)
+		if (points >= 3500)
 			rank = "Team Leader";
-		if (points > 12000)
+		if (points >= 12000)
 			rank = "Supervisor";
-		if (points > 18000)
+		if (points >= 18000)
 			rank = "Senior Manager";
-		if (points > 27000)
+		if (points >= 27000)
 			rank = "Department Head";
-		if (points > 27000)
+		if (points >= 27000)
 			rank = "Director";
-		if (points > 31000)
+		if (points >= 31000)
 			rank = "Senior Director";
-		if (points > 36000)
+		if (points >= 36000)
 			rank = "Vice President";
-		if (points > 42000)
+		if (points >= 42000)
 			rank = "President";
 			
 		return rank;
@@ -313,8 +347,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getRandomNumbers&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
-			var e = document.getElementById("debug");
-			e.innerHTML = evt; 
+			//var e = document.getElementById("debug");
+			//e.innerHTML = evt; 
 			var temp = [];
 			myRandomNumbers = evt.split(",");
 			SetRandomGenre();

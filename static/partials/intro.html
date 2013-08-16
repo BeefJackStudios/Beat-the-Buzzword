@@ -39,7 +39,7 @@
        <!--  <ul> 	-->
             <li data-ng-repeat="game in games | limitTo: 4">
                 <a href="javascript:void(0);"  data-ng-click="startGame(game)">
-					<img class="game-icon" data-ng-src="{[{game.url}]}" alt="{[{game.name}]}" />
+					<div id="{[{game.name}]}" style="background:url({[{game.url}]}) no-repeat;height:254px;width:215px;"></div>
 					<span>{[{user.firstName}]}</span>
 				</a>
             </li>
@@ -56,17 +56,19 @@
 	<div class="connections" id="leaderboard_main">
 		
 		<h2>{[{leadertitle}]}</h2>
-		 
+	
 		<li data-ng-repeat="user in challenges | limitTo: 8">
 			<div class="connection-profile-holder">
 				<div class="connection-profile">
+					<!--<div id="leaderboard_avatar_rank">{[{leaderTitleIndex}]}</div>-->
 					<a href="javascript:void(0);"  data-ng-click="getUserScores(user.linkedin_id)" >
 						<img data-ng-src="{[{user.picture}]}" alt="{[{user.firstName}]}" />
 					</a>
 				</div>
 				<span>{[{user.firstName}]} {[{user.lastName}]}</span>
-			</div>	
+			</div>
 		</li>
+		
 		
         <!--
         <a data-ng-show="connections.length > 8" class="more" href="javascript:void(0);"  data-ng-click="showMoreConnections = !showMoreConnections">More connections</a>
