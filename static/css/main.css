@@ -2227,7 +2227,7 @@ footer #tidy:after {
 }
 /* line 996, sass/_global.scss */
 .wrap-table .viewport {
-  height: 200px;
+  height: 280px;
   overflow: hidden;
   position: relative;
 }
