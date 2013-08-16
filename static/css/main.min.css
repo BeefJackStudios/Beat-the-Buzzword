@@ -1,7 +1,8 @@
 div .popup{background:url('../img/PopUpBox.png') repeat-y 100% 0;background-repeat:no-repeat;position:absolute;width:594px;height:461px;left:140px;top:110px;}
 div .popupClose{position:absolute;left:530px;top:-10px;}
 #wrap-intro,#wrap-take-challenges,#wrap-victory,#wrap-set-challenge,#wrap-take-challenges,#wrap-gameplay{font-family:"gillsans_regular",Arial;color:#fff;}
-#wrap-take-challenges nav a,#wrap-victory .profile a.dashboard,#wrap-gameplay li a,#wrap-set-challenge a,#wrap-take-challenges nav a.selected,#wrap-gameplay h2{display:table-cell;vertical-align:middle;color:#fff;font-weight:normal;font-size:1.375em;padding:0 20px;background:#106783;}
+#wrap-take-challenges nav a,#wrap-victory .profile a.dashboard,#wrap-set-challenge a,#wrap-take-challenges nav a.selected,#wrap-gameplay h2{display:table-cell;vertical-align:middle;color:#fff;font-weight:normal;font-size:1.375em;padding:0 20px;background:#106783;}
+#wrap-gameplay li span{display:table-cell;vertical-align:middle;font-weight:normal;padding:14px 0 0 88px;background:#106783;color:#333;font-size:1.4em;line-height:1.3;width:300px;height:135px;text-align:center;line-height:1.2;}
 #wrap-take-challenges nav a.selected{cursor:default;}
 header #wrap-usermenu ul,#wrap-intro .connections ul,footer>ul{margin:0;padding:0;list-style-type:none;}
 header #wrap-usermenu ul li,#wrap-intro .connections ul li,footer>ul li{display:-moz-inline-stack;display:inline-block;vertical-align:middle;*vertical-align:auto;zoom:1;*display:inline;}
@@ -126,11 +127,12 @@ header .settings span{background:url('../img/sprites/icons.png?1370526239') no-r
 #wrap-overlay h1{font-family:"gillsans_bold";font-size:1.125em;color:#FFF;height:55px;line-height:55px;text-align:center;font-weight:500;font-style:normal;margin-top:0;margin-bottom:0;}
 #wrap-overlay>div:first-child{height:100%;}
 #wrap-homescreen p,#wrap-homescreen h2,#wrap-homescreen strong{width:500px;margin:0 auto;}
+#wrap-homescreen{background:url('../img/PlayAreaQuestion.png');height:618px;}
 #wrap-homescreen p{color:yellow;margin-top:20px;}
 #wrap-homescreen h2{color:#fff;font-style:italic;margin-top:60px;margin-bottom:40px;font-size:1.875em;}
 #wrap-homescreen h2 span{font-size:0.5em;font-weight:normal;}
 #wrap-homescreen strong{display:block;font-weight:normal;color:#fff;font-style:italic;margin-top:30px;font-size:0.95em;letter-spacing:1px;}
-#divider{width:95%;display:inline-block;background:#84d4ed;height:2px;}
+#divider{width:95%;display:inline-block;background:#84d4ed;height:2px;visibility:hidden;}
 #wrap-intro h1{padding-left:20px;font-family:"gillsans_bold";color:#FFF;font-size:2.4em;line-height:1.8em;text-align:left;text-shadow:-2px 2px #2281a1;}
 #wrap-intro h1b{padding-left:20px;font-family:"gillsans_bold";color:#000;font-size:2.6em;line-height:1.1em;text-align:left;text-shadow:-2px 2px #CCCCCC;}
 #wrap-intro h1c{color:f0552e;font-family:"gillsans_bold";line-height:1.1em;text-shadow:-2px 2px #CCCCCC;}
@@ -139,10 +141,10 @@ header .settings span{background:url('../img/sprites/icons.png?1370526239') no-r
 .connection-profile{-webkit-box-shadow:black -5px 5px 6px -4px,#111215 0 1px 3px 0px;-moz-box-shadow:black -5px 5px 6px -4px,#111215 0 1px 3px 0px;box-shadow:black -5px 5px 6px -4px,#111215 0 1px 3px 0px;}
 .player-holder{padding:20px;max-width:80px;float:left;}
 .player-stats{padding:20px 10px 10px 0px;max-width:80px;float:left;color:#FFF;text-align:left;}
-.player-icon-leaderboard{padding:70px 30px 10px 10px;max-width:50px;float:right;color:#FFF;text-align:left;}
-.player-icon-achievement{padding:70px 5px 10px 10px;max-width:50px;float:right;color:#FFF;text-align:left;}
-.player-icon-home{padding:70px 5px 10px 10px;max-width:50px;float:right;color:#FFF;text-align:left;}
-.player-icon-settings{padding:70px 5px 10px 10px;max-width:50px;float:right;color:#FFF;text-align:left;}
+.player-icon-leaderboard{padding:16px 30px 10px 10px;max-width:50px;float:right;color:#FFF;text-align:left;}
+.player-icon-achievement{padding:16px 5px 10px 10px;max-width:50px;float:right;color:#FFF;text-align:left;}
+.player-icon-home{padding:16px 5px 10px 10px;max-width:50px;float:right;color:#FFF;text-align:left;}
+.player-icon-settings{padding:16px 5px 10px 10px;max-width:50px;float:right;color:#FFF;text-align:left;}
 .player-stats h3{font-family:"gillsans_bold";font-size:2.4em;line-height:0.8em;}
 .player-stats h4{font-family:"gillsans_lightitalic";font-size:1.6em;line-height:1.0em;}
 #wrap-intro .game-icon{padding:0px 4px 20px 4px;}
@@ -282,23 +284,18 @@ header .settings span{background:url('../img/sprites/icons.png?1370526239') no-r
 #wrap-gameplay ul.wrap-progress li.wrong{background-position:-20px 0;}
 #wrap-gameplay .loadingSpinner{position:absolute;top:0;left:0;width:100%;height:100%;color:#fff;}
 #wrap-gameplay .loadingSpinner p{padding-top:175px;}
-#wrap-gameplay li a{color:#333;font-size:1.875em;line-height:1.3;width:343px;height:127px;text-align:center;line-height:1.2;}
-#wrap-gameplay li a.TopLeft.correct{background:url('../img/QBox_Correct_TopLeft.png') no-repeat 0px 0;}
-#wrap-gameplay li a.TopRight.correct{background:url('../img/QBox_Correct_TopRight.png') no-repeat 0px 0;}
-#wrap-gameplay li a.BottomLeft.correct{background:url('../img/QBox_Correct_BottomLeft.png') no-repeat 0px 0;}
-#wrap-gameplay li a.BottomRight.correct{background:url('../img/QBox_Correct_BottomRight.png') no-repeat 0px 0;}
-#wrap-gameplay li a.TopLeft.wrong{background:url('../img/QBox_Wrong_TopLeft.png') no-repeat 0px 0;}
-#wrap-gameplay li a.TopRight.wrong{background:url('../img/QBox_Wrong_TopRight.png') no-repeat 0px 0;}
-#wrap-gameplay li a.BottomLeft.wrong{background:url('../img/QBox_Wrong_BottomLeft.png') no-repeat 0px 0;}
-#wrap-gameplay li a.BottomRight.wrong{background:url('../img/QBox_Wrong_BottomRight.png') no-repeat 0px 0;}
-#wrap-gameplay li a.TopLeft{background:url('../img/QBox_TopLeft.png') no-repeat 0px 0;}
-#wrap-gameplay li a.TopRight{background:url('../img/QBox_TopRight.png') no-repeat 0px 0;}
-#wrap-gameplay li a.BottomLeft{background:url('../img/QBox_BottomLeft.png') no-repeat 0px 0;}
-#wrap-gameplay li a.BottomRight{background:url('../img/QBox_BottomRight.png') no-repeat 0px 0;}
-.TopLeftText{font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
-.TopRightText{font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
-.BottomLeftText{font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
-.BottomRightText{font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
+#wrap-gameplay li span.TopLeft.correct{background:url('../img/QBox_Correct_TopLeft.png') no-repeat 0px 0;}
+#wrap-gameplay li span.TopRight.correct{background:url('../img/QBox_Correct_TopRight.png') no-repeat 0px 0;}
+#wrap-gameplay li span.BottomLeft.correct{background:url('../img/QBox_Correct_BottomLeft.png') no-repeat 0px 0;}
+#wrap-gameplay li span.BottomRight.correct{background:url('../img/QBox_Correct_BottomRight.png') no-repeat 0px 0;}
+#wrap-gameplay li span.TopLeft.wrong{background:url('../img/QBox_Wrong_TopLeft.png') no-repeat 0px 0;}
+#wrap-gameplay li span.TopRight.wrong{background:url('../img/QBox_Wrong_TopRight.png') no-repeat 0px 0;}
+#wrap-gameplay li span.BottomLeft.wrong{background:url('../img/QBox_Wrong_BottomLeft.png') no-repeat 0px 0;}
+#wrap-gameplay li span.BottomRight.wrong{background:url('../img/QBox_Wrong_BottomRight.png') no-repeat 0px 0;}
+#wrap-gameplay li span.TopLeft{background:url('../img/QBox_TopLeft.png') no-repeat 0px 0;}
+#wrap-gameplay li span.TopRight{background:url('../img/QBox_TopRight.png') no-repeat 0px 0;}
+#wrap-gameplay li span.BottomLeft{background:url('../img/QBox_BottomLeft.png') no-repeat 0px 0;}
+#wrap-gameplay li span.BottomRight{background:url('../img/QBox_BottomRight.png') no-repeat 0px 0;}
 #wrap-gameplay.waitingForGo li a,#wrap-gameplay.waitingForGo li a:hover{cursor:default;color:gray;}
 #wrap-gameplay.locked li a.correct:hover{cursor:default;}
 #wrap-gameplay.locked li a.wrong:hover{cursor:default;}
@@ -375,12 +372,18 @@ h2,h3{page-break-after:avoid;}}
 #wrap-usermenu{visibility:hidden;}
 #wrap-overlay h3{font-size:25.9px;}
 #wrap-gameplay .timeset{position:absolute;margin:23px 0 0 130px;border:0;background:none;font-family:Arial;color:#fff;font-weight:bold;font-size:70px;letter-spacing:-12px;text-align:left;padding:-20px 0 0 0;width:280px;}
-#timesetbg{position:absolute;margin:65px 0 0 594px;background:url('../img/timebar.png') no-repeat;width:240px;height:20px;}
+#timesetbg,#timesetfill{position:absolute;margin:65px 0 0 594px;width:240px;height:20px;}
+#timesetbg{background:url('../img/timebar.png') no-repeat;}
+#timesetfill{background:url('../img/timebar_fill.png') no-repeat;}
 #wrap-gameplay .timeset:hover,#wrap-gameplay h2{border:0;background:none;}
 #wrap-gameplay .question{margin:75px 0 45px 0;}
 #asset-todo,#asset-mug,#asset-coffee-ring,#asset-glasses,#asset-side-splat{display:none;}
 #timeset{margin-top:20px;}
 .player-stats h4,.player-stats h3{width:400px;}
 #achivements tr td{color:#999;text-align:left;padding:0 0 0 20px;}
-.gamePlay{background:url(../img/GamePlay.png);position:fixed;width:100%;height:100%;top:0;left:0;}
+#gamePlay{background:url(../img/GamePlay.png);position:fixed;width:100%;height:100%;top:0;left:0;opacity:1;}
+#gameReady{background:#000;position:fixed;width:100%;height:100%;top:0;left:0;opacity:1;z-index:9999;font-size:300px;text-align:center;padding:250px 0 0 0;opacity:0.95;font-style:italic;}
+#leaderboard_main{text-align:center;margin-left:18px;padding-top:30px;}
+#leaderboard_main h2{margin-left:12px;}
+#leaderboard_avatar_rank{background:url(../img/AvatarRank.png);height:41px;width:41px;position:absolute;margin:-18px 0 0 -18px;}
 

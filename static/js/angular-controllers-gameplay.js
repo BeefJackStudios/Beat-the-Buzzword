@@ -67,9 +67,14 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
     });
 	
 	$scope.$on("TIMER_TICKED", function(evt, arg1) {
-       //console.log("TIMER_TICKED "+arg1);
-	    $scope.time = arg1;
-    });
+		console.log("TIMER_TICKED "+evt+" "+arg1);
+		$scope.time = arg1;
+		$scope.updateTimerView();
+	});
+	
+	$scope.updateTimerView = function() {
+		$("#timesetfill").css("width", (240/20)*$scope.time);
+	}
 	
     $scope.submitAnswer = function(answer, $event) {
         //set lock to prevent multiple clicks
@@ -334,6 +339,7 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 	
 	$scope.challengeName = sharedData.currentChallengeName;
 	
+
 		//var e = document.getElementById("wrap-overlay");
 	//e.style.background = "url('static/img/PlayAreaQuestion.png') no-repeat 50% 0"; 
 	$scope.wrap_background = "url('static/img/PlayAreaQuestion.png') no-repeat 50% 0";

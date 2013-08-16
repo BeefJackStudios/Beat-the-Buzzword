@@ -2673,12 +2673,18 @@ footer #tidy:after {
 	
 }
 
- #timesetbg{
+
+#timesetbg, #timesetfill{
 	position:absolute;
 	margin: 65px 0 0 594px;
-	background: url('../img/timebar.png') no-repeat;
 	width:240px;
 	height:20px;
+}
+#timesetbg{
+	background: url('../img/timebar.png') no-repeat;
+}
+#timesetfill{
+	background: url('../img/timebar_fill.png') no-repeat;
 }
 
 

@@ -30,22 +30,24 @@ BTBWModule.directive('displayTimer', function($timeout, $rootScope) {
                 timeReady = 0,
                 interval = BTBW.CONST.TIMER_INTERVAL;
 
-          // used to update the UI
-          function updateTime() {
+           function updateTime() {
 			/* start : 8 / 12 / 2013     */
+			
+			/*
 			var cnt = interval - $scope.time++;
 			var cntString = "";
-			for (var i = 0; i < cnt; i++)
-			{
+			for (var i = 0; i < cnt; i++){
 				cntString = cntString + "-";
 			}
-
 			$element.text(cntString);
+			*/
+			
+			$scope.time--;
+			
+			$rootScope.$broadcast("TIMER_TICKED", [$scope.time]);
+			
             //$element.text(interval - $scope.time++);
 			/* end : 8 / 12 / 2013     */
-			
-
-
           }
 
           // schedule update in one second
@@ -62,8 +64,8 @@ BTBWModule.directive('displayTimer', function($timeout, $rootScope) {
             }, 1000);
           }
 
-          function resetTimer() {
-            $scope.time = 0;
+           function resetTimer() {
+            $scope.time = 20;
             $timeout.cancel(timeoutId);
             updateLater();
           }
