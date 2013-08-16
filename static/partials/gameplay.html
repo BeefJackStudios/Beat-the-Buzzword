@@ -19,10 +19,10 @@
     </div>
 
     <ul>		
-        <li><a class="TopLeft" href="javascript:void(0);" data-ng-click="submitAnswer(data.questions[currentQuestion].options[0], $event)"><div class="TopLeftText">{[{ data.questions[currentQuestion].options[0] }]}</div></a></li>
-        <li><a class="TopRight" href="javascript:void(0);" data-ng-click="submitAnswer(data.questions[currentQuestion].options[1], $event)"><div class="TopRightText">{[{ data.questions[currentQuestion].options[1] }]}</div></a></li>		
-        <li><a class="BottomLeft" href="javascript:void(0);" data-ng-click="submitAnswer(data.questions[currentQuestion].options[2], $event)"><div class="BottomLeftText">{[{ data.questions[currentQuestion].options[2] }]}</div></a></li>
-        <li><a class="BottomRight" href="javascript:void(0);" data-ng-click="submitAnswer(data.questions[currentQuestion].options[3], $event)"><div class="BottomRightText">{[{ data.questions[currentQuestion].options[3] }]}</div></a></li>
+        <li><span class="TopLeft" data-ng-click="submitAnswer(data.questions[currentQuestion].options[0], $event)">{[{ data.questions[currentQuestion].options[0] }]}</span></li>
+        <li><span class="TopRight" data-ng-click="submitAnswer(data.questions[currentQuestion].options[1], $event)">{[{ data.questions[currentQuestion].options[1] }]}</span></li>		
+        <li><span class="BottomLeft" data-ng-click="submitAnswer(data.questions[currentQuestion].options[2], $event)">{[{ data.questions[currentQuestion].options[2] }]}</span></li>
+        <li><span class="BottomRight" data-ng-click="submitAnswer(data.questions[currentQuestion].options[3], $event)">{[{ data.questions[currentQuestion].options[3] }]}</span></li>
     </ul>
 
     <ul class="wrap-progress">

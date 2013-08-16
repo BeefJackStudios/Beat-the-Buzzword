@@ -281,6 +281,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			{
 				e = document.getElementById("genre_"+i);
 				e.style.background = "url(static/img/genre_"+i+".png)";
+				
 			}
 		}		
 	}
