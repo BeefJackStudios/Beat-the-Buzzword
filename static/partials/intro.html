@@ -57,6 +57,7 @@
 		
 		<h2>{[{leadertitle}]}</h2>
 	
+		<div id="leaderthumbs">
 		<li data-ng-repeat="user in challenges | limitTo: 8">
 			<div class="connection-profile-holder">
 				<div class="connection-profile">
@@ -68,7 +69,7 @@
 				<span>{[{user.firstName}]} {[{user.lastName}]}</span>
 			</div>
 		</li>
-		
+		</div>
 		
         <!--
         <a data-ng-show="connections.length > 8" class="more" href="javascript:void(0);"  data-ng-click="showMoreConnections = !showMoreConnections">More connections</a>
