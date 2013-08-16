@@ -55,18 +55,20 @@
 	
 	<div class="connections" style="text-align:left; margin-left:18px;">
 		
-		<h2  style="text-align:left; margin-left:12px;">{[{leadertitle}]}</h2>
-		 
-		<li data-ng-repeat="user in challenges | limitTo: 8">
-			<div class="connection-profile-holder">
-				<div class="connection-profile">
-					<a href="javascript:void(0);"  data-ng-click="getUserScores(user.linkedin_id)" >
-						<img data-ng-src="{[{user.picture}]}" alt="{[{user.firstName}]}" />
-					</a>
-				</div>
-				<span>{[{user.firstName}]} {[{user.lastName}]}</span>
-			</div>	
-		</li>
+		<h2 id="leadertitle" style="text-align:left; margin-left:12px;">{[{leadertitle}]}</h2>
+		
+		<div id="leaderthumbs">
+			<li data-ng-repeat="user in challenges | limitTo: 8">
+				<div class="connection-profile-holder">
+					<div class="connection-profile">
+						<a href="javascript:void(0);"  data-ng-click="getUserScores(user.linkedin_id)" >
+							<img data-ng-src="{[{user.picture}]}" alt="{[{user.firstName}]}" />
+						</a>
+					</div>
+					<span>{[{user.firstName}]} {[{user.lastName}]}</span>
+				</div>	
+			</li>
+		</div>
 		
         <!--
         <a data-ng-show="connections.length > 8" class="more" href="javascript:void(0);"  data-ng-click="showMoreConnections = !showMoreConnections">More connections</a>
