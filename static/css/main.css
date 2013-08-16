@@ -35,7 +35,7 @@ div .popup{
 
 
 /* line 5, sass/_mixins.scss */
-#wrap-take-challenges nav a, #wrap-victory .profile a.dashboard, #wrap-gameplay li a, #wrap-set-challenge a, #wrap-take-challenges nav a.selected, #wrap-gameplay h2 {
+#wrap-take-challenges nav a, #wrap-victory .profile a.dashboard, #wrap-set-challenge a, #wrap-take-challenges nav a.selected, #wrap-gameplay h2 {
   
 	display: table-cell;
   vertical-align: middle;
@@ -45,6 +45,24 @@ div .popup{
   padding: 0 20px;
   background: #106783;
 }
+
+
+#wrap-gameplay li span {
+	display: table-cell;
+	vertical-align: middle;
+	font-weight: normal;
+	padding: 14px 0 0 88px;
+	background: #106783;
+  	color:#333;
+	font-size: 1.4em;
+	line-height: 1.3;
+	width: 300px;
+	height: 135px;
+	text-align: center;
+	line-height: 1.2;
+}
+
+
 
 /* line 29, sass/_mixins.scss  
 #wrap-gameplay li a.correct, #wrap-gameplay.locked li a.correct:hover {
@@ -2067,16 +2085,6 @@ header .settings span {
 #wrap-gameplay .loadingSpinner p {
   padding-top: 175px;
 }
-#wrap-gameplay li a {
-	color:#333;
-	font-size: 1.875em;
-  line-height: 1.3;
-  
-	width: 343px;
-	height: 127px;
-	text-align: center;
-	line-height: 1.2;
-}
 
 
 /* line 40, sass/_mixins.scss 
@@ -2088,20 +2096,20 @@ header .settings span {
 <a class="TopLeft"
 */
 
-#wrap-gameplay li a.TopLeft.correct { background: url('../img/QBox_Correct_TopLeft.png') no-repeat 0px 0; }
-#wrap-gameplay li a.TopRight.correct { background: url('../img/QBox_Correct_TopRight.png') no-repeat 0px 0; }
-#wrap-gameplay li a.BottomLeft.correct { background: url('../img/QBox_Correct_BottomLeft.png') no-repeat 0px 0; }
-#wrap-gameplay li a.BottomRight.correct { background: url('../img/QBox_Correct_BottomRight.png') no-repeat 0px 0; }
+#wrap-gameplay li span.TopLeft.correct { background: url('../img/QBox_Correct_TopLeft.png') no-repeat 0px 0; }
+#wrap-gameplay li span.TopRight.correct { background: url('../img/QBox_Correct_TopRight.png') no-repeat 0px 0; }
+#wrap-gameplay li span.BottomLeft.correct { background: url('../img/QBox_Correct_BottomLeft.png') no-repeat 0px 0; }
+#wrap-gameplay li span.BottomRight.correct { background: url('../img/QBox_Correct_BottomRight.png') no-repeat 0px 0; }
 
-#wrap-gameplay li a.TopLeft.wrong { background: url('../img/QBox_Wrong_TopLeft.png') no-repeat 0px 0; }
-#wrap-gameplay li a.TopRight.wrong { background: url('../img/QBox_Wrong_TopRight.png') no-repeat 0px 0; }
-#wrap-gameplay li a.BottomLeft.wrong { background: url('../img/QBox_Wrong_BottomLeft.png') no-repeat 0px 0; }
-#wrap-gameplay li a.BottomRight.wrong { background: url('../img/QBox_Wrong_BottomRight.png') no-repeat 0px 0; }
+#wrap-gameplay li span.TopLeft.wrong { background: url('../img/QBox_Wrong_TopLeft.png') no-repeat 0px 0; }
+#wrap-gameplay li span.TopRight.wrong { background: url('../img/QBox_Wrong_TopRight.png') no-repeat 0px 0; }
+#wrap-gameplay li span.BottomLeft.wrong { background: url('../img/QBox_Wrong_BottomLeft.png') no-repeat 0px 0; }
+#wrap-gameplay li span.BottomRight.wrong { background: url('../img/QBox_Wrong_BottomRight.png') no-repeat 0px 0; }
 
-#wrap-gameplay li a.TopLeft { background: url('../img/QBox_TopLeft.png') no-repeat 0px 0; }
-#wrap-gameplay li a.TopRight { background: url('../img/QBox_TopRight.png') no-repeat 0px 0; }
-#wrap-gameplay li a.BottomLeft { background: url('../img/QBox_BottomLeft.png') no-repeat 0px 0; }
-#wrap-gameplay li a.BottomRight { background: url('../img/QBox_BottomRight.png') no-repeat 0px 0; }
+#wrap-gameplay li span.TopLeft { background: url('../img/QBox_TopLeft.png') no-repeat 0px 0; }
+#wrap-gameplay li span.TopRight { background: url('../img/QBox_TopRight.png') no-repeat 0px 0; }
+#wrap-gameplay li span.BottomLeft { background: url('../img/QBox_BottomLeft.png') no-repeat 0px 0; }
+#wrap-gameplay li span.BottomRight { background: url('../img/QBox_BottomRight.png') no-repeat 0px 0; }
 
 
 /*
@@ -2112,10 +2120,7 @@ header .settings span {
 */
 
 
-.TopLeftText { font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
-.TopRightText { font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
-.BottomLeftText { font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
-.BottomRightText { font-size:20px;margin:18px 0 0 15px;width:250px;float:right;text-align:center}
+
 
 
 #wrap-gameplay.waitingForGo li a, #wrap-gameplay.waitingForGo li a:hover {
