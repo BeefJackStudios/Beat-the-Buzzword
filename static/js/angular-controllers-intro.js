@@ -180,8 +180,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 
 					// LOAD USERS CONNECTIONS
 					if (id !=  "undefined"){
-						for (var c in BTBW.Data.connections){
-							if (id == BTBW.Data.connections[c].linkedin_id){
+						for (var c=0; c<BTBW.Data.connections.length++; c++){
+							if (id && BTBW.Data.connections[c].linkedin_id && id == BTBW.Data.connections[c].linkedin_id){
 								BTBW.Data.connectionScores.push(BTBW.Data.connections[c])
 								$("#leaderthumbs").css({ opacity: 0.1});
 								$("#leaderthumbs").animate({"opacity":"1"}, 1000);
