@@ -1264,7 +1264,7 @@ header .settings span {
   margin: 0;
 }
 		
-#wrap-intro .connections .popup{
+#wrap-intro #opponents{
   color: #666;
 }
 
@@ -1334,16 +1334,6 @@ header .settings span {
   line-height: 1.2;
   font-size: 1.1em;  
 }
-#wrap-intro .wrap-genres .practice {
-  width: 140px;
-  margin: 15px auto;
-}
-/* line 470, sass/_global.scss */
-#wrap-intro .wrap-genres p {
-  color: #fff;
-  text-align: center;
-}
-
 
 #wrap-intro .tabs {
   padding: 0;
@@ -2237,7 +2227,7 @@ footer #tidy:after {
 }
 /* line 996, sass/_global.scss */
 .wrap-table .viewport {
-  height: 200px;
+  height: 280px;
   overflow: hidden;
   position: relative;
 }

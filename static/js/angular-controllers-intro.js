@@ -146,6 +146,11 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		if ($scope.leaderTitleIndex>4) $scope.leaderTitleIndex = 0;
 		$scope.leadertitle = BTBW.CONST.LEADER_TITLE_ARR[$scope.leaderTitleIndex].title;
 		
+		//alert($("#leadertitle"))
+		
+		$("#leadertitle").css({ opacity: 0.1});
+		$("#leadertitle").animate({"opacity":"1"}, 1000);
+		
 		var category = BTBW.CONST.LEADER_TITLE_ARR[$scope.leaderTitleIndex].category;
 		
 		$scope.challenges = [];
@@ -177,6 +182,10 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 						for (var c in BTBW.Data.connections){
 							if (id == BTBW.Data.connections[c].linkedin_id){
 								BTBW.Data.connectionScores.push(BTBW.Data.connections[c])
+								
+								$("#leaderthumbs").css({ opacity: 0.1});
+								$("#leaderthumbs").animate({"opacity":"1"}, 1000);
+		
 							}
 						}
 					}
