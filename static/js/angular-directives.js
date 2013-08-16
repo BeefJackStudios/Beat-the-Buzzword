@@ -43,6 +43,9 @@ BTBWModule.directive('displayTimer', function($timeout, $rootScope) {
 			$element.text(cntString);
             //$element.text(interval - $scope.time++);
 			/* end : 8 / 12 / 2013     */
+			
+
+
           }
 
           // schedule update in one second
@@ -80,13 +83,21 @@ BTBWModule.directive('displayTimer', function($timeout, $rootScope) {
           function updateReady() {
             timeoutReadyId = $timeout(function() {
 
-                
-				
+                var opacity = 0;
+				var e = document.getElementById("gameReady");
+				e.style.display = "block";
 				if(timeReady === readyInterval - 1) {
                     //$element.text(BTBW.CONST.MESSAGE_TIMER_GO);
+					
+					e.style.display = "none";
                 } else {
                     //$element.text((readyInterval - 1) - timeReady);
 					//$element.text("........................");
+					
+					if (timeReady === readyInterval - 2)
+						e.innerHTML = "GO!";
+					else
+						e.innerHTML = (readyInterval - 2) - timeReady;
                 }
                 
                 timeReady++;
