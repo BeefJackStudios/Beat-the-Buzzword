@@ -1095,6 +1095,11 @@ header .settings span {
   width: 500px;
   margin: 0 auto;
 }
+
+#wrap-homescreen  {
+  background:url('../img/PlayAreaQuestion.png');
+  height:618px;
+}
 /* line 350, sass/_global.scss */
 #wrap-homescreen p {
   color: yellow;
@@ -1131,6 +1136,7 @@ header .settings span {
 	display: inline-block;
 	background: #84d4ed;
 	height:2px;
+	visibility:hidden;
 }
 
 
@@ -1195,16 +1201,16 @@ header .settings span {
 
 
 .player-icon-leaderboard {
-	padding: 70px 30px 10px 10px; max-width:50px; float: right; color:#FFF; text-align:left;
+	padding: 16px 30px 10px 10px; max-width:50px; float: right; color:#FFF; text-align:left;
 }
 .player-icon-achievement {
-	padding: 70px 5px 10px 10px; max-width:50px; float: right; color:#FFF; text-align:left;
+	padding: 16px 5px 10px 10px; max-width:50px; float: right; color:#FFF; text-align:left;
 }
 .player-icon-home {
-	padding: 70px 5px 10px 10px; max-width:50px; float: right; color:#FFF; text-align:left;
+	padding: 16px 5px 10px 10px; max-width:50px; float: right; color:#FFF; text-align:left;
 }
 .player-icon-settings {
-	padding: 70px 5px 10px 10px; max-width:50px; float: right; color:#FFF; text-align:left;
+	padding: 16px 5px 10px 10px; max-width:50px; float: right; color:#FFF; text-align:left;
 }
  
 .player-stats h3{
@@ -1264,7 +1270,7 @@ header .settings span {
   margin: 0;
 }
 		
-#wrap-intro #opponents{
+#wrap-intro .connections .popup{
   color: #666;
 }
 
@@ -1334,6 +1340,16 @@ header .settings span {
   line-height: 1.2;
   font-size: 1.1em;  
 }
+#wrap-intro .wrap-genres .practice {
+  width: 140px;
+  margin: 15px auto;
+}
+/* line 470, sass/_global.scss */
+#wrap-intro .wrap-genres p {
+  color: #fff;
+  text-align: center;
+}
+
 
 #wrap-intro .tabs {
   padding: 0;
@@ -2227,7 +2243,7 @@ footer #tidy:after {
 }
 /* line 996, sass/_global.scss */
 .wrap-table .viewport {
-  height: 280px;
+  height: 200px;
   overflow: hidden;
   position: relative;
 }
@@ -2718,6 +2734,14 @@ footer #tidy:after {
 	padding:250px 0 0 0;
 	opacity: 0.95;
 	font-style:italic;
+}
+
+#leaderboard_main {
+	text-align:center; margin-left:18px;
+}
+
+#leaderboard_main h2{
+	margin-left:12px;
 }
 
 

@@ -33,7 +33,7 @@
 	
 	<div id="divider"></div>
 	
-	<h1>  </h1>
+
 	
 	<div>
        <!--  <ul> 	-->
@@ -53,22 +53,20 @@
 		
    
 	
-	<div class="connections" style="text-align:left; margin-left:18px;">
+	<div class="connections" id="leaderboard_main">
 		
-		<h2 id="leadertitle" style="text-align:left; margin-left:12px;">{[{leadertitle}]}</h2>
-		
-		<div id="leaderthumbs">
-			<li data-ng-repeat="user in challenges | limitTo: 8">
-				<div class="connection-profile-holder">
-					<div class="connection-profile">
-						<a href="javascript:void(0);"  data-ng-click="getUserScores(user.linkedin_id)" >
-							<img data-ng-src="{[{user.picture}]}" alt="{[{user.firstName}]}" />
-						</a>
-					</div>
-					<span>{[{user.firstName}]} {[{user.lastName}]}</span>
-				</div>	
-			</li>
-		</div>
+		<h2>{[{leadertitle}]}</h2>
+		 
+		<li data-ng-repeat="user in challenges | limitTo: 8">
+			<div class="connection-profile-holder">
+				<div class="connection-profile">
+					<a href="javascript:void(0);"  data-ng-click="getUserScores(user.linkedin_id)" >
+						<img data-ng-src="{[{user.picture}]}" alt="{[{user.firstName}]}" />
+					</a>
+				</div>
+				<span>{[{user.firstName}]} {[{user.lastName}]}</span>
+			</div>	
+		</li>
 		
         <!--
         <a data-ng-show="connections.length > 8" class="more" href="javascript:void(0);"  data-ng-click="showMoreConnections = !showMoreConnections">More connections</a>
@@ -101,22 +99,22 @@
 	
 	
 	<!-- OPP -->
-	<div id="opponents">
+	<div id="connections">
 		
 		<div class="popup"  data-ng-show="showOpps">
-			<div style="margin-top:50px;"></div>
+			<div style="margin-top:90px;"></div>
 			<h1b>Who will you go &nbsp; <br/><h1c>Head to Head</h1c> with...</h1b>
 			
 			<div class="popupClose">
 				<a href="javascript:void(0);"  data-ng-click="oppClose()"><img class="popupbg" src="static/img/CloseButton.png" /></a>
 			</div> 
 			
-			<div style="margin-top:20px;"><div>
+			<div style="margin-top:40px;"><div>
 			
 			<div data-scrollable-content="true">
 				<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
 				<div class="viewport">
-					<div class="overview">
+					<div class="overview" style="height:1500px">
 						<li data-ng-repeat="user in connections | limitTo: 100">
 							<div class="connection-profile-holder">
 								<div class="connection-profile">
