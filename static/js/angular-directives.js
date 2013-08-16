@@ -88,20 +88,23 @@ BTBWModule.directive('displayTimer', function($timeout, $rootScope) {
 
                 var opacity = 0;
 				var e = document.getElementById("gameReady");
-				//e.style.display = "block";
+				e.style.display = "block";
 				//e.style.opacity = 0.95;
 				
 				if(timeReady === readyInterval - 1) {
                     //$element.text(BTBW.CONST.MESSAGE_TIMER_GO);
-					$("#gameReady").css({ opacity: 1});
-					$("#gameReady").animate({"opacity":"0"}, 600);
-					//e.style.display = "none";
+					e.style.display = "none";
+
                 } else {
                     //$element.text((readyInterval - 1) - timeReady);
 					//$element.text("........................");
 					
 					if (timeReady === readyInterval - 2)
+					{
 						e.innerHTML = "GO!";
+						$("#gameReady").css({ opacity: 1});
+						$("#gameReady").animate({"opacity":"0"}, 600);
+					}
 					else
 						e.innerHTML = (readyInterval - 2) - timeReady;
                 }
