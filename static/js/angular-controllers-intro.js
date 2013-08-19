@@ -35,8 +35,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	//---------------
 	//GENRES 
 	//var total_genres_unlock = 1;
-	//var myRandomNumbers = MyRandoms(7,total_genres_unlock); //array containing 2 distinct random numbers
-	var myRandomNumbers = new Array();
+	//var unlocked_cats = MyRandoms(7,total_genres_unlock); //array containing 2 distinct random numbers
+	var unlocked_cats = new Array();
 
 
 	$scope.genres = BTBW.Data.Genres;
@@ -44,9 +44,9 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		sharedData.currentGenreId = genreId;
 
 		var resultFound = false;
-		for (var j = 0; j < myRandomNumbers.length; j++)
+		for (var j = 0; j < unlocked_cats.length; j++)
 		{
-			if (genreId == myRandomNumbers[j])
+			if (genreId == unlocked_cats[j])
 			{
 				resultFound = true;
 				break;
@@ -227,31 +227,10 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	$scope.getConnectionsWithScores();
 
 
-
-	function DisplayUserPoints() {
-		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getScore&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
-		$.ajax({ url:url })
-		.done(function(evt) {
-
-			var e = document.getElementById("displayScore");
-			e.innerHTML = evt; 
-			BTBW.Data.Profile.points = evt;
-
-
-			UnlockGameMode(evt);
-
-			var rank = GetUserRank(evt);
-			e = document.getElementById("displayRank");
-			e.innerHTML = rank; 
-			BTBW.Data.Profile.rank = rank;
-
-
-		})
-		.fail(function() { sharedUtilities.reportError(evt); })
-		.always(function() { console.log("complete"); });
-
-		return 0;
-	}
+	
+	
+	
+	
 
 	function UnlockGameMode(points)
 	{
@@ -289,18 +268,16 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		return rank;
 	}
 
-
-
-	function SetRandomGenre()
+	function setUnlockedCats()
 	{
 		var e;
 		var resultFound = false;
 		for (var i = 1; i < 8; i++)
 		{
 			resultFound = false;
-			for (var j = 0; j < myRandomNumbers.length; j++)
+			for (var j = 0; j < unlocked_cats.length; j++)
 			{
-				if (i == myRandomNumbers[j])
+				if (i == unlocked_cats[j])
 					resultFound = true;
 			}
 
@@ -311,8 +288,22 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 				e.style.display = "none";
 
 			}
-			shouldShowGenres = true;
-		}		
+		}
+		shouldShowGenres = true;		
+	}
+	
+	function setScore(score)
+	{
+		var e = document.getElementById("displayScore");
+		e.innerHTML = score; 
+		BTBW.Data.Profile.points = score;
+		
+		var rank = GetUserRank(score);
+		e = document.getElementById("displayRank");
+		e.innerHTML = rank; 
+		BTBW.Data.Profile.rank = rank;
+		
+		UnlockGameMode(score);
 	}
 
 	/*
@@ -322,15 +313,15 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			alert('infinite loop?');
 			return [];
 		}
-		var myRandomNumbers = new Array();
+		var unlocked_cats = new Array();
 		var randN = 0;
 		
 		for(var i = 0; i<tot; i++){
 			randN = Math.floor(Math.random()*range);
 			
-			for (var j = 0; j < myRandomNumbers.length; j++)
+			for (var j = 0; j < unlocked_cats.length; j++)
 			{
-				if (myRandomNumbers[j] != randN)
+				if (unlocked_cats[j] != randN)
 				{
 					randN = Math.floor(Math.random()*range);
 					break;
@@ -338,37 +329,49 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			}
 	
 			
-			myRandomNumbers.push(randN + 1);
+			unlocked_cats.push(randN + 1);
 		}
-		return myRandomNumbers;
+		return unlocked_cats;
 	}
 	*/
-
-
-
-	function GetRandomRumbers()
+	
+	function setNextCategoryTime(time)
 	{
-		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getRandomNumbers&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
+		var e = document.getElementById("next_category_time");
+		e.innerHTML = time; 
+	}
+	
+
+	function getUser()
+	{
+		var url = BTBW.CONST.BASE_URL+"/php/getUser.php?mode=getUser&player_id="+BTBW.Data.Profile.linkedin_id+"&first_name="+BTBW.Data.Profile.firstName+"&last_name="+BTBW.Data.Profile.lastName+"&picture="+BTBW.Data.Profile.picture; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
-			//var e = document.getElementById("debug");
-			//e.innerHTML = evt; 
 			var temp = [];
-			myRandomNumbers = evt.split(",");
-			SetRandomGenre();
+			temp = evt.split(";");
+			setScore(temp[0]);
+			unlocked_cats = temp[1].split(",");
+			setUnlockedCats();
+			
+			var achievements = temp[2].split(",");
+			sharedData.achievement_1 = achievements[0];
+			sharedData.achievement_2 = achievements[1];
+			sharedData.achievement_3 = achievements[2];
+			sharedData.achievement_4 = achievements[3];
+			sharedData.achievement_5 = achievements[4];
+			sharedData.achievement_6 = achievements[5];
+			sharedData.achievement_7 = achievements[6];
+			sharedData.achievement_8 = achievements[7];
+			sharedData.achievement_9 = achievements[8];
+			
+			setNextCategoryTime(temp[4])
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });
 		return 0;
 	}
-
-	GetRandomRumbers();
-
-
-
-
-	DisplayUserPoints();
-
-
-
+	
+			
+	
+	getUser();
 }

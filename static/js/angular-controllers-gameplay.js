@@ -106,6 +106,8 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 		sharedData.answers.push({timeset:$scope.timeset, answer:answer});
 		sharedData.buzzwords.push({correct:correct, definition:question.question, word:answer});
 		
+		var is_correct = 0;
+		
 		if (correct){
 			/*
 			Scoring Systems
@@ -163,9 +165,30 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 			
 			
 			
-
 			
+			is_correct = 1;
 		}
+		
+	
+		function setAnswer()
+		{
+			var question = $scope.data.questions[$scope.currentQuestion].question.substring(0, 36);
+			
+			//var url = BTBW.CONST.BASE_URL+"/php/setAnaswer.php?mode=setAnaswer&question="+question+"&player_id="+BTBW.Data.Profile.linkedin_id+"&is_correct="+is_correct+"&category="+sharedData.currentChallengeName+"&genre="+sharedUtilities.getGenreById(sharedData.currentGenreId).name; // BTBW.Data.Profile.linkedin_id;
+			var url = BTBW.CONST.BASE_URL+"/php/setAnaswer.php?mode=setAnaswer&question="+question+"&player_id="+BTBW.Data.Profile.linkedin_id+"&is_correct="+is_correct; // BTBW.Data.Profile.linkedin_id;
+			$.ajax({ url:url })
+			.done(function(evt) {
+				//var e = document.getElementById("debug");
+				//e.innerHTML = evt; 
+			})
+			.fail(function() { sharedUtilities.reportError(evt); })
+			.always(function() { console.log("complete"); });
+			return 0;
+		}
+		
+		setAnswer();
+		
+		
 	
 			/*
 			function setAchievement()

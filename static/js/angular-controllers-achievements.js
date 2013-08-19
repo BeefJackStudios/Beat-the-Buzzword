@@ -127,30 +127,41 @@ function AchievementsController($scope, $timeout, $location, sharedData, serverL
         $location.path(BTBW.CONST.PATH_INTRO);
 	}
 	
-	
 
 	
-	function GetAchievements()
+	function getAchievements()
 	{
-		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=getAchievements&playerId="+BTBW.Data.Profile.linkedin_id; // BTBW.Data.Profile.linkedin_id;
-		$.ajax({ url:url })
-		.done(function(evt) {
+		if (sharedData.achievement_1 == 1)
+			activeAchivement(1);
+		if (sharedData.achievement_2 == 1)
+			activeAchivement(2);
+		if (sharedData.achievement_3 == 1)
+			activeAchivement(3);
+		if (sharedData.achievement_4 == 1)
+			activeAchivement(4);
+		if (sharedData.achievement_5 == 1)
+			activeAchivement(5);
+		if (sharedData.achievement_6 == 1)
+			activeAchivement(6);
+		if (sharedData.achievement_7 == 1)
+			activeAchivement(7);
+		if (sharedData.achievement_8 == 1)
+			activeAchivement(8);
+		if (sharedData.achievement_9 == 1)
+			activeAchivement(9);	
 		
-			var spl = evt.split(",");
-			var e;
-			for (var i in spl){
-				e = document.getElementById("achivements_name_"+spl[i]);
-				e.style.color = "black"; 
-				e = document.getElementById("achivements_score_"+spl[i]);
-				e.style.color = "black"; 
-			}
-		})
-		.fail(function() { sharedUtilities.reportError(evt); })
-		.always(function() { console.log("complete"); });
-		return 0;
+		function activeAchivement(id)
+		{
+			$("#achivements_name_"+id).css({ color: "black"});
+			$("#achivements_score_"+id).css({ color: "black"});
+		}
 	}
 	
-	GetAchievements();
+	setTimeout(function() {
+		getAchievements();
+	}, 100);
+	
+	
 	
 }
 

@@ -132,20 +132,39 @@ function VictoryController($scope, $dialog, $location, $timeout, sharedData, ser
 		var challenge_id = 0;
 		
 		if (challenge_name == BTBW.CONST.GAME_PRACTICE)
+		{
 			challenge_id = 1;
+			if (sharedData.achievement_1 == 1) return;
+		}
 		else if (challenge_name == BTBW.CONST.GAME_HEAD2HEAD)
+		{
 			challenge_id = 2;
+			if (sharedData.achievement_2 == 1) return;
+		}
 		else if (challenge_name == BTBW.CONST.CEO)
+		{
 			challenge_id = 3;
+			if (sharedData.achievement_3 == 1) return;
+		}
 		else if (challenge_name == BTBW.CONST.GAME_ENTRENPENUER)
-			challenge_id = 4;	
+		{
+			challenge_id = 4;
+			if (sharedData.achievement_4 == 1) return;
+		}			
 			
-		
-		var url = BTBW.CONST.BASE_URL+"/php/functions.php?mode=setAchievement&playerId="+BTBW.Data.Profile.linkedin_id+"&achievementID="+challenge_id; // BTBW.Data.Profile.linkedin_id;
+		var url = BTBW.CONST.BASE_URL+"/php/setAchievement.php?mode=setAchievement&player_id="+BTBW.Data.Profile.linkedin_id+"&achievement_id="+challenge_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
-			//var e = document.getElementById("debug");
-			//e.innerHTML = evt; 
+			var e = document.getElementById("debug");
+			e.innerHTML = evt; 
+			if (evt == 1)
+				sharedData.achievement_1 = 1;
+			else if (evt == 2)
+				sharedData.achievement_2 = 1;
+			else if (evt == 3)
+				sharedData.achievement_3 = 1;
+			else if (evt == 4)
+				sharedData.achievement_4 = 1;
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });

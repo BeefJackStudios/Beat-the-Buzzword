@@ -43,6 +43,7 @@
 					<span>{[{user.firstName}]}</span>
 				</a>
             </li>
+			
        <!--   </ul> -->
 		<!--
         <a data-ng-show="connections.length > 8" class="more" href="javascript:void(0);"  data-ng-click="showMoreConnections = !showMoreConnections">More connections</a>
@@ -90,10 +91,12 @@
 			</div> 
 		
 			<div class="wrap-genres" alt="{[{random1}]}" title="{[{random2}]}">
-				<li data-ng-repeat="genre in genres" >
+				<div data-ng-repeat="genre in genres">
 					<a id="genre_{[{genre.id}]}" class="{[{genre.name}]}" style="height:78px;width:350px;background:url({[{genre.url}]});display:block" href="javascript:void(0);" data-ng-click="selectGenre(genre.id)"></a>
-				</li>
-		
+				</div>
+			
+				<div class="next_category"><h1>Next category <span id="next_category_time">4:15</span></h1></div>
+	
 			</div>
 		</div> 
 	</div>

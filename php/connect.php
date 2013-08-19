@@ -1,9 +1,9 @@
 <?php
 	/* connect to database */
 	
-	$tablename="beatthebuzzword_challenges";
-	$unlocks_table = "beatthebuzzword_unlocks";
-	$timeout_table = "beatthebuzzword_timeout";
+	$tablename = "beatthebuzzword_challenges";
+	$users_table = "beatthebuzzword_users";
+	$questions_table = "beatthebuzzword_questions";
 	
 	
 	$dbname = "beatthebuzzword";
