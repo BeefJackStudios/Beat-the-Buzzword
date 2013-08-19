@@ -43,14 +43,16 @@ if ( $mode == "getUser")
 	{
 		$score = getScoreFromQuestions($player_id, $tablename);
 		
+		$cnt = 0;
 		$prev_unlocked_cats = $row['unlocked_cats'];
 		for ($i = 1; $i < 10; $i++)
 		{
 			$achievement = $row['achievement_'.$i];
 			$achievements .= $achievement . ",";
 			if ($achievement == 1) 
-				$score += $achievements_scors[$i];
+				$score += $achievements_scors[$i-1];
 		}
+
 		for ($i = 1; $i < 9; $i++)
 		{
 			$bangets .= $row['badge_'.$i] . ",";

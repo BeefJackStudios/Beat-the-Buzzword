@@ -350,6 +350,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			var temp = [];
 			temp = evt.split(";");
 			setScore(temp[0]);
+			
 			unlocked_cats = temp[1].split(",");
 			setUnlockedCats();
 			
