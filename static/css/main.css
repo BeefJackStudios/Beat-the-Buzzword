@@ -2728,7 +2728,6 @@ footer #tidy:after {
 	height:330px;
 }
 
-achivements
 
 #gamePlay {
 	background: url(../img/GamePlay.png);
@@ -2789,6 +2788,10 @@ achivements
 #playerScore {
 	position:absolute;
 	margin:25px 0 0 20px;
+}
+
+.connections_name {
+	color:#333;
 }
 
 
