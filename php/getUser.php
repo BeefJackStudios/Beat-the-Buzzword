@@ -15,7 +15,7 @@ if ( $mode == "getUser")
 	$prev_unlocked_cats = "";
 	$unlocked_cats = "";
 	$achievements = "";
-	$badges = "";
+	$badges = 1;
 	$last_play_time = 0;
 	$number_of_cats = 1;
 	$new_user = true;
@@ -45,6 +45,7 @@ if ( $mode == "getUser")
 		
 		$cnt = 0;
 		$prev_unlocked_cats = $row['unlocked_cats'];
+		
 		for ($i = 1; $i < 10; $i++)
 		{
 			$achievement = $row['achievement_'.$i];
@@ -61,16 +62,14 @@ if ( $mode == "getUser")
 		Select from five categories	9000
 		*/
 		if ($score >= 3000)
-			$badges = 1;
-		if ($score >= 7000)
 			$badges = 2;
-		if ($score >= 8000)	
+		if ($score >= 7000)
 			$badges = 3;
-		if ($score >= 8000)		
+		if ($score >= 8000)	
 			$badges = 4;
 		if ($score >= 9000)		
 			$badges = 5;
-		
+			
 		$number_of_cats = $badges;
 			
 		$last_play_time = $row['last_play_time'];
@@ -84,8 +83,10 @@ if ( $mode == "getUser")
 
 	
 	$diff = time() - $last_play_time;
+	
+	
 	$next_category_time = 300;
-	if ($diff >= $next_category_time)
+	if ($diff >= $next_category_time || $prev_unlocked_cats == "" || $prev_unlocked_cats == null)
 	{
 		$diff = 0;
 		$arr = array();
@@ -98,6 +99,7 @@ if ( $mode == "getUser")
 				$unlocked_cats .= "$x,";
 			}
 		}
+
 		$query = mysql_query("UPDATE `".$users_table."` SET unlocked_cats='".$unlocked_cats."', last_play_time='".time()."' WHERE player_id='".$player_id."'") or die($myQuery."<br/>".mysql_error());
 	}
 	else
@@ -114,6 +116,9 @@ if ( $mode == "getUser")
 	$diff_time_sec = gmdate("s", $time_to_next_category);
 	
 	$diff_time = $diff_time_min . ":" . $diff_time_sec;
+
+	if ($unlocked_cats == "" || $unlocked_cats == null)
+		$unlocked_cats = "1,";
 	
 	print $score . ";" . $unlocked_cats . ";" . $achievements . ";" . $badges . ";" . $diff_time;
 }
