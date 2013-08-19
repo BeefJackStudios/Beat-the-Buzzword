@@ -6,6 +6,9 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
     $scope.isLoading = true;
     $scope.locked = true;
     $scope.waitingForGo = true;
+	
+	sharedData.score = 0;
+
     
 	sharedData.answers = []; // store game progress internally
 	sharedData.buzzwords = []; // store game progress internally
@@ -76,6 +79,13 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 		$("#timesetfill").css("width", (240/20)*$scope.time);
 	}
 	
+	function setPlayerScore(prev, added, total)
+	{
+		var e = document.getElementById("playerScore");
+		e.innerHTML = "Prev Score: " + prev + " + Added Score: " + added + " = Total Score: " + total; 
+	}
+	setPlayerScore(sharedData.prev_score, sharedData.score, sharedData.total_score);
+	
     $scope.submitAnswer = function(answer, $event) {
         //set lock to prevent multiple clicks
         if($scope.locked) return;
@@ -104,10 +114,15 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 		sharedData.answers.push({timeset:$scope.timeset, answer:answer});
 		sharedData.buzzwords.push({correct:correct, definition:question.question, word:answer});
 		
+		
+		if (!$scope.time) $scope.time = 20;
+		
 		var is_correct = 0;
 		var answering_time = 20;
 		var passed_time = answering_time - $scope.time;
-		var rightAnswerReward = 10;
+		var rightAnswerReward = 0;
+		var this_question_score = 0;
+		var mult = 1;
 		if (correct){
 			/*
 			Scoring Systems
@@ -145,27 +160,26 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 			(i.e. a question answered correctly with 16 seconds left on the clock)
 			(20 + 16) *5 = 180pts
 			*/
-			
-			if (sharedData.currentChallengeName == BTBW.CONST.CEO)
-				rightAnswerReward = 20;
-			
-			
-			
-			if (passed_time<5){
-				var mult = 3;
-			} else if (passed_time<10){
-				var mult = 2;
-			} else {
-				var mult = 1;
-			}
-			
-			if (!sharedData.score) sharedData.score = 0;
-			sharedData.score = ((rightAnswerReward + $scope.time)*mult);
-			
 			is_correct = 1;
 		}
 		
-	
+		rightAnswerReward = 10;
+		if (sharedData.currentChallengeName == BTBW.CONST.CEO)
+			rightAnswerReward = 20;
+		
+		if (passed_time<5)
+			mult = 3;
+		else if (passed_time<10)
+			mult = 2;
+			
+		this_question_score = (rightAnswerReward + (answering_time - passed_time)) * mult * is_correct;
+		
+		sharedData.total_score = parseInt(this_question_score) + parseInt(sharedData.total_score);
+		
+		sharedData.score += parseInt(this_question_score);
+		
+		setPlayerScore(sharedData.prev_score, sharedData.score, sharedData.total_score);
+		
 		function setAnswer()
 		{
 			var question = $scope.data.questions[$scope.currentQuestion].question.substring(0, 36);

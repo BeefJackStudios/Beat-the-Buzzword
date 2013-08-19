@@ -304,6 +304,11 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		BTBW.Data.Profile.rank = rank;
 		
 		UnlockGameMode(score);
+		
+		sharedData.prev_score = 0;
+		sharedData.prev_score = score;
+		sharedData.total_score = 0;
+		sharedData.total_score = score;
 	}
 
 	/*

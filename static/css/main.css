@@ -2782,6 +2782,10 @@ footer #tidy:after {
 	margin: 0 auto;
 }
 
+#playerScore {
+	float:left;
+}
+
 
 
 
