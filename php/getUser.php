@@ -41,7 +41,7 @@ if ( $mode == "getUser")
 	$query = mysql_query("SELECT * FROM `".$users_table."` WHERE player_id='".$player_id."'") or die($myQuery."<br/>".mysql_error());
 	while($row = mysql_fetch_array($query))
 	{
-		$score = getScoreFromQuestions($player_id, $tablename);
+		$score = getScoreFromQuestions($player_id, $questions_table);
 		
 		$cnt = 0;
 		$prev_unlocked_cats = $row['unlocked_cats'];
@@ -105,6 +105,19 @@ if ( $mode == "getUser")
 
 function getScoreFromQuestions($player_id, $table)
 {
+	$query = "SELECT * FROM `".$table."` WHERE player_id='".$player_id."'";
+	$result = mysql_query($query) or die(mysql_error());
+	$score = 0;
+	while ($row = mysql_fetch_assoc($result)) {
+		$score = $score + $row["score"];
+	}
+
+	return $score;
+}
+
+/* old
+function getScoreFromQuestions($player_id, $table)
+{
 	$query = "SELECT * FROM `".$table."` WHERE playerId='".$player_id."'";
 	$result = mysql_query($query) or die(mysql_error());
 	$score = 0;
@@ -114,5 +127,6 @@ function getScoreFromQuestions($player_id, $table)
 
 	return $score;
 }
+*/
 
 ?>

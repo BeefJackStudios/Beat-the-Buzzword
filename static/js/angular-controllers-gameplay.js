@@ -208,8 +208,8 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 			var url = BTBW.CONST.BASE_URL+"/php/setAchievement.php?mode=setAchievement&player_id="+BTBW.Data.Profile.linkedin_id+"&achievement_id=5"; // BTBW.Data.Profile.linkedin_id;
 			$.ajax({ url:url })
 			.done(function(evt) {
-				var e = document.getElementById("debug");
-				e.innerHTML = evt; 
+				//var e = document.getElementById("debug");
+				//e.innerHTML = evt; 
 				if (evt == 5)
 					sharedData.achievement_5 = 1;
 			})
