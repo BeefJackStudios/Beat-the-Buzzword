@@ -79,10 +79,12 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 		$("#timesetfill").css("width", (240/20)*$scope.time);
 	}
 	
-	function setPlayerScore(prev, added, total)
+	function setPlayerScore(prev, added, score)
 	{
-		var e = document.getElementById("playerScore");
-		e.innerHTML = "Prev Score: " + prev + " + Added Score: " + added + " = Total Score: " + total; 
+		var e = document.getElementById("displayScore");
+		//e.innerHTML = "Prev Score: " + prev + " + Added Score: " + added + " = Total Score: " + score; 
+		e.innerHTML = score; 
+		BTBW.Data.Profile.points = score;
 	}
 	setPlayerScore(sharedData.prev_score, sharedData.score, sharedData.total_score);
 	
