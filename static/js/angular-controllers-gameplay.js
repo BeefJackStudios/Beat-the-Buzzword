@@ -8,7 +8,7 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
     $scope.waitingForGo = true;
 	
 	sharedData.score = 0;
-
+	sharedData.all_correct = true;
     
 	sharedData.answers = []; // store game progress internally
 	sharedData.buzzwords = []; // store game progress internally
@@ -164,6 +164,8 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 			*/
 			is_correct = 1;
 		}
+		else
+			sharedData.all_correct = false;
 		
 		rightAnswerReward = 10;
 		if (sharedData.currentChallengeName == BTBW.CONST.CEO)
@@ -201,17 +203,22 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 			setAnswer();
 			
 			
-		function setAchievement()
+		function setAchievement(achievement_id)
 		{
-			if (sharedData.achievement_5 == 1) return;
+			if (achievement_id == 5)
+				if (sharedData.achievement_5 == 1) return;
+			else if (achievement_id == 6)
+				if (sharedData.achievement_5 == 1) return;
 			
-			var url = BTBW.CONST.BASE_URL+"/php/setAchievement.php?mode=setAchievement&player_id="+BTBW.Data.Profile.linkedin_id+"&achievement_id=5"; // BTBW.Data.Profile.linkedin_id;
+			var url = BTBW.CONST.BASE_URL+"/php/setAchievement.php?mode=setAchievement&player_id="+BTBW.Data.Profile.linkedin_id+"&achievement_id="+achievement_id; // BTBW.Data.Profile.linkedin_id;
 			$.ajax({ url:url })
 			.done(function(evt) {
 				//var e = document.getElementById("debug");
 				//e.innerHTML = evt; 
 				if (evt == 5)
 					sharedData.achievement_5 = 1;
+				else if (evt == 6)
+					sharedData.achievement_6 = 1;
 			})
 			.fail(function() { sharedUtilities.reportError(evt); })
 			.always(function() { console.log("complete"); });
@@ -219,7 +226,10 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 		}
 		//5. Answer a question in under 3 seconds 500
 		if (passed_time < 4 && is_correct == 1)
-			setAchievement();	
+			setAchievement(5);	
+
+		if (sharedData.all_correct)
+			setAchievement(6);	
 			
 		
 		
