@@ -7,9 +7,11 @@ this.BD = this.BD || {};
 
 	function AssetsPreloader(){
 		var asset_source = [
+		/*
 			{id:"preloader_background",				type:"image", src:"bgblue.jpg"},
 			{id:"preloader_bar_bg",					type:"image", src:"Preloader/bar-bg.png"},
 			{id:"preloader_bar_fill",				type:"image", src:"Preloader/bar-fill.png"}
+			*/
 		]
 		
 		return asset_source
@@ -34,7 +36,7 @@ this.BD = this.BD || {};
 			-----------------------------------------
 			common
 			-----------------------------------------
-			*/
+			
 			
 			{id:"QBox_Correct_BottomLeft",				type:"image", src:"QBox_Correct_BottomLeft.png"},
 			{id:"QBox_Correct_BottomRight",				type:"image", src:"QBox_Correct_BottomRight.png"},
@@ -97,6 +99,7 @@ this.BD = this.BD || {};
 			{id:"SettingsIcon",							type:"image", src:"SettingsIcon.png"},
 			{id:"overlay",								type:"image", src:"overlay.png"},
 			
+			*/
 		]
 
 		return asset_source
