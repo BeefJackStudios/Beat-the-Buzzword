@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 18, 2013 at 09:44 PM
+-- Generation Time: Aug 19, 2013 at 01:17 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -27,10 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `beatthebuzzword_questions` (
-  `question` varchar(100) NOT NULL,
+  `question` varchar(50) NOT NULL,
   `player_id` varchar(50) NOT NULL,
-  `is_correct` int(1) NOT NULL,
-  PRIMARY KEY (`question`,`player_id`)
+  `category` varchar(50) NOT NULL,
+  `score` int(11) NOT NULL DEFAULT '0',
+  `genre` varchar(50) NOT NULL,
+  PRIMARY KEY (`question`,`player_id`,`category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
