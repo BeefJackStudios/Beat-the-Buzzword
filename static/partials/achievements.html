@@ -36,8 +36,8 @@
 						<tbody>
 							<tr data-ng-repeat="challenge in data"  data-ng-class-odd="'odd'">
 								<td data-ng-show="displayingRadomGenres">{[{challenge.profile.firstName}]} {[{challenge.profile.lastName}]}</td>
-								<td style="width:200px" id="achivements_name_{[{challenge.id}]}">{[{challenge.id}]}. {[{challenge.name}]}</td>
-								<td style="width:50px" id="achivements_score_{[{challenge.id}]}">{[{challenge.score}]}</td>
+								<td style="width:200px" id="achivement_name_{[{challenge.id}]}">{[{challenge.id}]}. {[{challenge.name}]}</td>
+								<td style="width:50px" id="achivement_score_{[{challenge.id}]}">{[{challenge.score}]}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -51,14 +51,24 @@
 			<thead><tr><th>Badges</th></tr></thead>
 		</table>
 		
-		<table>
-			<tbody>
-				<tr><td></td></tr>
-				<tr><td><img src="static/img/FillBarEmpty.png"/></td></tr>
-			</tbody>
-		</table>
+		<div id="badges" data-scrollable-content="true" data-ng-show="data.length > 0">
+			<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+			<div class="viewport">
+				<div class="overview">
+					<table>
+						<tbody>
+							<tr data-ng-repeat="challenge in badges"  data-ng-class-odd="'odd'">
+								<td data-ng-show="displayingRadomGenres">{[{challenge.profile.firstName}]} {[{challenge.profile.lastName}]}</td>
+								<td style="width:200px" id="badge_name_{[{challenge.id}]}">{[{challenge.id}]}. {[{challenge.name}]}</td>
+								<td style="width:50px" id="badge_score_{[{challenge.id}]}">{[{challenge.score}]}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
-	
+	<!--
 	<ul>
 		<li data-ng-repeat="trophy in trophies | limitTo: 4">
 			<a href="javascript:void(0);">
@@ -66,7 +76,7 @@
 			</a>
 		</li>
 	</ul>
-	<!--   -->
+	-->
 	
 	<!--
     <a href="javascript:void(0);" data-ng-show="isMyChallenges" data-ng-click="data = myChallenges" style="color: #fff;">Show My challenges</a>

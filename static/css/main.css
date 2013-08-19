@@ -2718,11 +2718,17 @@ footer #tidy:after {
 	width:400px;
 }
 
-#achivements tr td {
+#achivements tr td, #badges tr td {
 	color:#999;
 	text-align:left;
 	padding: 0 0 0 20px;
 }
+
+#achivements .viewport, #badges .viewport{
+	height:330px;
+}
+
+achivements
 
 #gamePlay {
 	background: url(../img/GamePlay.png);

@@ -104,6 +104,14 @@ function AchievementsController($scope, $timeout, $location, sharedData, serverL
 		$timeout(BTBW.Utilities.initScrollbars, 0); 
 	}
 	// -- END TEST ------------------------------------
+	
+	
+	$scope.badges = [
+		{id:"1", name:"Select from two categories", score:"3000"},
+		{id:"2", name:"Select from three categories", score:"7000"},
+		{id:"4", name:"Select from four categories", score:"8000"},
+		{id:"5", name:"Select from five categories", score:"9000"}
+	];
 	 
 			
 	$scope.trophies = [
@@ -152,13 +160,29 @@ function AchievementsController($scope, $timeout, $location, sharedData, serverL
 		
 		function activeAchivement(id)
 		{
-			$("#achivements_name_"+id).css({ color: "black"});
-			$("#achivements_score_"+id).css({ color: "black"});
+			$("#achivement_name_"+id).css({ color: "black"});
+			$("#achivement_score_"+id).css({ color: "black"});
+		}
+	}
+	
+	
+	function getBadges()
+	{
+		for (var i = sharedData.badges - 1; i > 0; i--)
+		{
+			activeBadge(i);
+		}
+		
+		function activeBadge(id)
+		{
+			$("#badge_name_"+id).css({ color: "black"});
+			$("#badge_score_"+id).css({ color: "black"});
 		}
 	}
 	
 	setTimeout(function() {
 		getAchievements();
+		getBadges();
 	}, 100);
 	
 	

@@ -365,8 +365,6 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			unlocked_cats = temp[1].split(",");
 			setUnlockedCats();
 			
-			
-			
 			var achievements = temp[2].split(",");
 			sharedData.achievement_1 = achievements[0];
 			sharedData.achievement_2 = achievements[1];
@@ -378,7 +376,9 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			sharedData.achievement_8 = achievements[7];
 			sharedData.achievement_9 = achievements[8];
 			
-			setNextCategoryTime(temp[4])
+			sharedData.badges = temp[3];
+			
+			setNextCategoryTime(temp[4]);
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });
