@@ -15,7 +15,7 @@ if ( $mode == "getUser")
 	$prev_unlocked_cats = "";
 	$unlocked_cats = "";
 	$achievements = "";
-	$bangets = "";
+	$badges = "";
 	$last_play_time = 0;
 	$number_of_cats = 1;
 	$new_user = true;
@@ -52,11 +52,26 @@ if ( $mode == "getUser")
 			if ($achievement == 1) 
 				$score += $achievements_scors[$i-1];
 		}
-
-		for ($i = 1; $i < 9; $i++)
-		{
-			$bangets .= $row['badge_'.$i] . ",";
-		}
+		
+		/*
+		Description	At
+		Select from two categories	3000
+		Select from three categories	7000
+		Select from four categories	8000
+		Select from five categories	9000
+		*/
+		if ($score >= 3000)
+			$badges = 1;
+		if ($score >= 7000)
+			$badges = 2;
+		if ($score >= 8000)	
+			$badges = 3;
+		if ($score >= 8000)		
+			$badges = 4;
+		if ($score >= 9000)		
+			$badges = 5;
+		
+		$number_of_cats = $badges;
 			
 		$last_play_time = $row['last_play_time'];
 			
@@ -100,7 +115,7 @@ if ( $mode == "getUser")
 	
 	$diff_time = $diff_time_min . ":" . $diff_time_sec;
 	
-	print $score . ";" . $unlocked_cats . ";" . $achievements . ";" . $bangets . ";" . $diff_time;
+	print $score . ";" . $unlocked_cats . ";" . $achievements . ";" . $badges . ";" . $diff_time;
 }
 
 function getScoreFromQuestions($player_id, $table)

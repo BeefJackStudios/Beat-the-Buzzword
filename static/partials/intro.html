@@ -80,27 +80,34 @@
 	
 	
 	<!-- GENRES -->
-	<div class="connections">
+	<div id="connections">
 		
-		<div class="popup" data-ng-show="showGenres">
+		<div class="popup"  data-ng-show="showGenres">
+			<div style="margin-top:90px;"></div>
+			<h1></h1>
+			
 			<div style="margin-top:60px;"></div>
-			<h1> </h1>
 			
 			<div class="popupClose">
-				<a href="javascript:void(0);"  data-ng-click="genreClose()"><img class="popupbg" src="static/img/CloseButton.png" /></a>
+				<a href="javascript:void(0);"  data-ng-click="oppClose()"><img class="popupbg" src="static/img/CloseButton.png" /></a>
 			</div> 
-		
-			<div class="wrap-genres" alt="{[{random1}]}" title="{[{random2}]}">
-				<div data-ng-repeat="genre in genres">
-					<a id="genre_{[{genre.id}]}" class="{[{genre.name}]}" style="height:78px;width:350px;background:url({[{genre.url}]});display:block" href="javascript:void(0);" data-ng-click="selectGenre(genre.id)"></a>
-				</div>
 			
-				<div class="next_category"><h1>Next category <span id="next_category_time">4:15</span></h1></div>
-	
-			</div>
+			<div id="scrollbar1" data-scrollable-content="true">
+				<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+				<div class="viewport" style="height:180px">
+					<div class="overview">
+						<div class="wrap-genres" alt="{[{random1}]}" title="{[{random2}]}">
+							<div data-ng-repeat="genre in genres">
+								<a id="genre_{[{genre.id}]}" class="{[{genre.name}]}" style="height:78px;width:350px;background:url({[{genre.url}]});display:block" href="javascript:void(0);" data-ng-click="selectGenre(genre.id)"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+			<div class="next_category"><h1>Next category <span id="next_category_time">4:15</span></h1></div>
 		</div> 
-	</div>
 	
+	</div> 
 	
 	
 	
@@ -115,12 +122,12 @@
 				<a href="javascript:void(0);"  data-ng-click="oppClose()"><img class="popupbg" src="static/img/CloseButton.png" /></a>
 			</div> 
 			
-			<div style="margin-top:40px;"><div>
+			<div style="margin-top:40px;"></div>
 			
-			<div data-scrollable-content="true">
+			<div id="scrollbar1" data-scrollable-content="true">
 				<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
 				<div class="viewport">
-					<div class="overview" style="height:1500px">
+					<div class="overview">
 						<li data-ng-repeat="user in connections | limitTo: 100">
 							<div class="connection-profile-holder">
 								<div class="connection-profile">

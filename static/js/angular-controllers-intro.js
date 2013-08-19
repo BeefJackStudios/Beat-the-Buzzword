@@ -94,6 +94,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		//$location.path(BTBW.CONST.PATH_SELECT_GENRE);
 		if (shouldShowGenres)
 			$scope.showGenres = true;
+			
+		$timeout(BTBW.Utilities.initScrollbars, 0);	
 	}
 	$scope.startHead2Head = function() {
 		sharedData.isMyGame = true;
@@ -352,12 +354,18 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		var url = BTBW.CONST.BASE_URL+"/php/getUser.php?mode=getUser&player_id="+BTBW.Data.Profile.linkedin_id+"&first_name="+BTBW.Data.Profile.firstName+"&last_name="+BTBW.Data.Profile.lastName+"&picture="+BTBW.Data.Profile.picture; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
+		
+			//var e = document.getElementById("debug");
+			//e.innerHTML = evt; 
+		
 			var temp = [];
 			temp = evt.split(";");
 			setScore(temp[0]);
 			
 			unlocked_cats = temp[1].split(",");
 			setUnlockedCats();
+			
+			
 			
 			var achievements = temp[2].split(",");
 			sharedData.achievement_1 = achievements[0];
