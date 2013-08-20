@@ -1,5 +1,6 @@
 <?php
 
+
 include_once("connect.php");
 
 $mode = $_REQUEST['mode'];
@@ -155,6 +156,25 @@ function getHeadToHeadNotification($player_id, $table, $table1)
 			$notification_list .= $row1["player_id"] . "::" . $row1["first_name"] . "::" . $row1["last_name"] . "::" . $row1["picture"] . "::" . $row["genre_id"] .",";
 		}
 	}
+	
+	// Delete notifications after 2 days
+	$rand = mt_rand(0, 20);
+	if ($rand < 4)
+	{
+		$expire_time_day = 2; //days
+		$expire_time_sec = $expire_time_day * 24 * 60 * 60; //secs
+		$query = "SELECT * FROM `".$table."`";
+		$result = mysql_query($query) or die(mysql_error());
+		while ($row = mysql_fetch_assoc($result)) 
+		{
+			$time = $row["time"];
+			$diff = time() - $time;
+			if ($diff > $expire_time_sec || $time == "" || $time == null)
+				$query = mysql_query("DELETE FROM `".$table."` WHERE `time`='".$time."'") or die($myQuery."<br/>".mysql_error());
+		}
+	}
+	
+
 
 	return $notification_list;
 }
