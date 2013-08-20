@@ -4,6 +4,7 @@
 	$tablename = "beatthebuzzword_challenges";
 	$users_table = "beatthebuzzword_users";
 	$questions_table = "beatthebuzzword_questions";
+	$head2head_table = "beatthebuzzword_head2head";
 
 	$dbname = "beefjack_btbw";
 	

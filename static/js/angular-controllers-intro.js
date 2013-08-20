@@ -24,11 +24,14 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		$scope.showOpps = false;
 		if (shouldShowGenres)
 			$scope.showGenres = true;
+			
+		$timeout(BTBW.Utilities.initScrollbars, 0);		
 	}
 
 	$scope.oppClose = function() {
 		$scope.showOpps = false;
 		$scope.showGenres = false;
+		$scope.showNotifications = false;
 	}
 
 
@@ -40,7 +43,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 
 
 	$scope.genres = BTBW.Data.Genres;
-	$scope.selectGenre = function(genreId) {
+	$scope.selectGenre = function(genreId)
+	{
 		sharedData.currentGenreId = genreId;
 
 		var resultFound = false;
@@ -53,10 +57,9 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			}
 		}
 
-
-
 		if(resultFound)
 		{
+			// run the quiz
 			$location.path(BTBW.CONST.PATH_GAMEPLAY);
 		}
 	}
@@ -67,6 +70,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	}
 
 	$scope.showGenres = false;
+	$scope.showNotifications = false;
 	//--------------------
 
 
@@ -87,6 +91,25 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 				$scope.startCEO();
 		}
 	}
+	
+	$scope.acceptHeadToHead = function(user_id, genre_id) 
+	{
+		sharedData.currentChallengeUserId = user_id;
+		
+		sharedData.currentGenreId = genre_id;
+		
+		//var e = document.getElementById("debug");
+		//e.innerHTML = sharedData.currentGenreId + "/" + genre + "/" + $scope.genres[sharedData.currentGenreId].name; 
+		//sharedData.currentGenreId = "1";
+		if (BTBW.Data.Profile.points < 700)
+			return;
+	
+		sharedData.isMyGame = false;
+        sharedData.currentChallengeName = BTBW.CONST.GAME_HEAD2HEAD;
+		$location.path(BTBW.CONST.PATH_GAMEPLAY);	
+	}
+	
+	
 
     $scope.startBuzzword = function() {
         sharedData.isMyGame = false;
@@ -112,6 +135,14 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	$scope.startCEO = function() {
 		sharedData.isMyGame = true;
 		sharedData.currentChallengeName = BTBW.CONST.GAME_CEO;
+		
+		//if (shouldShowGenres)
+		//	$scope.showGenres = true;
+			
+		//$timeout(BTBW.Utilities.initScrollbars, 0);	
+	
+		sharedData.currentGenreId = Math.floor((Math.random()*7)+1);
+		
 		$location.path(BTBW.CONST.PATH_GAMEPLAY);
 	}
 
@@ -348,6 +379,36 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		e.innerHTML = time; 
 	}
 	
+	$scope.HeadToHeadNotificationList = [];
+	function setHeadToHeadNotification(_value)
+	{
+		
+		var temp = [];
+		temp = _value.split(",");
+		var total_notification = temp.length - 1;
+		
+		var e = document.getElementById("HeadToHeadNotification");
+		if (total_notification != 0 && BTBW.Data.Profile.points >= 700)
+			e.style.display = "block";
+		
+		e.innerHTML = total_notification;
+		
+		var temp1 = [];
+		var total_notification_json = {};
+		for (var i = 0; i < total_notification; i++)
+		{
+			temp1 = temp[i].split("::");
+			total_notification_json = {linkedin_id:temp1[0], firstName:temp1[1], lastName:temp1[2], picture:temp1[3], genre_id:temp1[4]};
+			$scope.HeadToHeadNotificationList.push(total_notification_json);
+		}
+	}
+	
+	$scope.displayNotificationList = function() 
+	{
+		$scope.showNotifications = true;
+		$timeout(BTBW.Utilities.initScrollbars, 0);	
+	}
+	
 
 	function getUser()
 	{
@@ -379,6 +440,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			sharedData.badges = temp[3];
 			
 			setNextCategoryTime(temp[4]);
+
+			setHeadToHeadNotification(temp[5]);
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });

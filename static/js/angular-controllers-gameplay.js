@@ -7,6 +7,9 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
     $scope.locked = true;
     $scope.waitingForGo = true;
 	
+	
+	$scope.category = sharedUtilities.getGenreById(sharedData.currentGenreId).name;
+	
 	sharedData.score = 0;
 	sharedData.all_correct = true;
     
@@ -271,6 +274,27 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 								
 				// create game on server if mygame && head2head
 				} else if (sharedData.currentChallengeName == BTBW.CONST.GAME_HEAD2HEAD){
+				
+					// My new set HeadToHead function
+					function setHeadToHead(is_complete)
+					{	
+						var url = BTBW.CONST.BASE_URL+"/php/setHeadToHead.php?mode=setHeadToHead&player_id_1="+BTBW.Data.Profile.linkedin_id+"&player_id_2="+sharedData.currentChallengeUserId+"&genre_id="+sharedData.currentGenreId+"&is_complete="+is_complete; // BTBW.Data.Profile.linkedin_id;
+						$.ajax({ url:url })
+						.done(function(evt) {
+							//var e = document.getElementById("debug");
+							//e.innerHTML = evt; 
+						})
+						.fail(function() { sharedUtilities.reportError(evt); })
+						.always(function() { console.log("complete"); });
+						return 0;
+					}
+					
+					if (sharedData.isMyGame)
+						setHeadToHead(0);
+					else
+						setHeadToHead(1);
+				
+					
 						
 					if (sharedData.isMyGame){
 						console.log(">> submit GAME_HEAD2HEAD player 1 "+sharedData.score)

@@ -99,8 +99,8 @@ BTBWModule.factory('sharedUtilities', function ($q, $http, $location, $dialog, s
 					//get correct genre
 					for (var i in BTBW.Data.Buzzwords){
 							if (sharedData.currentChallengeName == BTBW.CONST.GAME_CEO ||
-								Number(BTBW.Data.Buzzwords[i].genre) ==
-								Number(sharedData.currentGenreId)){
+								Number(BTBW.Data.Buzzwords[i].genre) == Number(sharedData.currentGenreId))
+							{
 								temp.push(BTBW.Data.Buzzwords[i].pk);
 							}
 					}

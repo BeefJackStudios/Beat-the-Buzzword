@@ -2794,6 +2794,30 @@ footer #tidy:after {
 	color:#333;
 }
 
+.gameSelect {
+	height:254px;width:215px;
+}
+
+#HeadToHeadNotification {
+	background:url(../img/HeadToHeadNotification.png) no-repeat center center;
+	width:56px;
+	height:52px;
+	text-align:center;
+	padding:20px 0 0 8px;
+	position:absolute;
+	margin:30px 0 0 220px;
+	font-family: "gillsans_bold"; font-size: 2.4em; line-height: 0.8em;
+	color:#fff;
+	text-decoration:none;
+	display:none;
+}
+
+#HeadToHeadNotification:hover {
+	text-decoration:none;
+	/*color:#F15F3F;*/
+	color:#333;
+}
+
 
 /* Tiny Scrollbar 
 #scrollbar1 .viewport { width: 500px; height: 200px; overflow: hidden; position: relative; }

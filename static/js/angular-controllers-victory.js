@@ -155,8 +155,8 @@ function VictoryController($scope, $dialog, $location, $timeout, sharedData, ser
 		var url = BTBW.CONST.BASE_URL+"/php/setAchievement.php?mode=setAchievement&player_id="+BTBW.Data.Profile.linkedin_id+"&achievement_id="+challenge_id; // BTBW.Data.Profile.linkedin_id;
 		$.ajax({ url:url })
 		.done(function(evt) {
-			var e = document.getElementById("debug");
-			e.innerHTML = evt; 
+			//var e = document.getElementById("debug");
+			//e.innerHTML = evt; 
 			if (evt == 1)
 				sharedData.achievement_1 = 1;
 			else if (evt == 2)

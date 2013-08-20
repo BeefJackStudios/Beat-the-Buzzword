@@ -37,10 +37,11 @@
 	
 	<div>
        <!--  <ul> 	-->
-            <li data-ng-repeat="game in games | limitTo: 4">
+            <a href="javascript:void(0);" data-ng-click="displayNotificationList()" id="HeadToHeadNotification">0</a>
+			
+			<li data-ng-repeat="game in games | limitTo: 4">
                 <a href="javascript:void(0);"  data-ng-click="startGame(game)">
-					<div id="{[{game.name}]}" style="background:url({[{game.url}]}) no-repeat;height:254px;width:215px;"></div>
-					<span>{[{user.firstName}]}</span>
+					<div class="gameSelect" id="{[{game.name}]}" style="background:url({[{game.url}]}) no-repeat;"></div>
 				</a>
             </li>
 			
@@ -137,6 +138,47 @@
 								</div>
 								<div style="margin-top:5px;"><div>
 								<span class="connections_name">{[{user.firstName}]} {[{user.lastName}]}</span>
+							</div>
+						</li>
+					</div>
+				</div>
+			</div> 
+		</div> 
+	
+	</div> 
+	
+	
+	
+	
+	<!-- Notification -->
+	<div id="connections">
+		
+		<div class="popup"  data-ng-show="showNotifications">
+			<div style="margin-top:90px;"></div>
+			
+			<h1b>Who invited you &nbsp; <br/><h1c>Head to Head</h1c></h1b>
+			
+			<div class="popupClose">
+				<a href="javascript:void(0);"  data-ng-click="oppClose()"><img class="popupbg" src="static/img/CloseButton.png" /></a>
+			</div> 
+			
+			<div style="margin-top:40px;"></div>
+			
+			
+			
+			<div id="scrollbar1" data-scrollable-content="true">
+				<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+				<div class="viewport">
+					<div class="overview">
+						<li data-ng-repeat="notification in HeadToHeadNotificationList | limitTo: 4">
+							<div class="connection-profile-holder">
+								<div class="connection-profile">
+									<a href="javascript:void(0);" data-ng-click="acceptHeadToHead(notification.linkedin_id, notification.genre_id)" >
+										<img data-ng-src="{[{notification.picture}]}" alt="{[{notification.firstName}]}" />
+									</a>
+								</div>
+								<div style="margin-top:5px;"><div>
+								<span class="connections_name">{[{notification.firstName}]} {[{notification.lastName}]}</span>
 							</div>
 						</li>
 					</div>

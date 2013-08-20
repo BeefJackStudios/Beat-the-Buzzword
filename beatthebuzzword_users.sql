@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 19, 2013 at 01:17 PM
+-- Generation Time: Aug 20, 2013 at 05:24 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -42,14 +42,6 @@ CREATE TABLE IF NOT EXISTS `beatthebuzzword_users` (
   `achievement_7` int(1) NOT NULL DEFAULT '0',
   `achievement_8` int(1) NOT NULL DEFAULT '0',
   `achievement_9` int(1) NOT NULL DEFAULT '0',
-  `badge_1` int(1) NOT NULL DEFAULT '0',
-  `badge_2` int(1) NOT NULL DEFAULT '0',
-  `badge_3` int(1) NOT NULL DEFAULT '0',
-  `badge_4` int(1) NOT NULL DEFAULT '0',
-  `badge_5` int(1) NOT NULL DEFAULT '0',
-  `badge_6` int(1) NOT NULL DEFAULT '0',
-  `badge_7` int(1) NOT NULL DEFAULT '0',
-  `badge_8` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`player_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

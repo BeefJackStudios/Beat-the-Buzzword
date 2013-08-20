@@ -118,9 +118,14 @@ if ( $mode == "getUser")
 	$diff_time = $diff_time_min . ":" . $diff_time_sec;
 
 	if ($unlocked_cats == "" || $unlocked_cats == null)
+	{
 		$unlocked_cats = "1,";
+		$query = mysql_query("UPDATE `".$users_table."` SET unlocked_cats='".$unlocked_cats."', last_play_time='".time()."' WHERE player_id='".$player_id."'") or die($myQuery."<br/>".mysql_error());
+	}
+			
+	$notification_list = getHeadToHeadNotification($player_id, $head2head_table, $users_table);
 	
-	print $score . ";" . $unlocked_cats . ";" . $achievements . ";" . $badges . ";" . $diff_time;
+	print $score . ";" . $unlocked_cats . ";" . $achievements . ";" . $badges . ";" . $diff_time . ";" . $notification_list;
 }
 
 function getScoreFromQuestions($player_id, $table)
@@ -128,25 +133,31 @@ function getScoreFromQuestions($player_id, $table)
 	$query = "SELECT * FROM `".$table."` WHERE player_id='".$player_id."'";
 	$result = mysql_query($query) or die(mysql_error());
 	$score = 0;
-	while ($row = mysql_fetch_assoc($result)) {
+	while ($row = mysql_fetch_assoc($result)) 
+	{
 		$score = $score + $row["score"];
 	}
 
 	return $score;
 }
 
-/* old
-function getScoreFromQuestions($player_id, $table)
+function getHeadToHeadNotification($player_id, $table, $table1)
 {
-	$query = "SELECT * FROM `".$table."` WHERE playerId='".$player_id."'";
+	$query = "SELECT * FROM `".$table."` WHERE player_id_2='".$player_id."'";
 	$result = mysql_query($query) or die(mysql_error());
-	$score = 0;
-	while ($row = mysql_fetch_assoc($result)) {
-		$score = $score + $row["score"];
+	$notification_list = "";
+	while ($row = mysql_fetch_assoc($result)) 
+	{
+		$query1 = "SELECT * FROM `".$table1."` WHERE player_id='".$row["player_id_1"]."'";
+		$result1 = mysql_query($query1) or die(mysql_error());
+		while ($row1 = mysql_fetch_assoc($result1)) 
+		{
+			$notification_list .= $row1["player_id"] . "::" . $row1["first_name"] . "::" . $row1["last_name"] . "::" . $row1["picture"] . "::" . $row["genre_id"] .",";
+		}
 	}
 
-	return $score;
+	return $notification_list;
 }
-*/
+
 
 ?>
