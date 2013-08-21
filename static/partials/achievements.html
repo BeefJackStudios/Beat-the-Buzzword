@@ -20,47 +20,39 @@
 		
 	
 	
-	
-    <h1> </h1>
-	
 	<div class="table1">
-		<table>
-			<thead><tr><th>Achievements</th></tr></thead>
-		</table>
-
-		<div id="achivements" data-scrollable-content="true" data-ng-show="data.length > 0">
-			<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-			<div class="viewport">
-				<div class="overview">
-					<table>
-						<tbody>
-							<tr data-ng-repeat="challenge in data"  data-ng-class-odd="'odd'">
-								<td data-ng-show="displayingRadomGenres">{[{challenge.profile.firstName}]} {[{challenge.profile.lastName}]}</td>
-								<td style="width:200px" id="achivement_name_{[{challenge.id}]}">{[{challenge.id}]}. {[{challenge.name}]}</td>
-								<td style="width:50px" id="achivement_score_{[{challenge.id}]}">{[{challenge.score}]}</td>
-							</tr>
-						</tbody>
-					</table>
+		<div class="AchivementsBox">
+			<div id="achivements" data-scrollable-content="true" data-ng-show="data.length > 0">
+				<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+				<div class="viewport">
+					<div class="overview">
+						<table>
+							<tbody>
+								<tr data-ng-repeat="challenge in data"  data-ng-class-odd="'odd'">
+									<td data-ng-show="displayingRadomGenres">{[{challenge.profile.firstName}]} {[{challenge.profile.lastName}]}</td>
+									<td style="width:200px" id="achivement_name_{[{challenge.id}]}">{[{challenge.id}]}. {[{challenge.name}]}</td>
+									<td style="width:50px" id="achivement_score_{[{challenge.id}]}">{[{challenge.score}]}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="table2">
-		<table>
-			<thead><tr><th>Badges</th></tr></thead>
-		</table>
-		
+
 		<div id="badges" data-scrollable-content="true" data-ng-show="data.length > 0">
 			<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
 			<div class="viewport">
 				<div class="overview">
 					<table>
 						<tbody>
-							<tr data-ng-repeat="challenge in badges"  data-ng-class-odd="'odd'">
+							<tr data-ng-repeat="challenge in badges">
 								<td data-ng-show="displayingRadomGenres">{[{challenge.profile.firstName}]} {[{challenge.profile.lastName}]}</td>
-								<td style="width:200px" id="badge_name_{[{challenge.id}]}">{[{challenge.id}]}. {[{challenge.name}]}</td>
-								<td style="width:50px" id="badge_score_{[{challenge.id}]}">{[{challenge.score}]}</td>
+								<td style="width:200px" id="badge_name_{[{challenge.id}]}"><div id="badge_name" class="badge_name_{[{challenge.id}]}"></div><span class="badge_name_text">{[{challenge.name}]}</span></td>
+								<!--<td style="width:50px" id="badge_score_{[{challenge.id}]}">{[{challenge.score}]}</td>-->
 							</tr>
 						</tbody>
 					</table>

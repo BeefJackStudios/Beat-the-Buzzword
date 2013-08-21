@@ -2718,11 +2718,92 @@ footer #tidy:after {
 	width:400px;
 }
 
-#achivements tr td, #badges tr td {
+#achivements tr td {
 	color:#999;
 	text-align:left;
 	padding: 0 0 0 20px;
 }
+
+#badges tr {
+	background:url(../img/achievements/Badge_textBar.png) no-repeat center center;
+	width:366px;
+	height:83px;
+}
+
+#badges {
+	width:390px;
+	margin: 0 0 0 10px;
+	padding-top:60px;
+}
+
+
+#badges tr td {
+	color:#999;
+	text-align:left;
+	padding: 0 0 0 50px;
+}
+
+#badge_name {
+	width:114px;
+	height:107px;
+	position:absolute;
+	margin: -42px 0 0 -55px;
+	z-index:99999;
+}
+
+.badge_name_text {
+	margin: 0 0 0 60px;
+}
+
+
+.badge_name_1 {
+	background:url(../img/achievements/Badge_BW_3000.png) no-repeat;
+}
+
+.badge_name_2 {
+	background:url(../img/achievements/Badge_BW_7000.png) no-repeat;
+}
+
+.badge_name_3 {
+	background:url(../img/achievements/Badge_BW_8000.png) no-repeat;
+}
+
+.badge_name_4 {
+	background:url(../img/achievements/Badge_BW_9000.png) no-repeat;
+}
+
+.badge_name_5 {
+	background:url(../img/achievements/Badge_CEO_1500.png) no-repeat;
+}
+
+.badge_name_6 {
+	background:url(../img/achievements/Badge_CEO_2000.png) no-repeat;
+}
+
+.badge_name_7 {
+	background:url(../img/achievements/Badge_CEO_2700.png) no-repeat;
+}
+
+
+
+
+
+
+
+
+
+.AchivementsBox {
+	background:url(../img/achievements/AchivementsBox.png) no-repeat;
+	padding:113px 0 0 27px;
+	margin: 0 0 0 -15px;
+	width:442px;
+	height:475px;
+}
+
+#achivements {
+	width:397px;
+}
+
 
 #achivements .viewport, #badges .viewport{
 	height:330px;
@@ -2874,6 +2955,8 @@ footer #tidy:after {
 	margin:100px auto;
 	clear:both;
 }
+
+
 
 
 

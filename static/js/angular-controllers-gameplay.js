@@ -99,7 +99,9 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 	
     $scope.submitAnswer = function(answer, $event) {
         
-		
+		//var next_question = $scope.data.questions[$scope.currentQuestion + 1];
+		//var e = document.getElementById("debug");
+		//e.innerHTML = "Answer: " + $scope.currentQuestion + " :: " + sharedData.buzzwords[$scope.currentQuestion]; 
 		
 		//set lock to prevent multiple clicks
         if($scope.locked) return;

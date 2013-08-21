@@ -109,8 +109,11 @@ function AchievementsController($scope, $timeout, $location, sharedData, serverL
 	$scope.badges = [
 		{id:"1", name:"Select from two categories", score:"3000"},
 		{id:"2", name:"Select from three categories", score:"7000"},
-		{id:"4", name:"Select from four categories", score:"8000"},
-		{id:"5", name:"Select from five categories", score:"9000"}
+		{id:"3", name:"Select from four categories", score:"8000"},
+		{id:"4", name:"Select from five categories", score:"9000"},
+		{id:"5", name:"Up the ante CEO (More Q less T)", score:"1500"},
+		{id:"6", name:"Up the ante CEO (More Q less T)", score:"2000"},
+		{id:"7", name:"Up the ante CEO (More Q less T)", score:"2700"}
 	];
 	 
 			
