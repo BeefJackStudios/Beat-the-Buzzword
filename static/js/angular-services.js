@@ -83,7 +83,7 @@ BTBWModule.factory('sharedUtilities', function ($q, $http, $location, $dialog, s
 			}
 		},
 								
-		getBuzzWords: function(isHeadToHead = false) 
+		getBuzzWords: function(isHeadToHead) 
 		{
 			// We want to ask same questions from player 2 in h2h
 			if (isHeadToHead)

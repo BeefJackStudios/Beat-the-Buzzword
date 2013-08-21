@@ -2794,6 +2794,16 @@ footer #tidy:after {
 	color:#333;
 }
 
+.WhoAnsweredHow_name {
+	color:#333;
+}
+#WhoAnsweredHow li {
+	height:150px;
+	float:right;
+	clear:both;
+	margin:0 10px 0 0;
+}
+
 .gameSelect {
 	height:254px;width:215px;
 }
@@ -2817,6 +2827,57 @@ footer #tidy:after {
 	/*color:#F15F3F;*/
 	color:#333;
 }
+
+#ChallengeCompleted .popup{
+	margin:110px 0 0 0;
+}
+
+.ChallengeCompleted_message {
+	background:url(../img/popup/FinalScoreBox.png);
+	width:243px;
+	height:63px;
+	margin:180px auto 0 auto;
+	transform:rotate(-7deg); pointer-events:none;
+	padding: 0 0 0 60px;
+	clear:both;
+	
+}
+
+.ChallengeCompleted_info {
+	width:400px;
+	margin:0 auto;
+	clear:both;
+}
+
+.ChallengeCompleted_info h4 {
+	color:#333;
+	float:left;
+}
+
+.ChallengeCompleted_info .ChallengeCompleted_data {
+	margin:25px 0 0 10px;
+	float:left;
+}
+
+
+
+.ChallengeCompleted_score {
+	background:url(../img/popup/FinalScoreBox.png);
+	width:303px;
+	margin:0 auto;
+	height:63px;
+	font-size:84%;
+	clear:both;
+}
+
+.ChallengeCompleted_mainmenu {
+	margin:100px auto;
+	clear:both;
+}
+
+
+
+
 
 
 /* Tiny Scrollbar 

@@ -85,7 +85,7 @@ BTBW.CONST = BTBW.CONST || {
     'TITLE_SHOW_RANDOM_CHALLENGES': 'Select a challenge to beat!',
     'TITLE_SHOW_MY_CHALLENGES': 'Your Scores',
     
-    "TIMER_READY_INTERVAL": 3,
+    "TIMER_READY_INTERVAL": 0,
     "TIMER_INTERVAL": 20,
 
     "CLASS_ANSWER_CORRECT": "correct",

@@ -121,6 +121,35 @@ function VictoryController($scope, $dialog, $location, $timeout, sharedData, ser
 	
 	$scope.challengeName = sharedData.currentChallengeName;
 	
+	$scope.correct_cnt = sharedData.correct_cnt;
+	
+	function timeFromSecs(seconds)
+	{
+		//Math.floor(seconds/86400)+'d
+		//Math.floor(((seconds/86400)%1)*24)+'h
+		var min = Math.floor(((seconds/3600)%1)*60);
+		var sec = Math.round(((seconds/60)%1)*60);
+		
+		var num_sec = "";
+		if (sec < 10)
+			num_sec = "0" + sec;
+		else
+			num_sec = sec;
+			
+		var num_min = min;
+		/*
+		if (min < 10 && min != 0)
+			num_min = "0" + min;
+		else
+			num_min = min;
+		*/
+		
+		return num_min + ":" + num_sec;
+	}
+	
+	$scope.time_taken = timeFromSecs(sharedData.time_taken);
+	
+	
 	
 	function setAchievement()
 	{

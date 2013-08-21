@@ -1,5 +1,42 @@
 <section id="wrap-victory">
+
+	
+	<!-- OPP -->
+	<div id="ChallengeCompleted">
+		
+		<div class="popup">
+			
+			<div class="ChallengeCompleted_message">
+				<h1>Complete</h1>
+			</div>
+			
+			<div class="ChallengeCompleted_info">
+				<div class="player-holder">
+					<img class="logo-profile" data-ng-src={[{profile.picture}]} alt="{[{profile.firstName}]} {[{profile.lastName}]} profile image" />
+				</div>
+				<div class="ChallengeCompleted_data">
+					<div><h4>Questions right: <span>{[{correct_cnt}]}</span></h4></div>
+					<div><h4>Time taken: <span>{[{time_taken}]}</span></h4></div>
+				</div>
+				
+			</div>
+			
+			<div class="ChallengeCompleted_score">
+				<h1>Final Score: <span>{[{profile.points}]}</span></h1>
+			</div>
+			
+			<div class="ChallengeCompleted_mainmenu">
+				<a href="javascript:void(0);" class="dashboard" data-ng-click="gotoDashboard()"><img src="static/img/popup/MainMenuButton.png" alt="MainMenu" /></a>
+			</div>
+		
+			</div>
+		
+	
+	</div> 	
+	
+	<!--
     <h1>Challenge completed</h1>
+	-->
 	
 	<!--
     <div class="profile">
@@ -16,7 +53,7 @@
     </div>
 	-->
 	
-	
+	<!--
 	<div class="player-holder">
 		<img class="logo-profile" data-ng-src={[{profile.picture}]} alt="{[{profile.firstName}]} {[{profile.lastName}]} profile image" />
 	</div> 
@@ -52,4 +89,5 @@
             </div>
         </div>
     </div>
+	-->
 </section>

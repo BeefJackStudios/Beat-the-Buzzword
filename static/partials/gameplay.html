@@ -42,4 +42,41 @@
     </ul>
 	
     <div data-ng-show="isLoading" class="loadingSpinner"><h1>Please wait...</h1><p><img src="static/img/loader.gif" alt="Loading..."/></p></div>
+
+	
+	
+	<!-- OPP -->
+	<div id="WhoAnsweredHow">
+		
+		<div class="popup" data-ng-show="showOpps">
+			<div class="popupClose">
+				<a href="javascript:void(0);"  data-ng-click="oppClose()"><img class="popupbg" src="static/img/CloseButton.png" /></a>
+			</div> 
+			
+			<div style="margin-top:200px;"></div>
+			
+			<div id="scrollbar1" data-scrollable-content="true">
+				<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+				<div class="viewport">
+					<div class="overview">
+						<li data-ng-repeat="user in WhoAnsweredHow | limitTo: 4">
+							<div class="connection-profile-holder">
+								<div class="connection-profile">
+									<a href="javascript:void(0);"  data-ng-click="selectOpp(user.linkedin_id)" >
+										<img data-ng-src="{[{user.picture}]}" alt="{[{user.firstName}]}" />
+									</a>
+								</div>
+								<div class="WhoAnsweredHow_name">{[{user.firstName}]} {[{user.lastName}]}</div>
+							</div>
+						</li>
+					</div>
+				</div>
+			</div> 
+		</div> 
+	
+	</div> 	
+	
+	
+
+	
 </section>

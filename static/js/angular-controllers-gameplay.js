@@ -12,6 +12,8 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 	
 	sharedData.score = 0;
 	sharedData.all_correct = true;
+	sharedData.correct_cnt = 0;
+	sharedData.time_taken = 0;
     
 	sharedData.answers = []; // store game progress internally
 	sharedData.buzzwords = []; // store game progress internally
@@ -96,7 +98,10 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 	setPlayerScore(sharedData.prev_score, sharedData.score, sharedData.total_score);
 	
     $scope.submitAnswer = function(answer, $event) {
-        //set lock to prevent multiple clicks
+        
+		
+		
+		//set lock to prevent multiple clicks
         if($scope.locked) return;
         $scope.locked = true;
 
@@ -129,6 +134,9 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 		var is_correct = 0;
 		var answering_time = 20;
 		var passed_time = answering_time - $scope.time;
+		
+		sharedData.time_taken += passed_time;
+		
 		var rightAnswerReward = 0;
 		var this_question_score = 0;
 		var mult = 1;
@@ -170,6 +178,7 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 			(20 + 16) *5 = 180pts
 			*/
 			is_correct = 1;
+			sharedData.correct_cnt++;
 		}
 		else
 			sharedData.all_correct = false;
@@ -238,7 +247,19 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 		if (sharedData.all_correct)
 			setAchievement(6);	
 			
-		
+		function setWhoAnsweredHow(_value)
+		{
+			var json = {};
+			for (var i = 0; i < _value; i++)
+			{
+				json = {linkedin_id:"gggg", firstName:"farhad", lastName:"poorsolaymani", picture:"http://m.c.lnkd.licdn.com/mpr/mprx/0_Z3_74LI-gCffNtau9X3p4QJPl8e7qNxus6Br4bW2m6yxIre2qFP_nFjGxSHKBPY8MGTlchBkSV9f", score:"87x"};
+				$scope.WhoAnsweredHow.push(json);
+			}
+			$scope.showOpps = true;
+			$timeout(BTBW.Utilities.initScrollbars, 0);	
+		}
+		//setWhoAnsweredHow(4);
+
 		
 		 //reset the timer 
         $rootScope.$broadcast("RESET_TIMER");
@@ -409,5 +430,42 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 	//e.style.background = "url('static/img/PlayAreaQuestion.png') no-repeat 50% 0"; 
 	$scope.wrap_background = "url('static/img/PlayAreaQuestion.png') no-repeat 50% 0";
 	// ----------------------------------
+	
+	
+	
+	
+
+	
+	$scope.oppClose = function() 
+	{
+		$scope.showOpps = false;
+	}
+	
+	$scope.WhoAnsweredHow = [];
+
+	function getWhoAnsweredHow()
+	{
+		var temp = [];
+		temp = $scope.data.questions;
+		var questions = "";
+		for (var i in temp)
+			questions += temp[i].question.substring(0, 36) + "::";
+	
+		var url = BTBW.CONST.BASE_URL+"/php/getWhoAnsweredHow.php?mode=getWhoAnsweredHow&questions="+questions;
+		$.ajax({ url:url })
+		.done(function(evt) {
+			//var e = document.getElementById("debug");
+			//e.innerHTML = evt; 
+		})
+		.fail(function() { sharedUtilities.reportError(evt); })
+		.always(function() { console.log("complete"); });
+		return 0;
+	}
+	
+	setTimeout(function() {
+		getWhoAnsweredHow();
+	}, 50);
+
+
 		
 }
