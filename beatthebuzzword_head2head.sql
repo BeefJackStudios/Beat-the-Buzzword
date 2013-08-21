@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 20, 2013 at 05:23 PM
+-- Generation Time: Aug 21, 2013 at 12:17 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `beatthebuzzword_head2head` (
   `player_id_2` varchar(50) NOT NULL,
   `genre_id` int(2) NOT NULL DEFAULT '1',
   `time` int(11) NOT NULL DEFAULT '0',
+  `random_questions` text NOT NULL,
   PRIMARY KEY (`player_id_1`,`player_id_2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

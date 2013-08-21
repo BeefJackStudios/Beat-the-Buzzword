@@ -16,7 +16,11 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 	sharedData.answers = []; // store game progress internally
 	sharedData.buzzwords = []; // store game progress internally
 	
-	sharedUtilities.getBuzzWords();
+	// We want to ask same questions from player 2 in h2h
+	if (sharedData.currentChallengeName == BTBW.CONST.GAME_HEAD2HEAD && !sharedData.isMyGame)
+		sharedUtilities.getBuzzWords(true);
+	else
+		sharedUtilities.getBuzzWords(false);
 	
 	$scope.evalAnswerToClassname = sharedUtilities.evalAnswerToClassname;
 
@@ -278,7 +282,7 @@ function GameplayController($scope, $location, $timeout, $http, $routeParams, $r
 					// My new set HeadToHead function
 					function setHeadToHead(is_complete)
 					{	
-						var url = BTBW.CONST.BASE_URL+"/php/setHeadToHead.php?mode=setHeadToHead&player_id_1="+BTBW.Data.Profile.linkedin_id+"&player_id_2="+sharedData.currentChallengeUserId+"&genre_id="+sharedData.currentGenreId+"&is_complete="+is_complete; // BTBW.Data.Profile.linkedin_id;
+						var url = BTBW.CONST.BASE_URL+"/php/setHeadToHead.php?mode=setHeadToHead&player_id_1="+BTBW.Data.Profile.linkedin_id+"&player_id_2="+sharedData.currentChallengeUserId+"&genre_id="+sharedData.currentGenreId+"&is_complete="+is_complete+"&random_questions="+sharedData.random_questions; // BTBW.Data.Profile.linkedin_id;
 						$.ajax({ url:url })
 						.done(function(evt) {
 							//var e = document.getElementById("debug");

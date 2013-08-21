@@ -10,6 +10,7 @@ if ( $mode == "setHeadToHead")
 	$player_id_2 = $_REQUEST['player_id_2'];
 	$genre_id = $_REQUEST['genre_id'];
 	$is_complete = $_REQUEST['is_complete'];
+	$random_questions = $_REQUEST['random_questions'];
 	
 	if ($is_complete == 1)
 	{
@@ -18,10 +19,10 @@ if ( $mode == "setHeadToHead")
 	}
 	else
 	{
-		$query = mysql_query("INSERT INTO `".$head2head_table."` (`player_id_1`, `player_id_2`, `genre_id`, `time`) VALUES ('".$player_id_1."', '".$player_id_2."', '".$genre_id."', '".time()."')
+		$query = mysql_query("INSERT INTO `".$head2head_table."` (`player_id_1`, `player_id_2`, `genre_id`, `time`, `random_questions`) VALUES ('".$player_id_1."', '".$player_id_2."', '".$genre_id."', '".time()."', '".$random_questions."')
 		ON DUPLICATE KEY UPDATE player_id_1 = '".$player_id_1."', player_id_2 = '".$player_id_2."', genre_id = '".$genre_id."', time = '".time()."'") or die($myQuery."<br/>".mysql_error());
 	}
-	print $player_id_1 . "/" . $player_id_2 . "/" . $genre_id . "/" . time() . "/" . $is_complete;
+	//print $player_id_1 . "/" . $player_id_2 . "/" . $genre_id . "/" . time() . "/" . $is_complete . "/" . $random_questions;
 }
 
 ?>

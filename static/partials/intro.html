@@ -173,7 +173,7 @@
 						<li data-ng-repeat="notification in HeadToHeadNotificationList | limitTo: 4">
 							<div class="connection-profile-holder">
 								<div class="connection-profile">
-									<a href="javascript:void(0);" data-ng-click="acceptHeadToHead(notification.linkedin_id, notification.genre_id)" >
+									<a href="javascript:void(0);" data-ng-click="acceptHeadToHead(notification.linkedin_id, notification.genre_id, notification.random_questions)" >
 										<img data-ng-src="{[{notification.picture}]}" alt="{[{notification.firstName}]}" />
 									</a>
 								</div>

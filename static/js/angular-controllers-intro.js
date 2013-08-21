@@ -60,8 +60,15 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		if(resultFound)
 		{
 			// run the quiz
-			$location.path(BTBW.CONST.PATH_GAMEPLAY);
+			goToGame();
 		}
+	}
+	
+	function goToGame()
+	{
+		//setTimeout(function() {
+			$location.path(BTBW.CONST.PATH_GAMEPLAY);
+		//}, 1);
 	}
 
 	$scope.genreClose = function() {
@@ -92,11 +99,15 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		}
 	}
 	
-	$scope.acceptHeadToHead = function(user_id, genre_id) 
+	$scope.acceptHeadToHead = function(user_id, genre_id, random_questions) 
 	{
 		sharedData.currentChallengeUserId = user_id;
 		
 		sharedData.currentGenreId = genre_id;
+		
+		sharedData.random_questions = random_questions;
+		
+	
 		
 		//var e = document.getElementById("debug");
 		//e.innerHTML = sharedData.currentGenreId + "/" + genre + "/" + $scope.genres[sharedData.currentGenreId].name; 
@@ -106,7 +117,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	
 		sharedData.isMyGame = false;
         sharedData.currentChallengeName = BTBW.CONST.GAME_HEAD2HEAD;
-		$location.path(BTBW.CONST.PATH_GAMEPLAY);	
+		goToGame();	
 	}
 	
 	
@@ -143,7 +154,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 	
 		sharedData.currentGenreId = Math.floor((Math.random()*7)+1);
 		
-		$location.path(BTBW.CONST.PATH_GAMEPLAY);
+		goToGame();
 	}
 
     $scope.showUserChallenges = function(userId) {
@@ -157,7 +168,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
     $scope.setChallengeByGenre = function(selectedGenreId) {
         sharedData.currentChallengeName = BTBW.CONST.GAME_SET_CHALLENGE;
         sharedData.currentGenreId = selectedGenreId;
-        $location.path(BTBW.CONST.PATH_GAMEPLAY);
+        goToGame();
 	}
     $scope.filterByPlayerName = function(item) {
         return !$scope.filterConnectionName || 
@@ -398,7 +409,7 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 		for (var i = 0; i < total_notification; i++)
 		{
 			temp1 = temp[i].split("::");
-			total_notification_json = {linkedin_id:temp1[0], firstName:temp1[1], lastName:temp1[2], picture:temp1[3], genre_id:temp1[4]};
+			total_notification_json = {linkedin_id:temp1[0], firstName:temp1[1], lastName:temp1[2], picture:temp1[3], genre_id:temp1[4], random_questions:temp1[5]};
 			$scope.HeadToHeadNotificationList.push(total_notification_json);
 		}
 	}
@@ -442,6 +453,8 @@ function IntroController($scope, $location, $timeout, $dialog, sharedData, share
 			setNextCategoryTime(temp[4]);
 
 			setHeadToHeadNotification(temp[5]);
+			
+			
 		})
 		.fail(function() { sharedUtilities.reportError(evt); })
 		.always(function() { console.log("complete"); });

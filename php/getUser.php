@@ -153,7 +153,7 @@ function getHeadToHeadNotification($player_id, $table, $table1)
 		$result1 = mysql_query($query1) or die(mysql_error());
 		while ($row1 = mysql_fetch_assoc($result1)) 
 		{
-			$notification_list .= $row1["player_id"] . "::" . $row1["first_name"] . "::" . $row1["last_name"] . "::" . $row1["picture"] . "::" . $row["genre_id"] .",";
+			$notification_list .= $row1["player_id"] . "::" . $row1["first_name"] . "::" . $row1["last_name"] . "::" . $row1["picture"] . "::" . $row["genre_id"] . "::" . $row["random_questions"] . ",";
 		}
 	}
 	

@@ -83,16 +83,45 @@ BTBWModule.factory('sharedUtilities', function ($q, $http, $location, $dialog, s
 			}
 		},
 								
-		getBuzzWords: function() {
-			function shuffleArray(array) {
-				for (var i = array.length - 1; i > 0; i--) {
-					var j = Math.floor(Math.random() * (i + 1));
-					var temp = array[i];
-					array[i] = array[j];
-					array[j] = temp;
+		getBuzzWords: function(isHeadToHead = false) 
+		{
+			// We want to ask same questions from player 2 in h2h
+			if (isHeadToHead)
+			{
+				var temp1 = [];
+				temp1 = sharedData.random_questions.split("//");
+				
+				function shuffleArray(array) 
+				{
+					for (var i = array.length - 1; i > 0; i--) 
+					{
+						var j = temp1[array.length - 1 - i];
+						var temp = array[i];
+						array[i] = array[j];
+						array[j] = temp;
+					}
+					return array;
 				}
-				return array;
 			}
+			else
+			{
+				var random_questions = "";
+				function shuffleArray(array) 
+				{
+					for (var i = array.length - 1; i > 0; i--) 
+					{
+						var j = Math.floor(Math.random() * (i + 1));
+						random_questions += j + "//";
+						var temp = array[i];
+						array[i] = array[j];
+						array[j] = temp;
+					}
+					sharedData.random_questions = random_questions;
+					return array;
+				}
+			}
+			
+
 
 			function definePkIdByGenre(){
 					var temp = [];
